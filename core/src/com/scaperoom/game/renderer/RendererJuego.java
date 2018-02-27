@@ -28,7 +28,7 @@ public class RendererJuego implements InputProcessor{
 
     private float delta = Gdx.graphics.getDeltaTime();
 
-    private boolean debugger = true;
+    private boolean debugger = false;
     private Bernard bernard;
     private LeChuck lechuck;
 
@@ -53,7 +53,8 @@ public class RendererJuego implements InputProcessor{
             dibujarMapa();
             dibujarBernard();
             dibujarLeChuck();
-//            dibujarCapaSup();
+            dibujarParedes();
+            dibujarPuertas();
         batch.end();
 
         if(debugger){
@@ -66,6 +67,17 @@ public class RendererJuego implements InputProcessor{
     private void dibujarMapa(){
         batch.draw(AssetsJuego.textureMap,
                 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
+    }
+
+    private void dibujarParedes(){
+        batch.draw(AssetsJuego.textureParedes,
+                0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
+    }
+    private void dibujarPuertas(){
+        batch.draw(AssetsJuego.texturePuertas,
+                115,144,29,48);
+        batch.draw(AssetsJuego.texturePuertas,
+                405,202,29,48);
     }
 
     private void dibujarBernard(){

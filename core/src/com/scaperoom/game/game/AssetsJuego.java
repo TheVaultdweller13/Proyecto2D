@@ -13,6 +13,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AssetsJuego {
 
     public static Texture textureMap;
+    public static Texture textureParedes;
+    public static Texture texturePuertas;
     public static Texture textureCharacterBernard;
     public static Texture textureCharacterLeChuck;
 
@@ -29,6 +31,10 @@ public class AssetsJuego {
           /* Fondo del juego */
         imageFileHandle = Gdx.files.internal("graficos/map_room.jpg");
         textureMap = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/paredes.png");
+        textureParedes = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/puerta.png");
+        texturePuertas = new Texture(imageFileHandle);
 
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
@@ -42,6 +48,8 @@ public class AssetsJuego {
 
         textureMap.dispose();
         textureCharacterBernard.dispose();
+        textureParedes.dispose();
+        texturePuertas.dispose();
 
     }
 

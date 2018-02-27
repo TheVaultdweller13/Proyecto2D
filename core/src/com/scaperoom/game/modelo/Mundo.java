@@ -39,7 +39,7 @@ public class Mundo {
             35,15,140,135);
 
     public Mundo() {
-        bernard = new Bernard(new Vector2(360, 320), new Vector2(45, 80),100);
+        bernard = new Bernard(new Vector2(360, 320), new Vector2(42, 80),100);
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95),40);
     }
 
