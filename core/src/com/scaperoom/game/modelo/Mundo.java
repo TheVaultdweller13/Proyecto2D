@@ -2,6 +2,7 @@ package com.scaperoom.game.modelo;
 
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 /**
  * Created by Héctor Fernández on 27/02/2018.
@@ -12,8 +13,12 @@ public class Mundo {
     public static final int TAMAÑO_MUNDO_ANCHO=576;
     public static final int TAMAÑO_MUNDO_ALTO=490;
 
+    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(Mundo.TAMAÑO_MUNDO_ANCHO,512);
+
     private Bernard bernard;
     private LeChuck lechuck;
+
+    private Array<ElementoMovil> niebla;
 
     public final static Rectangle MARGEN_DERECHO = new Rectangle(
             Mundo.TAMAÑO_MUNDO_ANCHO-90,0,90,Mundo.TAMAÑO_MUNDO_ALTO);
@@ -41,6 +46,20 @@ public class Mundo {
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(42, 80),100);
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95),40);
+
+        niebla = new Array<ElementoMovil>();
+
+        //Carga Niebla Blanca
+        niebla.add(new ElementoMovil(new Vector2(0,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
+        
+        //Carga Niebla Negra
+        niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+    }
+
+    public Array<ElementoMovil> getNiebla() {
+        return niebla;
     }
 
     public Bernard getBernard() {

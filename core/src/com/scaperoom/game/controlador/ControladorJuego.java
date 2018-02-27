@@ -1,6 +1,7 @@
 package com.scaperoom.game.controlador;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.scaperoom.game.modelo.Bernard;
+import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
@@ -68,6 +69,23 @@ public class ControladorJuego {
         }
     }
 
+    private void controlarNiebla(float delta){
+
+        for(ElementoMovil niebla: miMundo.getNiebla()){
+            niebla.update(delta);
+            if (niebla.getVelocidad()>0){   // Izquierda a derecha
+                if (niebla.getPosicion().x>=Mundo.TAMAÑO_NIEBLA.x){
+                    niebla.setPosicion(-Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
+                }
+            }
+            else{   // Derecha a izquierda
+                if (niebla.getPosicion().x<=-niebla.getTamaño().x){
+                        niebla.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, niebla.getPosicion().y);
+                }
+            }
+        }
+    }
+
     private void procesarEntradas(){
 
         if (keys.get(Keys.DERECHA))
@@ -88,6 +106,7 @@ public class ControladorJuego {
     public void update(float delta){
 //        miMundo.updateCronometro(delta);
         controlarBernard(delta);
+        controlarNiebla(delta);
         procesarEntradas();
     }
 }

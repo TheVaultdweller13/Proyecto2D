@@ -5,11 +5,13 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
+import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
@@ -100,8 +102,26 @@ public class RendererJuego implements InputProcessor{
     }
 
     private void dibujarNieblas() {
-        batch.draw(AssetsJuego.textureAntiniebla, 0, 0, 512, 512);
-        batch.draw(AssetsJuego.textureNiebla, 0, 0, 512, 512);
+        Texture textura=null;
+        for (ElementoMovil niebla : miMundo.getNiebla()){
+
+            niebla.setPosicion(niebla.getPosicion().x+(1*delta), niebla.getPosicion().y);
+
+            switch(niebla.getTipo()){
+                case NIEBLA:
+                    textura = AssetsJuego.textureNiebla;
+                    break;
+                case ANTI_NIEBLA:
+                    textura = AssetsJuego.textureAntiniebla;
+                    break;
+            }
+            if (niebla.getVelocidad()<0){
+                batch.draw(textura,niebla.getPosicion().x+niebla.getTamaño().x,niebla.getPosicion().y,-niebla.getTamaño().x,niebla.getTamaño().y);
+            }
+            else{
+                batch.draw(textura,niebla.getPosicion().x,niebla.getPosicion().y,niebla.getTamaño().x,niebla.getTamaño().y);
+            }
+        }
     }
 
     public OrthographicCamera getCamara2d(){
