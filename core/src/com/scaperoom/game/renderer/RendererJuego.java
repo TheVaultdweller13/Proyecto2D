@@ -53,6 +53,7 @@ public class RendererJuego implements InputProcessor{
             dibujarMapa();
             dibujarBernard();
             dibujarLeChuck();
+//            dibujarCapaSup();
         batch.end();
 
         if(debugger){
@@ -124,8 +125,13 @@ public class RendererJuego implements InputProcessor{
             shaperender.rect(miMundo.MARGEN_DERECHO.x, miMundo.MARGEN_DERECHO.y, miMundo.MARGEN_DERECHO.width, miMundo.MARGEN_DERECHO.height, Color.GOLD, Color.GOLD, Color.GOLD, Color.GOLD);
             shaperender.rect(miMundo.ROOM_COCINA.x, miMundo.ROOM_COCINA.y, miMundo.ROOM_COCINA.width, miMundo.ROOM_COCINA.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
             shaperender.rect(miMundo.ROOM_BAÑO.x, miMundo.ROOM_BAÑO.y, miMundo.ROOM_BAÑO.width, miMundo.ROOM_BAÑO.height, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN);
-        shaperender.rect(miMundo.ROOM_ESTUDIO.x, miMundo.ROOM_ESTUDIO.y, miMundo.ROOM_ESTUDIO.width, miMundo.ROOM_ESTUDIO.height, Color.ORANGE, Color.ORANGE, Color.ORANGE, Color.ORANGE);
-
+            shaperender.rect(miMundo.ROOM_ESTUDIO.x, miMundo.ROOM_ESTUDIO.y, miMundo.ROOM_ESTUDIO.width, miMundo.ROOM_ESTUDIO.height, Color.ORANGE, Color.ORANGE, Color.ORANGE, Color.ORANGE);
+            shaperender.rect(miMundo.ROOM_SALON[0].x, miMundo.ROOM_SALON[0].y, miMundo.ROOM_SALON[0].width, miMundo.ROOM_SALON[0].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
+            shaperender.rect(miMundo.ROOM_SALON[1].x, miMundo.ROOM_SALON[1].y, miMundo.ROOM_SALON[1].width, miMundo.ROOM_SALON[1].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
+            shaperender.rect(miMundo.ROOM_SALON[2].x, miMundo.ROOM_SALON[2].y, miMundo.ROOM_SALON[2].width, miMundo.ROOM_SALON[2].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
+            shaperender.rect(miMundo.ROOM_SALON[3].x, miMundo.ROOM_SALON[3].y, miMundo.ROOM_SALON[3].width, miMundo.ROOM_SALON[3].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
+            shaperender.rect(miMundo.PASILLOS[0].x, miMundo.PASILLOS[0].y, miMundo.PASILLOS[0].width, miMundo.PASILLOS[0].height, Color.YELLOW, Color.YELLOW, Color.YELLOW, Color.YELLOW);
+            shaperender.rect(miMundo.PASILLOS[1].x, miMundo.PASILLOS[1].y, miMundo.PASILLOS[1].width, miMundo.PASILLOS[1].height, Color.YELLOW, Color.YELLOW, Color.YELLOW, Color.YELLOW);
         shaperender.end();
     }
 
