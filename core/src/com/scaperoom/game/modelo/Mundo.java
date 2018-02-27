@@ -52,7 +52,7 @@ public class Mundo {
         //Carga Niebla Blanca
         niebla.add(new ElementoMovil(new Vector2(0,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
-        
+
         //Carga Niebla Negra
         niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
