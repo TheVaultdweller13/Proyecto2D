@@ -17,7 +17,8 @@ public class AssetsJuego {
     public static Texture texturePuertas;
     public static Texture textureCharacterBernard;
     public static Texture textureCharacterLeChuck;
-
+    public static Texture textureNiebla;
+    public static Texture textureAntiniebla;
 
     public static Animation bernardArriba,
             bernardAbajo,
@@ -36,6 +37,11 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/puerta.png");
         texturePuertas = new Texture(imageFileHandle);
 
+        imageFileHandle = Gdx.files.internal("graficos/niebla.png");
+        textureNiebla = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/antiniebla.png");
+        textureAntiniebla = new Texture(imageFileHandle);
+
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
@@ -50,7 +56,8 @@ public class AssetsJuego {
         textureCharacterBernard.dispose();
         textureParedes.dispose();
         texturePuertas.dispose();
-
+        textureNiebla.dispose();
+        textureAntiniebla.dispose();
     }
 
     private static void animacionBernard(FileHandle imageFileHandle){

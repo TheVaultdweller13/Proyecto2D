@@ -55,6 +55,7 @@ public class RendererJuego implements InputProcessor{
             dibujarLeChuck();
             dibujarParedes();
             dibujarPuertas();
+            dibujarNieblas();
         batch.end();
 
         if(debugger){
@@ -98,6 +99,10 @@ public class RendererJuego implements InputProcessor{
                 lechuck.getTamaño().y);
     }
 
+    private void dibujarNieblas() {
+        batch.draw(AssetsJuego.textureAntiniebla, 0, 0, 512, 512);
+        batch.draw(AssetsJuego.textureNiebla, 0, 0, 512, 512);
+    }
 
     public OrthographicCamera getCamara2d(){
         return this.camara2d;
