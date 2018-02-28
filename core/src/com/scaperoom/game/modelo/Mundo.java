@@ -26,24 +26,24 @@ public class Mundo {
             new Rectangle(175, 0, 29, TAMAÑO_MUNDO_ALTO)
     };
 
-    public final static Rectangle ROOM_COCINA = new Rectangle(20, 200, 155, 200);
+    public final static Rectangle ROOM_COCINA = new Rectangle(20, 200, 155, 240);
 
 
     public static final Rectangle ROOM_SALON[]={
-            new Rectangle(320,260,169,150),
-            new Rectangle(200,80,125,325),
+            new Rectangle(320,260,169,180),
+            new Rectangle(200,80,125,360),
             new Rectangle(230,45, 60,68)
     };
 
     public static final Rectangle ESPACIO_MOVIL[] = {
             new Rectangle(ROOM_SALON[0].x-20, ROOM_SALON[0].y, 44, 130),
-            new Rectangle(ROOM_COCINA.width+18,200, 40,60),
+            new Rectangle(ROOM_COCINA.width+10,200, 50,60),
 
     };
 
     public static final Rectangle PASILLOS[]={
-            new Rectangle(115,140,30,95),
-            new Rectangle(405,190,30,95),
+            new Rectangle(115,140,30,75),
+            new Rectangle(405,190,30,75),
     };
 
     public final static Rectangle ROOM_ESTUDIO= new Rectangle(
@@ -53,7 +53,7 @@ public class Mundo {
             35,15,140,135);
 
     public Mundo() {
-        bernard = new Bernard(new Vector2(360, 320), new Vector2(42, 80),100);
+        bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75),100);
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95),40);
 
         niebla = new Array<ElementoMovil>();

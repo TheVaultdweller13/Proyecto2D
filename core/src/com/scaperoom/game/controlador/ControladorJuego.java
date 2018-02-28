@@ -62,7 +62,7 @@ public class ControladorJuego {
         bernard.update(delta);
 
 
-    //Control ejes X
+    //Control ejes X: Lado derecho de la mansión
         if(bernard.getPosicion().x>=miMundo.BORDES[0].x-bernard.getTamaño().x){
             bernard.setPosicion(miMundo.BORDES[0].x-bernard.getTamaño().x, bernard.getPosicion().y);
         }
@@ -72,6 +72,13 @@ public class ControladorJuego {
                     bernard.setPosicion(Mundo.ROOM_SALON[0].x-bernard.getTamaño().x, bernard.getPosicion().y);
             }
         }
+        if(bernard.getPosicion().x<=Mundo.ROOM_ESTUDIO.x
+                && Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_ESTUDIO)
+                && !Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_SALON[0])){
+                bernard.setPosicion(Mundo.ROOM_ESTUDIO.x, bernard.getPosicion().y);
+        }
+
+     //Control ejes X: Lado izquierdo de la mansión
         if(bernard.getPosicion().x<=20){
             bernard.setPosicion(20, bernard.getPosicion().y);
         }
@@ -81,6 +88,22 @@ public class ControladorJuego {
                 bernard.setPosicion(Mundo.BORDES[1].x+20, bernard.getPosicion().y);
             }
         }
+        if(bernard.getPosicion().x>=Mundo.BORDES[1].x-bernard.getTamaño().x &&
+                !Intersector.overlaps(bernard.getRectangulo(), Mundo.ESPACIO_MOVIL[1])){
+            if(bernard.getPosicion().x<= miMundo.ESPACIO_MOVIL[1].x){
+                bernard.setPosicion(Mundo.BORDES[1].x-bernard.getTamaño().x, bernard.getPosicion().y);
+            }
+        }
+        for(int i=0; i<Mundo.PASILLOS.length; i++){
+            if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLOS[i])){
+                bernard.setPosicion( Mundo.PASILLOS[i].x-5,bernard.getPosicion().y);
+            }
+        }
+    //Control Ejes Y
+        if(bernard.getPosicion().y>=miMundo.ROOM_SALON[0].y+bernard.getTamaño().y+30){ //Los márgenes superiores de las tres habitaciones están igualados
+            bernard.setPosicion(bernard.getPosicion().x, miMundo.ROOM_SALON[0].y+bernard.getTamaño().y+30);
+        }
+
     }
 
     private void controlarNiebla(float delta){
