@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -20,16 +21,24 @@ public class Mundo {
 
     private Array<ElementoMovil> niebla;
 
-    public final static Rectangle MARGEN_DERECHO = new Rectangle(
-            Mundo.TAMAÑO_MUNDO_ANCHO-90,0,90,Mundo.TAMAÑO_MUNDO_ALTO);
+    public final static Rectangle BORDES[] = {
+            new Rectangle(Mundo.TAMAÑO_MUNDO_ANCHO-90,0,90,Mundo.TAMAÑO_MUNDO_ALTO),
+            new Rectangle(175, 0, 29, TAMAÑO_MUNDO_ALTO)
+    };
 
     public final static Rectangle ROOM_COCINA = new Rectangle(20, 200, 155, 200);
+
 
     public static final Rectangle ROOM_SALON[]={
             new Rectangle(320,260,169,150),
             new Rectangle(200,80,125,325),
-            new Rectangle(ROOM_COCINA.width+18,200, 30,60),
             new Rectangle(230,45, 60,68)
+    };
+
+    public static final Rectangle ESPACIO_MOVIL[] = {
+            new Rectangle(ROOM_SALON[0].x-20, ROOM_SALON[0].y, 44, 130),
+            new Rectangle(ROOM_COCINA.width+18,200, 40,60),
+
     };
 
     public static final Rectangle PASILLOS[]={
@@ -50,12 +59,12 @@ public class Mundo {
         niebla = new Array<ElementoMovil>();
 
         //Carga Niebla Blanca
-        niebla.add(new ElementoMovil(new Vector2(0,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
-        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-8, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(0,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-18, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-18, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
 
         //Carga Niebla Negra
-        niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
-        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),8, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
     }
 
     public Array<ElementoMovil> getNiebla() {

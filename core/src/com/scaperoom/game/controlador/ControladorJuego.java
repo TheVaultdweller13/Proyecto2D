@@ -1,5 +1,6 @@
 package com.scaperoom.game.controlador;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Intersector;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
@@ -38,6 +39,7 @@ public class ControladorJuego {
         this.miMundo=miMundo;
         camara2d = new OrthographicCamera();
         bernard = miMundo.getBernard();
+
     }
 
     /**
@@ -59,12 +61,24 @@ public class ControladorJuego {
         // Actualiza Bernard
         bernard.update(delta);
 
-        if(bernard.getPosicion().x>=miMundo.TAMAÑO_MUNDO_ANCHO || bernard.getPosicion().x<=0){
-            bernard.setPosicion(0, bernard.getPosicion().y);
+
+    //Control ejes X
+        if(bernard.getPosicion().x>=miMundo.BORDES[0].x-bernard.getTamaño().x){
+            bernard.setPosicion(miMundo.BORDES[0].x-bernard.getTamaño().x, bernard.getPosicion().y);
         }
-        else {
-            if (bernard.getPosicion().x >= Mundo.TAMAÑO_MUNDO_ANCHO-bernard.getTamaño().x){
-                bernard.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO-bernard.getTamaño().x, bernard.getPosicion().y);
+        else if (bernard.getPosicion().x>=Mundo.ROOM_SALON[0].x-bernard.getTamaño().x
+                && !Intersector.overlaps(bernard.getRectangulo(), Mundo.ESPACIO_MOVIL[0])){
+            if(bernard.getPosicion().x<= miMundo.ESPACIO_MOVIL[0].x){
+                    bernard.setPosicion(Mundo.ROOM_SALON[0].x-bernard.getTamaño().x, bernard.getPosicion().y);
+            }
+        }
+        if(bernard.getPosicion().x<=20){
+            bernard.setPosicion(20, bernard.getPosicion().y);
+        }
+        else if (bernard.getPosicion().x<=Mundo.BORDES[1].x+20
+                && !Intersector.overlaps(bernard.getRectangulo(), Mundo.ESPACIO_MOVIL[1])){
+            if(bernard.getPosicion().x>= miMundo.ESPACIO_MOVIL[1].x){
+                bernard.setPosicion(Mundo.BORDES[1].x+20, bernard.getPosicion().y);
             }
         }
     }

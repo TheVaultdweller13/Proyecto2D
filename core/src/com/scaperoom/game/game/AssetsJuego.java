@@ -30,7 +30,7 @@ public class AssetsJuego {
         FileHandle imageFileHandle;
 
           /* Fondo del juego */
-        imageFileHandle = Gdx.files.internal("graficos/map_room.jpg");
+        imageFileHandle = Gdx.files.internal("graficos/map_room.png");
         textureMap = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/paredes.png");
         textureParedes = new Texture(imageFileHandle);
