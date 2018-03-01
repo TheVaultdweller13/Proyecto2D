@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
@@ -19,7 +20,7 @@ import com.scaperoom.game.modelo.Mundo;
  * Created by dam208 on 27/02/2018.
  */
 
-public class RendererJuego implements InputProcessor{
+public class RendererJuego implements InputProcessor {
 
     private Mundo miMundo;
 
@@ -52,16 +53,16 @@ public class RendererJuego implements InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-            dibujarFondo();
-            dibujarMapa();
-            dibujarBernard();
-            dibujarLeChuck();
-            dibujarParedes();
-            dibujarPuertas();
-            dibujarNieblas();
+        dibujarFondo();
+        dibujarMapa();
+        dibujarBernard();
+        dibujarLeChuck();
+        dibujarParedes();
+        dibujarPuertas();
+        dibujarNieblas();
         batch.end();
 
-        if(debugger){
+        if (debugger) {
             debugger();
         }
 
@@ -72,23 +73,24 @@ public class RendererJuego implements InputProcessor{
                 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
     }
 
-    private void dibujarMapa(){
+    private void dibujarMapa() {
         batch.draw(AssetsJuego.textureMap,
                 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
     }
 
-    private void dibujarParedes(){
+    private void dibujarParedes() {
         batch.draw(AssetsJuego.textureParedes,
                 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
     }
-    private void dibujarPuertas(){
+
+    private void dibujarPuertas() {
         batch.draw(AssetsJuego.texturePuertas,
-                115,144,29,48);
+                115, 144, 29, 48);
         batch.draw(AssetsJuego.texturePuertas,
-                405,202,29,48);
+                405, 202, 29, 48);
     }
 
-    private void dibujarBernard(){
+    private void dibujarBernard() {
         Bernard bernard = miMundo.getBernard();
         batch.draw(AssetsJuego.textureCharacterBernard,
                 bernard.getPosicion().x,
@@ -97,7 +99,7 @@ public class RendererJuego implements InputProcessor{
                 bernard.getTamaño().y);
     }
 
-    private void dibujarLeChuck(){
+    private void dibujarLeChuck() {
         LeChuck lechuck = miMundo.getLechuck();
         batch.draw(AssetsJuego.textureCharacterLeChuck,
                 lechuck.getPosicion().x,
@@ -107,12 +109,12 @@ public class RendererJuego implements InputProcessor{
     }
 
     private void dibujarNieblas() {
-        Texture textura=null;
-        for (ElementoMovil niebla : miMundo.getNiebla()){
+        Texture textura = null;
+        for (ElementoMovil niebla : miMundo.getNiebla()) {
 
-            niebla.setPosicion(niebla.getPosicion().x+(1*delta), niebla.getPosicion().y);
+            niebla.setPosicion(niebla.getPosicion().x + (1 * delta), niebla.getPosicion().y);
 
-            switch(niebla.getTipo()){
+            switch (niebla.getTipo()) {
                 case NIEBLA:
                     textura = AssetsJuego.textureNiebla;
                     break;
@@ -120,16 +122,15 @@ public class RendererJuego implements InputProcessor{
                     textura = AssetsJuego.textureAntiniebla;
                     break;
             }
-            if (niebla.getVelocidad()<0){
-                batch.draw(textura,niebla.getPosicion().x+niebla.getTamaño().x,niebla.getPosicion().y,-niebla.getTamaño().x,niebla.getTamaño().y);
-            }
-            else{
-                batch.draw(textura,niebla.getPosicion().x,niebla.getPosicion().y,niebla.getTamaño().x,niebla.getTamaño().y);
+            if (niebla.getVelocidad() < 0) {
+                batch.draw(textura, niebla.getPosicion().x + niebla.getTamaño().x, niebla.getPosicion().y, -niebla.getTamaño().x, niebla.getTamaño().y);
+            } else {
+                batch.draw(textura, niebla.getPosicion().x, niebla.getPosicion().y, niebla.getTamaño().x, niebla.getTamaño().y);
             }
         }
     }
 
-    public OrthographicCamera getCamara2d(){
+    public OrthographicCamera getCamara2d() {
         return this.camara2d;
     }
 
@@ -153,30 +154,21 @@ public class RendererJuego implements InputProcessor{
     /**
      * Dibuja los gráficos en forma de figuras geométricas
      */
-    private void debugger(){
+    private void debugger() {
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
-            shaperender.setColor(Color.BLACK);
-            shaperender.rect(bernard.getRectangulo().x,bernard.getRectangulo().y,bernard.getRectangulo().width,bernard.getRectangulo().height);
-            shaperender.rect(bernard.getPosicion().x,bernard.getPosicion().y,bernard.getTamaño().x,bernard.getTamaño().y, Color.RED, Color.RED, Color.RED, Color.RED);
-            shaperender.rect(lechuck.getPosicion().x,lechuck.getPosicion().y,lechuck.getTamaño().x,lechuck.getTamaño().y);
+        shaperender.setColor(Color.BLACK);
+        shaperender.rect(bernard.getRectangulo().x, bernard.getRectangulo().y, bernard.getRectangulo().width, bernard.getRectangulo().height);
+        shaperender.rect(bernard.getPosicion().x, bernard.getPosicion().y, bernard.getTamaño().x, bernard.getTamaño().y, Color.RED, Color.RED, Color.RED, Color.RED);
+        shaperender.rect(lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
         shaperender.end();
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
-            shaperender.setColor(Color.RED);
-            shaperender.rect(0,0,miMundo.TAMAÑO_MUNDO_ANCHO-5,miMundo.TAMAÑO_MUNDO_ALTO-5);
-            shaperender.rect(miMundo.BORDES[0].x, miMundo.BORDES[0].y, miMundo.BORDES[0].width, miMundo.BORDES[0].height, Color.GOLD, Color.GOLD, Color.GOLD, Color.GOLD);
-            shaperender.rect(miMundo.BORDES[1].x, miMundo.BORDES[1].y, miMundo.BORDES[1].width, miMundo.BORDES[1].height, Color.YELLOW, Color.YELLOW, Color.YELLOW, Color.YELLOW);
-            shaperender.rect(miMundo.ROOM_COCINA.x, miMundo.ROOM_COCINA.y, miMundo.ROOM_COCINA.width, miMundo.ROOM_COCINA.height, Color.BLUE, Color.BLUE, Color.BLUE, Color.BLUE);
-            shaperender.rect(miMundo.ROOM_BAÑO.x, miMundo.ROOM_BAÑO.y, miMundo.ROOM_BAÑO.width, miMundo.ROOM_BAÑO.height, Color.GREEN, Color.GREEN, Color.GREEN, Color.GREEN);
-            shaperender.rect(miMundo.ROOM_ESTUDIO.x, miMundo.ROOM_ESTUDIO.y, miMundo.ROOM_ESTUDIO.width, miMundo.ROOM_ESTUDIO.height, Color.ORANGE, Color.ORANGE, Color.ORANGE, Color.ORANGE);
-            shaperender.rect(miMundo.ROOM_SALON[0].x, miMundo.ROOM_SALON[0].y, miMundo.ROOM_SALON[0].width, miMundo.ROOM_SALON[0].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
-            shaperender.rect(miMundo.ROOM_SALON[1].x, miMundo.ROOM_SALON[1].y, miMundo.ROOM_SALON[1].width, miMundo.ROOM_SALON[1].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
-            shaperender.rect(miMundo.ROOM_SALON[2].x, miMundo.ROOM_SALON[2].y, miMundo.ROOM_SALON[2].width, miMundo.ROOM_SALON[2].height, Color.RED, Color.RED, Color.RED, Color.RED);
-            shaperender.rect(miMundo.PASILLOS[0].x, miMundo.PASILLOS[0].y, miMundo.PASILLOS[0].width, miMundo.PASILLOS[0].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
-            shaperender.rect(miMundo.PASILLOS[1].x, miMundo.PASILLOS[1].y, miMundo.PASILLOS[1].width, miMundo.PASILLOS[1].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
-            shaperender.rect(miMundo.ESPACIO_MOVIL[0].x, miMundo.ESPACIO_MOVIL[0].y, miMundo.ESPACIO_MOVIL[0].width, miMundo.ESPACIO_MOVIL[0].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
-            shaperender.rect(miMundo.ESPACIO_MOVIL[1].x, miMundo.ESPACIO_MOVIL[1].y, miMundo.ESPACIO_MOVIL[1].width, miMundo.ESPACIO_MOVIL[1].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
+        for (int i = 0; i < miMundo.SUELOS.length; i++) {
+            Rectangle r = miMundo.SUELOS[i];
+            shaperender.setColor(new Color().fromHsv(360*i/miMundo.SUELOS.length, 1, 1));
+            shaperender.rect(r.x, r.y, r.width, r.height);
+        }
         shaperender.end();
     }
 
@@ -198,7 +190,7 @@ public class RendererJuego implements InputProcessor{
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        temporal.set(screenX,screenY,0);
+        temporal.set(screenX, screenY, 0);
         camara2d.unproject(temporal);
         return false;
     }

@@ -13,38 +13,38 @@ public class Bernard extends Personaje {
 
     public Bernard(Vector2 posicion, Vector2 tamaño, float velocidad_max) {
         super(posicion, tamaño, velocidad_max);
-        velocidad = new Vector2(0,0);
+        velocidad = new Vector2(0, 0);
 
-        getRectangulo().setSize(tamaño.x/2);
+        getRectangulo().setSize(tamaño.x / 2);
     }
 
-    public float getVelocidadX(){
+    public float getVelocidadX() {
         return velocidad.x;
     }
-    public float getVelocidadY(){
+
+    public float getVelocidadY() {
         return velocidad.y;
     }
 
-    public void setVelocidadX(float x){
+    public void setVelocidadX(float x) {
         velocidad.x = x;
 
     }
-    public void setVelocidadY(float y){
+
+    public void setVelocidadY(float y) {
         velocidad.y = y;
     }
 
     @Override
-    public void actualizarRectangulo(){
-
-        getRectangulo().x = getPosicion().x+getTamaño().x/4;
-        getRectangulo().y = getPosicion().y+getTamaño().y/4;
-
+    public void actualizarRectangulo() {
+        getRectangulo().x = getPosicion().x + getTamaño().x / 4;
+        getRectangulo().y = getPosicion().y + getTamaño().y / 4;
     }
 
 
     @Override
     public void update(float delta) {
-        setPosicion(getPosicion().x+(velocidad.x)*delta,
-                getPosicion().y+velocidad.y*delta);
+        setPosicion(getPosicion().x + (velocidad.x) * delta,
+                getPosicion().y + velocidad.y * delta);
     }
 }
