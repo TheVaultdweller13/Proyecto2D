@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetsJuego {
 
+    public static Texture textureBackground;
     public static Texture textureMap;
     public static Texture textureParedes;
     public static Texture texturePuertas;
@@ -25,11 +26,13 @@ public class AssetsJuego {
             bernardIzquierda,
             bernardDerecha;
 
-    public static void cargarTexturas(){
+    public static void cargarTexturas() {
 
         FileHandle imageFileHandle;
 
-          /* Fondo del juego */
+        /* Fondo del juego */
+        imageFileHandle = Gdx.files.internal("graficos/fondo.png");
+        textureBackground = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/map_room.png");
         textureMap = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/paredes.png");
@@ -46,11 +49,11 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/simple_lechuck_character.png");
-        textureCharacterLeChuck= new Texture(imageFileHandle);
+        textureCharacterLeChuck = new Texture(imageFileHandle);
 
     }
 
-    public static void liberarTexturas(){
+    public static void liberarTexturas() {
 
         textureMap.dispose();
         textureCharacterBernard.dispose();
@@ -60,24 +63,24 @@ public class AssetsJuego {
         textureAntiniebla.dispose();
     }
 
-    private static void animacionBernard(FileHandle imageFileHandle){
+    private static void animacionBernard(FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,60,69);
-        int pasos=0;
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard, 60, 69);
+        int pasos = 0;
 
         int num_filas = tmp[0].length;
         int num_columnas = tmp.length;
 
-        TextureRegion[] txBerArriba= {tmp[3][0], tmp[3][1]};
+        TextureRegion[] txBerArriba = {tmp[3][0], tmp[3][1]};
         bernardArriba = new Animation(0.15f, txBerArriba);
 
-        TextureRegion[] txBerAbajo= {tmp[0][0], tmp[0][1]};
+        TextureRegion[] txBerAbajo = {tmp[0][0], tmp[0][1]};
         bernardAbajo = new Animation(0.15f, txBerAbajo);
 
-        TextureRegion[] txBerlIzquierda= {tmp[2][0], tmp[2][1]};
+        TextureRegion[] txBerlIzquierda = {tmp[2][0], tmp[2][1]};
         bernardIzquierda = new Animation(0.15f, txBerlIzquierda);
 
-        TextureRegion[] txBerDerecha= {tmp[1][0], tmp[1][1]};
+        TextureRegion[] txBerDerecha = {tmp[1][0], tmp[1][1]};
         bernardDerecha = new Animation(0.15f, txBerDerecha);
     }
 }

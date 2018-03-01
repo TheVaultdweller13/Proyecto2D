@@ -52,6 +52,7 @@ public class RendererJuego implements InputProcessor{
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
+            dibujarFondo();
             dibujarMapa();
             dibujarBernard();
             dibujarLeChuck();
@@ -66,6 +67,10 @@ public class RendererJuego implements InputProcessor{
 
     }
 
+    private void dibujarFondo() {
+        batch.draw(AssetsJuego.textureBackground,
+                0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
+    }
 
     private void dibujarMapa(){
         batch.draw(AssetsJuego.textureMap,
