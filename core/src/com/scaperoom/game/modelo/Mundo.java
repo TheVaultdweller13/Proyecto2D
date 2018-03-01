@@ -5,6 +5,8 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+import javax.xml.bind.Element;
+
 /**
  * Created by Héctor Fernández on 27/02/2018.
  */
@@ -20,6 +22,7 @@ public class Mundo {
     private LeChuck lechuck;
 
     private Array<ElementoMovil> niebla;
+    private Array<ElementoMovil> sombra;
 
     public final static Rectangle BORDES[] = {
             new Rectangle(Mundo.TAMAÑO_MUNDO_ANCHO-90,0,90,Mundo.TAMAÑO_MUNDO_ALTO),
@@ -57,6 +60,7 @@ public class Mundo {
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95),40);
 
         niebla = new Array<ElementoMovil>();
+        sombra = new Array<ElementoMovil>();
 
         //Carga Niebla Blanca
         niebla.add(new ElementoMovil(new Vector2(0,0),new Vector2(TAMAÑO_NIEBLA.cpy()),-18, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
@@ -65,8 +69,19 @@ public class Mundo {
         //Carga Niebla Negra
         niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+
+        //Carga sombra de mujer
+        sombra.add(new ElementoMovil(new Vector2(40, 400), new Vector2(60, 20), 25, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(240, 400), new Vector2(60, 20), 25, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+
+        //Carga sombra de hombre
+        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(60, 60), 25, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(60, 60), 25, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
     }
 
+    public Array<ElementoMovil> getSombra() {
+        return sombra;
+    }
     public Array<ElementoMovil> getNiebla() {
         return niebla;
     }

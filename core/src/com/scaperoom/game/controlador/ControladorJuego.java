@@ -163,6 +163,22 @@ public class ControladorJuego {
             }
         }
     }
+    private void controlarSombra(float delta){
+
+        for(ElementoMovil sombras: miMundo.getSombra()){
+            sombras.update(delta);
+            if (sombras.getVelocidad()>0){   // Izquierda a derecha
+                if (sombras.getPosicion().x>=Mundo.TAMAÑO_MUNDO_ANCHO){
+                    sombras.setPosicion(-Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
+                }
+            }
+            else{   // Derecha a izquierda
+                if (sombras.getPosicion().x<=-sombras.getTamaño().x){
+                    sombras.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
+                }
+            }
+        }
+    }
 
     private void procesarEntradas(){
 
@@ -185,6 +201,7 @@ public class ControladorJuego {
 //        miMundo.updateCronometro(delta);
         controlarBernard(delta);
         controlarNiebla(delta);
+        controlarSombra(delta);
         procesarEntradas();
     }
 }
