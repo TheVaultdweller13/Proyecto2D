@@ -12,7 +12,7 @@ import com.scaperoom.game.modelo.Mundo;
 import java.util.HashMap;
 
 /**
- * Created by dam208 on 27/02/2018.
+ * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class ControladorJuego {
@@ -86,7 +86,7 @@ public class ControladorJuego {
         bernard.setPosicion(x, y);
 
         if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
-            bernard.direccion = Vector2.Zero;
+            bernard.direccion = new Vector2(0,0);
         }
     }
 
