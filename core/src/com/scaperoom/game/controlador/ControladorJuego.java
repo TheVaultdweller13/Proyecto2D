@@ -103,6 +103,31 @@ public class ControladorJuego {
         if(bernard.getPosicion().y>=miMundo.ROOM_SALON[0].y+bernard.getTamaño().y+30){ //Los márgenes superiores de las tres habitaciones están igualados
             bernard.setPosicion(bernard.getPosicion().x, miMundo.ROOM_SALON[0].y+bernard.getTamaño().y+30);
         }
+        //Salón
+        else if(bernard.getPosicion().y<=Mundo.ROOM_SALON[0].y &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_SALON[0]) &&
+                !Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLOS[1])                ){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_SALON[0].y);
+        }
+        else if(bernard.getPosicion().y<=Mundo.ROOM_SALON[1].y &&
+                !Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_SALON[2]) &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_SALON[1])){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_SALON[1].y);
+        }
+        else if(bernard.getPosicion().y<=Mundo.ROOM_SALON[2].y &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_SALON[2])){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_SALON[2].y);
+        }
+        //Estudio
+        if(bernard.getPosicion().y<=Mundo.ROOM_ESTUDIO.y &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_ESTUDIO)){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_ESTUDIO.y);
+        }
+        else if(bernard.getPosicion().y>=Mundo.ROOM_ESTUDIO.y+bernard.getTamaño().y &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_ESTUDIO) &&
+                !Intersector.overlaps(bernard.getRectangulo(),Mundo.PASILLOS[1])){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_ESTUDIO.y+bernard.getTamaño().y);
+        }
 
     }
 

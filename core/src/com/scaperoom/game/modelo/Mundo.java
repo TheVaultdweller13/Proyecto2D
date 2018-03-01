@@ -43,11 +43,11 @@ public class Mundo {
 
     public static final Rectangle PASILLOS[]={
             new Rectangle(115,140,30,75),
-            new Rectangle(405,190,30,75),
+            new Rectangle(405,190,30,90),
     };
 
     public final static Rectangle ROOM_ESTUDIO= new Rectangle(
-            375,75,100,125);
+            375,75,100,165);
 
     public final static Rectangle ROOM_BAÑO = new Rectangle(
             35,15,140,135);

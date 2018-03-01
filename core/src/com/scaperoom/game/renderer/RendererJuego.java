@@ -152,7 +152,8 @@ public class RendererJuego implements InputProcessor{
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
             shaperender.setColor(Color.BLACK);
-            shaperender.rect(bernard.getPosicion().x,bernard.getPosicion().y,bernard.getTamaño().x,bernard.getTamaño().y);
+            shaperender.rect(bernard.getRectangulo().x,bernard.getRectangulo().y,bernard.getRectangulo().width,bernard.getRectangulo().height);
+            shaperender.rect(bernard.getPosicion().x,bernard.getPosicion().y,bernard.getTamaño().x,bernard.getTamaño().y, Color.RED, Color.RED, Color.RED, Color.RED);
             shaperender.rect(lechuck.getPosicion().x,lechuck.getPosicion().y,lechuck.getTamaño().x,lechuck.getTamaño().y);
         shaperender.end();
 
@@ -166,7 +167,7 @@ public class RendererJuego implements InputProcessor{
             shaperender.rect(miMundo.ROOM_ESTUDIO.x, miMundo.ROOM_ESTUDIO.y, miMundo.ROOM_ESTUDIO.width, miMundo.ROOM_ESTUDIO.height, Color.ORANGE, Color.ORANGE, Color.ORANGE, Color.ORANGE);
             shaperender.rect(miMundo.ROOM_SALON[0].x, miMundo.ROOM_SALON[0].y, miMundo.ROOM_SALON[0].width, miMundo.ROOM_SALON[0].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
             shaperender.rect(miMundo.ROOM_SALON[1].x, miMundo.ROOM_SALON[1].y, miMundo.ROOM_SALON[1].width, miMundo.ROOM_SALON[1].height, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA, Color.MAGENTA);
-            shaperender.rect(miMundo.ROOM_SALON[2].x, miMundo.ROOM_SALON[2].y, miMundo.ROOM_SALON[2].width, miMundo.ROOM_SALON[2].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
+            shaperender.rect(miMundo.ROOM_SALON[2].x, miMundo.ROOM_SALON[2].y, miMundo.ROOM_SALON[2].width, miMundo.ROOM_SALON[2].height, Color.RED, Color.RED, Color.RED, Color.RED);
             shaperender.rect(miMundo.PASILLOS[0].x, miMundo.PASILLOS[0].y, miMundo.PASILLOS[0].width, miMundo.PASILLOS[0].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
             shaperender.rect(miMundo.PASILLOS[1].x, miMundo.PASILLOS[1].y, miMundo.PASILLOS[1].width, miMundo.PASILLOS[1].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
             shaperender.rect(miMundo.ESPACIO_MOVIL[0].x, miMundo.ESPACIO_MOVIL[0].y, miMundo.ESPACIO_MOVIL[0].width, miMundo.ESPACIO_MOVIL[0].height, Color.CYAN, Color.CYAN, Color.CYAN, Color.CYAN);
