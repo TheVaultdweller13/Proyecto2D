@@ -128,6 +128,12 @@ public class ControladorJuego {
                 !Intersector.overlaps(bernard.getRectangulo(),Mundo.PASILLOS[1])){
             bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_ESTUDIO.y+bernard.getTamaño().y);
         }
+        //Cocina
+        if(bernard.getPosicion().y<=Mundo.ROOM_COCINA.y &&
+                !Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLOS[0]) &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_COCINA)){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_COCINA.y);
+        }
 
     }
 

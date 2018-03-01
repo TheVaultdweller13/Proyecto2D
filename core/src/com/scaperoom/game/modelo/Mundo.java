@@ -42,7 +42,7 @@ public class Mundo {
     };
 
     public static final Rectangle PASILLOS[]={
-            new Rectangle(115,140,30,75),
+            new Rectangle(115,140,30,85),
             new Rectangle(405,190,30,90),
     };
 
