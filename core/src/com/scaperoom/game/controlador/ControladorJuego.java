@@ -1,7 +1,6 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
@@ -94,8 +93,8 @@ public class ControladorJuego {
                     niebla.setPosicion(-Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
                 }
             } else {   // Derecha a izquierda
-                if (niebla.getPosicion().x <= -niebla.getTamaño().x) {
-                    niebla.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, niebla.getPosicion().y);
+                if (niebla.getPosicion().x <= -Mundo.TAMAÑO_NIEBLA.x) {
+                    niebla.setPosicion(Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
                 }
             }
         }
