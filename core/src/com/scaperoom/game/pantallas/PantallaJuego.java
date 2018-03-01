@@ -125,27 +125,23 @@ public class PantallaJuego implements Screen, InputProcessor {
         Vector3 temporal = new Vector3(screenX, screenY, 0);
 
         this.r_juego.getCamara2d().unproject(temporal);
-
-        if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_IZQUIERDA)) {
-            c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
-        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_DERECHA)) {
-            c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
-        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ABAJO)) {
-            c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
-        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)) {
-            c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
-        }
+//
+//        if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_IZQUIERDA)) {
+//            c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
+//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_DERECHA)) {
+//            c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
+//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ABAJO)) {
+//            c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
+//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)) {
+//            c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
+//        }
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
-
-        Vector3 posicionDedo = new Vector3(dedo.x,dedo.y,0);
-        //   camara2d.unproject(posicionAlien); (Usando camara2d la Mariposa va al punto por defecto 0,0)
-
-        miMundo.getBernard().puntoDestino.set(new Vector2(posicionDedo.x,posicionDedo.y));
-
-        Vector2 direccion = miMundo.getBernard().puntoDestino.cpy().sub(miMundo.getBernard().getPosicion());
+        Vector2 posicionDedo = new Vector2(dedo.x, dedo.y);
+        miMundo.getBernard().puntoDestino.set(posicionDedo, posicionDedo.y);
+        Vector2 direccion = posicionDedo.sub(miMundo.getBernard().getPosicion());
         miMundo.getBernard().direccion.set(direccion.nor());
-        
+
         return false;
     }
 
