@@ -6,7 +6,6 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.Juego;
@@ -18,7 +17,7 @@ import com.scaperoom.game.renderer.RendererJuego;
  * Created by Héctor Fernández on 27/02/2018.
  */
 
-public class PantallaJuego  implements Screen, InputProcessor {
+public class PantallaJuego implements Screen, InputProcessor {
 
     private Mundo miMundo;
     private Juego juego;
@@ -78,7 +77,7 @@ public class PantallaJuego  implements Screen, InputProcessor {
         c_juego.liberarTecla(ControladorJuego.Keys.IZQUIERDA);
         c_juego.liberarTecla(ControladorJuego.Keys.DERECHA);
 
-        switch(keycode){
+        switch (keycode) {
             case Input.Keys.UP:
                 c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
                 break;
@@ -122,20 +121,17 @@ public class PantallaJuego  implements Screen, InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        Vector3 temporal= new Vector3(screenX,screenY,0);
+        Vector3 temporal = new Vector3(screenX, screenY, 0);
 
         this.r_juego.getCamara2d().unproject(temporal);
 
-        if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_IZQUIERDA)){
+        if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_IZQUIERDA)) {
             c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
-        }
-        else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_DERECHA)){
+        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_DERECHA)) {
             c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
-        }
-        else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ABAJO)){
+        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ABAJO)) {
             c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
-        }
-        else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)){
+        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)) {
             c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
         }
         return false;

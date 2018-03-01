@@ -1,7 +1,6 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
@@ -71,9 +70,9 @@ public class ControladorJuego {
         bernard.update(delta);
 
         Rectangle[] suelos = miMundo.SUELOS;
-        for(int i=0; i<suelos.length; i++) {
+        for (int i = 0; i < suelos.length; i++) {
             // si bernard está dentro de algún suelo
-            if(suelos[i].contains(bernard.getRectangulo())) {
+            if (suelos[i].contains(bernard.getRectangulo())) {
                 // su próxima posición es la que consiguió en la update
                 x = bernard.getPosicion().x;
                 y = bernard.getPosicion().y;
@@ -85,34 +84,32 @@ public class ControladorJuego {
         bernard.setPosicion(x, y);
     }
 
-    private void controlarNiebla(float delta){
+    private void controlarNiebla(float delta) {
 
-        for(ElementoMovil niebla: miMundo.getNiebla()){
+        for (ElementoMovil niebla : miMundo.getNiebla()) {
             niebla.update(delta);
-            if (niebla.getVelocidad()>0){   // Izquierda a derecha
-                if (niebla.getPosicion().x>=Mundo.TAMAÑO_NIEBLA.x){
+            if (niebla.getVelocidad() > 0) {   // Izquierda a derecha
+                if (niebla.getPosicion().x >= Mundo.TAMAÑO_NIEBLA.x) {
                     niebla.setPosicion(-Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
                 }
-            }
-            else{   // Derecha a izquierda
-                if (niebla.getPosicion().x<=-niebla.getTamaño().x){
+            } else {   // Derecha a izquierda
+                if (niebla.getPosicion().x <= -niebla.getTamaño().x) {
                     niebla.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, niebla.getPosicion().y);
                 }
             }
         }
     }
 
-    private void controlarSombra(float delta){
+    private void controlarSombra(float delta) {
 
-        for(ElementoMovil sombras: miMundo.getSombra()){
+        for (ElementoMovil sombras : miMundo.getSombra()) {
             sombras.update(delta);
-            if (sombras.getVelocidad()>0){   // Izquierda a derecha
-                if (sombras.getPosicion().x>=Mundo.TAMAÑO_MUNDO_ANCHO){
+            if (sombras.getVelocidad() > 0) {   // Izquierda a derecha
+                if (sombras.getPosicion().x >= Mundo.TAMAÑO_MUNDO_ANCHO) {
                     sombras.setPosicion(-Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
                 }
-            }
-            else{   // Derecha a izquierda
-                if (sombras.getPosicion().x<=-sombras.getTamaño().x){
+            } else {   // Derecha a izquierda
+                if (sombras.getPosicion().x <= -sombras.getTamaño().x) {
                     sombras.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
                 }
             }

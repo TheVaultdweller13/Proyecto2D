@@ -16,7 +16,7 @@ public class Juego extends Game {
     public void create() {
         // TODO Auto-generated method stub
 
-   //     opción A
+        //     opción A
         AssetsJuego.cargarTexturas();
         pantallajuego = new PantallaJuego(this);
         setScreen(pantallajuego);
@@ -27,7 +27,7 @@ public class Juego extends Game {
     }
 
     @Override
-    public void dispose(){
+    public void dispose() {
         super.dispose();
 
 //        AssetsJuego.liberarTexturas();

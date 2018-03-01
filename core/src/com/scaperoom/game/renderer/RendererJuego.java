@@ -53,14 +53,14 @@ public class RendererJuego implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-            dibujarFondo();
-            dibujarSombras();
-            dibujarMapa();
-            dibujarBernard();
-            dibujarLeChuck();
-            dibujarParedes();
-            dibujarPuertas();
-            dibujarNieblas();
+        dibujarFondo();
+        dibujarSombras();
+        dibujarMapa();
+        dibujarBernard();
+        dibujarLeChuck();
+        dibujarParedes();
+        dibujarPuertas();
+        dibujarNieblas();
 
         batch.end();
 
@@ -109,13 +109,14 @@ public class RendererJuego implements InputProcessor {
                 lechuck.getTamaño().x,
                 lechuck.getTamaño().y);
     }
-    private void dibujarSombras(){
-        Texture textura=null;
-        for (ElementoMovil sombras : miMundo.getSombra()){
 
-            sombras.setPosicion(sombras.getPosicion().x+(1*delta), sombras.getPosicion().y);
+    private void dibujarSombras() {
+        Texture textura = null;
+        for (ElementoMovil sombras : miMundo.getSombra()) {
 
-            switch(sombras.getTipo()){
+            sombras.setPosicion(sombras.getPosicion().x + (1 * delta), sombras.getPosicion().y);
+
+            switch (sombras.getTipo()) {
                 case SILUETA_MUJER:
                     textura = AssetsJuego.textureSombraMujer;
                     break;
@@ -123,11 +124,10 @@ public class RendererJuego implements InputProcessor {
                     textura = AssetsJuego.textureSombraHombre;
                     break;
             }
-            if (sombras.getVelocidad()>0){
-                batch.draw(textura,sombras.getPosicion().x+sombras.getTamaño().x,sombras.getPosicion().y,-sombras.getTamaño().x,sombras.getTamaño().y);
-            }
-            else{
-                batch.draw(textura,sombras.getPosicion().x,sombras.getPosicion().y,sombras.getTamaño().x,sombras.getTamaño().y);
+            if (sombras.getVelocidad() > 0) {
+                batch.draw(textura, sombras.getPosicion().x + sombras.getTamaño().x, sombras.getPosicion().y, -sombras.getTamaño().x, sombras.getTamaño().y);
+            } else {
+                batch.draw(textura, sombras.getPosicion().x, sombras.getPosicion().y, sombras.getTamaño().x, sombras.getTamaño().y);
             }
         }
     }
@@ -190,7 +190,7 @@ public class RendererJuego implements InputProcessor {
         shaperender.begin(ShapeRenderer.ShapeType.Line);
         for (int i = 0; i < miMundo.SUELOS.length; i++) {
             Rectangle r = miMundo.SUELOS[i];
-            shaperender.setColor(new Color().fromHsv(360*i/miMundo.SUELOS.length, 1, 1));
+            shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.length, 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
         }
         shaperender.end();

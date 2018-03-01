@@ -9,12 +9,14 @@ import com.badlogic.gdx.math.Vector2;
 
 public abstract class Personaje {
     private Rectangle rectangulo;
+
     /**
      * Constructor por defecto
      */
-    public Personaje(){
+    public Personaje() {
         rectangulo = new Rectangle();
     }
+
     /**
      * Instancia unha personaxe
      *
@@ -27,28 +29,28 @@ public abstract class Personaje {
         this.tamaño = tamaño;
         this.velocidad_max = velocidad_max;
 
-        rectangulo = new Rectangle(posicion.x,posicion.y,tamaño.x,tamaño.y);
+        rectangulo = new Rectangle(posicion.x, posicion.y, tamaño.x, tamaño.y);
     }
 
-    public void setTamañoRectangulo(float width,float height){
+    public void setTamañoRectangulo(float width, float height) {
         rectangulo.setWidth(width);
         rectangulo.setHeight(height);
     }
 
     /**
      * Actualiza la posición del rectángulo asociado a la forma del gráfico
-     *
      */
-    public void actualizarRectangulo(){
-        rectangulo.x=posicion.x;
-        rectangulo.y=posicion.y;
+    public void actualizarRectangulo() {
+        rectangulo.x = posicion.x;
+        rectangulo.y = posicion.y;
     }
 
     /**
      * Devolve o rectángulo asociado
+     *
      * @return rectangulo
      */
-    public Rectangle getRectangulo(){
+    public Rectangle getRectangulo() {
         return rectangulo;
     }
 
@@ -71,6 +73,7 @@ public abstract class Personaje {
 
     /**
      * Devuelve la posicion
+     *
      * @return posición
      */
     public Vector2 getPosicion() {
@@ -79,6 +82,7 @@ public abstract class Personaje {
 
     /**
      * Modifica la posición
+     *
      * @param posicion: la nueva posicin
      */
     public void setPosicion(Vector2 posicion) {
@@ -101,6 +105,7 @@ public abstract class Personaje {
 
     /**
      * Modifica la velocidad
+     *
      * @param velocidad: la nueva velocidad
      */
     public void setVelocidad(float velocidad) {
@@ -109,6 +114,7 @@ public abstract class Personaje {
 
     /**
      * Devuelve a velocidad
+     *
      * @return velocidad
      */
     public float getVelocidad() {
@@ -117,6 +123,7 @@ public abstract class Personaje {
 
     /**
      * Devuelve el tamaño
+     *
      * @return tamaño
      */
     public Vector2 getTamaño() {
@@ -126,28 +133,30 @@ public abstract class Personaje {
 
     /**
      * Asigna un nuevo tamaño
+     *
      * @param tamaño: el nuevo tamaño.
      */
     public void setTamaño(Vector2 tamaño) {
-        this.tamaño=tamaño;
-        setTamañoRectangulo(tamaño.x,tamaño.y);
+        this.tamaño = tamaño;
+        setTamañoRectangulo(tamaño.x, tamaño.y);
     }
 
 
     /**
      * Modifica el tamaño
      *
-     * @param width: nuevo tamaño de ancho
+     * @param width:  nuevo tamaño de ancho
      * @param height: nuevo tamaño de alto
      */
     public void setTamaño(float width, float height) {
-        this.tamaño.set(width,height);
+        this.tamaño.set(width, height);
         setTamañoRectangulo(width, height);
 
     }
 
     /**
      * Actualiza la posición en función de la velocidad
+     *
      * @param delta: tiempo entre una llamada y la siguiente
      */
     public abstract void update(float delta);
