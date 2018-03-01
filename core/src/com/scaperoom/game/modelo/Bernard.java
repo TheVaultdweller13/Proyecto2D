@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
@@ -11,9 +12,9 @@ public class Bernard extends Personaje {
 
     private Vector2 velocidad;
     public Vector2
-            puntoDestino,
             temporal,
             direccion;
+    public Circle  puntoDestino;
 
     public Bernard(Vector2 posicion, Vector2 tamaño, float velocidad_max) {
         super(posicion, tamaño, velocidad_max);
@@ -21,7 +22,7 @@ public class Bernard extends Personaje {
 
         temporal = new Vector2();
         direccion = new Vector2(0,0);
-        puntoDestino = new Vector2();
+        puntoDestino = new Circle();
 
         getRectangulo().setSize(tamaño.x / 2);
     }
@@ -36,8 +37,11 @@ public class Bernard extends Personaje {
 
     public void setVelocidadX(float x) {
         velocidad.x = x;
-
     }
+
+//    public void setPuntoDestino(Circle puntoDestino) {
+//        this.puntoDestino = puntoDestino;
+//    }
 
     public void setVelocidadY(float y) {
         velocidad.y = y;

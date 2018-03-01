@@ -1,6 +1,7 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.scaperoom.game.modelo.Bernard;
@@ -83,6 +84,11 @@ public class ControladorJuego {
 
         // ahora se pone la posición correcta, ya sea la original o la nueva
         bernard.setPosicion(x, y);
+
+        if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
+            bernard.setVelocidadX(0);
+            bernard.setVelocidadY(0);
+        }
     }
 
     private void controlarNiebla(float delta) {
