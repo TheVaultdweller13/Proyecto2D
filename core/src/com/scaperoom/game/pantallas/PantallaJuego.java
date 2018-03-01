@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.Juego;
@@ -134,6 +135,17 @@ public class PantallaJuego implements Screen, InputProcessor {
         } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)) {
             c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
         }
+
+        Circle dedo = new Circle(temporal.x, temporal.y, 2);
+
+        Vector3 posicionDedo = new Vector3(dedo.x,dedo.y,0);
+        //   camara2d.unproject(posicionAlien); (Usando camara2d la Mariposa va al punto por defecto 0,0)
+
+        miMundo.getBernard().puntoDestino.set(new Vector2(posicionDedo.x,posicionDedo.y));
+
+        Vector2 direccion = miMundo.getBernard().puntoDestino.cpy().sub(miMundo.getBernard().getPosicion());
+        miMundo.getBernard().direccion.set(direccion.nor());
+        
         return false;
     }
 

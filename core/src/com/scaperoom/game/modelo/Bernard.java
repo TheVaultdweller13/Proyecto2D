@@ -10,10 +10,18 @@ import com.badlogic.gdx.utils.Array;
 public class Bernard extends Personaje {
 
     private Vector2 velocidad;
+    public Vector2
+            puntoDestino,
+            temporal,
+            direccion;
 
     public Bernard(Vector2 posicion, Vector2 tamaño, float velocidad_max) {
         super(posicion, tamaño, velocidad_max);
         velocidad = new Vector2(0, 0);
+
+        temporal = new Vector2();
+        direccion = new Vector2(0,0);
+        puntoDestino = new Vector2();
 
         getRectangulo().setSize(tamaño.x / 2);
     }
@@ -44,7 +52,9 @@ public class Bernard extends Personaje {
 
     @Override
     public void update(float delta) {
-        setPosicion(getPosicion().x + (velocidad.x) * delta,
-                getPosicion().y + velocidad.y * delta);
+        temporal.set(direccion);
+        setPosicion(posicion.add(temporal.scl(velocidad_max*delta)));
+//        setPosicion(getPosicion().x + (velocidad.x) * delta,
+//                getPosicion().y + velocidad.y * delta);
     }
 }
