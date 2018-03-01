@@ -20,6 +20,7 @@ public class Mundo {
     private LeChuck lechuck;
 
     private Array<ElementoMovil> niebla;
+    private Array<ElementoMovil> sombra;
 
     public final static Rectangle BORDES[] = {
             new Rectangle(Mundo.TAMAÑO_MUNDO_ANCHO - 90, 0, 90, Mundo.TAMAÑO_MUNDO_ALTO),
@@ -33,7 +34,7 @@ public class Mundo {
             new Rectangle(230, 45, 60, 68),     // recibidor
             new Rectangle(125, 200, 100, 80),   // union cocina-salón
             new Rectangle(115, 120, 30, 100),   // pasillo baño
-            new Rectangle(405, 190, 30, 90),    // 
+            new Rectangle(405, 190, 30, 90),    //
             new Rectangle(375, 75, 100, 165),
             new Rectangle(35, 15, 140, 135)
     };
@@ -43,6 +44,7 @@ public class Mundo {
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95), 40);
 
         niebla = new Array<ElementoMovil>();
+        sombra = new Array<ElementoMovil>();
 
         //Carga Niebla Blanca
         niebla.add(new ElementoMovil(new Vector2(0, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), -18, ElementoMovil.TIPOS_ELEMENTOS.NIEBLA));
@@ -51,8 +53,21 @@ public class Mundo {
         //Carga Niebla Negra
         niebla.add(new ElementoMovil(new Vector2(0, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(0, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0),new Vector2(TAMAÑO_NIEBLA.cpy()),18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
+
+        //Carga sombra de mujer
+        sombra.add(new ElementoMovil(new Vector2(40, 400), new Vector2(60, 60), 15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(240, 400), new Vector2(60, 60), -15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+
+        //Carga sombra de hombre
+        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(40, 50), 15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(40, 50), -15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
     }
 
+    public Array<ElementoMovil> getSombra() {
+        return sombra;
+    }
     public Array<ElementoMovil> getNiebla() {
         return niebla;
     }

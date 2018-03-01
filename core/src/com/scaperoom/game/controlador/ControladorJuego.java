@@ -8,8 +8,6 @@ import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
-import org.w3c.dom.css.Rect;
-
 import java.util.HashMap;
 
 /**
@@ -37,8 +35,6 @@ public class ControladorJuego {
         keys.put(Keys.ARRIBA, false);
         keys.put(Keys.ABAJO, false);
     }
-
-    ;
 
     private OrthographicCamera camara2d;
 
@@ -89,6 +85,40 @@ public class ControladorJuego {
         bernard.setPosicion(x, y);
     }
 
+    private void controlarNiebla(float delta){
+
+        for(ElementoMovil niebla: miMundo.getNiebla()){
+            niebla.update(delta);
+            if (niebla.getVelocidad()>0){   // Izquierda a derecha
+                if (niebla.getPosicion().x>=Mundo.TAMAÑO_NIEBLA.x){
+                    niebla.setPosicion(-Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
+                }
+            }
+            else{   // Derecha a izquierda
+                if (niebla.getPosicion().x<=-niebla.getTamaño().x){
+                    niebla.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, niebla.getPosicion().y);
+                }
+            }
+        }
+    }
+
+    private void controlarSombra(float delta){
+
+        for(ElementoMovil sombras: miMundo.getSombra()){
+            sombras.update(delta);
+            if (sombras.getVelocidad()>0){   // Izquierda a derecha
+                if (sombras.getPosicion().x>=Mundo.TAMAÑO_MUNDO_ANCHO){
+                    sombras.setPosicion(-Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
+                }
+            }
+            else{   // Derecha a izquierda
+                if (sombras.getPosicion().x<=-sombras.getTamaño().x){
+                    sombras.setPosicion(Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
+                }
+            }
+        }
+    }
+
     private void procesarEntradas() {
 
         if (keys.get(Keys.DERECHA))
@@ -109,7 +139,8 @@ public class ControladorJuego {
     public void update(float delta) {
 //      miMundo.updateCronometro(delta);
         controlarBernard(delta);
-        //controlarNiebla(delta);
+        controlarNiebla(delta);
+        controlarSombra(delta);
         procesarEntradas();
     }
 }

@@ -53,13 +53,15 @@ public class RendererJuego implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        dibujarFondo();
-        dibujarMapa();
-        dibujarBernard();
-        dibujarLeChuck();
-        dibujarParedes();
-        dibujarPuertas();
-        dibujarNieblas();
+            dibujarFondo();
+            dibujarSombras();
+            dibujarMapa();
+            dibujarBernard();
+            dibujarLeChuck();
+            dibujarParedes();
+            dibujarPuertas();
+            dibujarNieblas();
+
         batch.end();
 
         if (debugger) {
@@ -106,6 +108,28 @@ public class RendererJuego implements InputProcessor {
                 lechuck.getPosicion().y,
                 lechuck.getTamaño().x,
                 lechuck.getTamaño().y);
+    }
+    private void dibujarSombras(){
+        Texture textura=null;
+        for (ElementoMovil sombras : miMundo.getSombra()){
+
+            sombras.setPosicion(sombras.getPosicion().x+(1*delta), sombras.getPosicion().y);
+
+            switch(sombras.getTipo()){
+                case SILUETA_MUJER:
+                    textura = AssetsJuego.textureSombraMujer;
+                    break;
+                case SILUETA_HOMBRE:
+                    textura = AssetsJuego.textureSombraHombre;
+                    break;
+            }
+            if (sombras.getVelocidad()>0){
+                batch.draw(textura,sombras.getPosicion().x+sombras.getTamaño().x,sombras.getPosicion().y,-sombras.getTamaño().x,sombras.getTamaño().y);
+            }
+            else{
+                batch.draw(textura,sombras.getPosicion().x,sombras.getPosicion().y,sombras.getTamaño().x,sombras.getTamaño().y);
+            }
+        }
     }
 
     private void dibujarNieblas() {
