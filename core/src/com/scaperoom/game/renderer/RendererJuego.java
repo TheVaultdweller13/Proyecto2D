@@ -53,14 +53,14 @@ public class RendererJuego implements InputProcessor{
 
         batch.begin();
             dibujarFondo();
-
+            dibujarSombras();
             dibujarMapa();
             dibujarBernard();
             dibujarLeChuck();
             dibujarParedes();
             dibujarPuertas();
             dibujarNieblas();
-        dibujarSombras();
+
         batch.end();
 
         if(debugger){
@@ -121,7 +121,7 @@ public class RendererJuego implements InputProcessor{
                     textura = AssetsJuego.textureSombraHombre;
                     break;
             }
-            if (sombras.getVelocidad()<0){
+            if (sombras.getVelocidad()>0){
                 batch.draw(textura,sombras.getPosicion().x+sombras.getTamaño().x,sombras.getPosicion().y,-sombras.getTamaño().x,sombras.getTamaño().y);
             }
             else{
