@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -52,16 +53,14 @@ public class Mundo {
         //Carga Niebla Negra
         niebla.add(new ElementoMovil(new Vector2(0, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
-        niebla.add(new ElementoMovil(new Vector2(0, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
-        niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
 
         //Carga sombra de mujer
-        sombra.add(new ElementoMovil(new Vector2(40, 400), new Vector2(60, 60), 15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
-        sombra.add(new ElementoMovil(new Vector2(240, 400), new Vector2(60, 60), -15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(40, 400), new Vector2(60, 60), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(240, 400), new Vector2(60, 60), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
 
         //Carga sombra de hombre
-        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(40, 50), 15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
-        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(40, 50), -15, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(40, 50), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(40, 50), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
     }
 
     public Array<ElementoMovil> getSombra() {

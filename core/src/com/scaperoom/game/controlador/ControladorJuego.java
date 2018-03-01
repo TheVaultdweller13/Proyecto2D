@@ -1,6 +1,7 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
@@ -104,6 +105,7 @@ public class ControladorJuego {
 
         for (ElementoMovil sombras : miMundo.getSombra()) {
             sombras.update(delta);
+
             if (sombras.getVelocidad() > 0) {   // Izquierda a derecha
                 if (sombras.getPosicion().x >= Mundo.TAMAÑO_MUNDO_ANCHO) {
                     sombras.setPosicion(-Mundo.TAMAÑO_MUNDO_ANCHO, sombras.getPosicion().y);
