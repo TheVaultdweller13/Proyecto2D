@@ -114,8 +114,6 @@ public class RendererJuego implements InputProcessor {
         Texture textura = null;
         for (ElementoMovil sombras : miMundo.getSombra()) {
 
-            sombras.setPosicion(sombras.getPosicion().x + (1 * delta), sombras.getPosicion().y);
-
             switch (sombras.getTipo()) {
                 case SILUETA_MUJER:
                     textura = AssetsJuego.textureSombraMujer;
@@ -135,8 +133,6 @@ public class RendererJuego implements InputProcessor {
     private void dibujarNieblas() {
         Texture textura = null;
         for (ElementoMovil niebla : miMundo.getNiebla()) {
-
-            niebla.setPosicion(niebla.getPosicion().x + (1 * delta), niebla.getPosicion().y);
 
             switch (niebla.getTipo()) {
                 case NIEBLA:
