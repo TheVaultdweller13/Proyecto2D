@@ -134,6 +134,16 @@ public class ControladorJuego {
                 Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_COCINA)){
             bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_COCINA.y);
         }
+        //Baño
+        if(bernard.getPosicion().y>=miMundo.ROOM_BAÑO.y+bernard.getTamaño().y+30 &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_BAÑO) &&
+                !Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLOS[0])){
+            bernard.setPosicion(bernard.getPosicion().x, miMundo.ROOM_BAÑO.y+bernard.getTamaño().y+30);
+        }
+        else if(bernard.getPosicion().y<=Mundo.ROOM_BAÑO.y &&
+                Intersector.overlaps(bernard.getRectangulo(), Mundo.ROOM_BAÑO)){
+            bernard.setPosicion(bernard.getPosicion().x, Mundo.ROOM_BAÑO.y);
+        }
 
     }
 
