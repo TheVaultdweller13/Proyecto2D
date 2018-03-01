@@ -2,8 +2,8 @@ package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Intersector;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
@@ -86,8 +86,7 @@ public class ControladorJuego {
         bernard.setPosicion(x, y);
 
         if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
-            bernard.setVelocidadX(0);
-            bernard.setVelocidadY(0);
+            bernard.direccion = Vector2.Zero;
         }
     }
 
@@ -124,28 +123,27 @@ public class ControladorJuego {
         }
     }
 
-    private void procesarEntradas() {
-
-        if (keys.get(Keys.DERECHA))
-            bernard.setVelocidadX(bernard.velocidad_max);
-        if (keys.get(Keys.IZQUIERDA))
-            bernard.setVelocidadX(-bernard.velocidad_max);
-        if (!(keys.get(Keys.IZQUIERDA)) && (!(keys.get(Keys.DERECHA))))
-            bernard.setVelocidadX(0);
-
-        if (keys.get(Keys.ARRIBA))
-            bernard.setVelocidadY(bernard.velocidad_max);
-        if (keys.get(Keys.ABAJO))
-            bernard.setVelocidadY(-bernard.velocidad_max);
-        if (!(keys.get(Keys.ARRIBA)) && (!(keys.get(Keys.ABAJO))))
-            bernard.setVelocidadY(0);
-    }
+//    private void procesarEntradas() {
+//
+//        if (keys.get(Keys.DERECHA))
+//            bernard.setVelocidadX(bernard.velocidad_max);
+//        if (keys.get(Keys.IZQUIERDA))
+//            bernard.setVelocidadX(-bernard.velocidad_max);
+//        if (!(keys.get(Keys.IZQUIERDA)) && (!(keys.get(Keys.DERECHA))))
+//            bernard.setVelocidadX(0);
+//
+//        if (keys.get(Keys.ARRIBA))
+//            bernard.setVelocidadY(bernard.velocidad_max);
+//        if (keys.get(Keys.ABAJO))
+//            bernard.setVelocidadY(-bernard.velocidad_max);
+//        if (!(keys.get(Keys.ARRIBA)) && (!(keys.get(Keys.ABAJO))))
+//            bernard.setVelocidadY(0);
+//    }
 
     public void update(float delta) {
 //      miMundo.updateCronometro(delta);
         controlarBernard(delta);
         controlarNiebla(delta);
         controlarSombra(delta);
-        procesarEntradas();
     }
 }

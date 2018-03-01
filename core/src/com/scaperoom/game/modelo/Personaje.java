@@ -22,12 +22,12 @@ public abstract class Personaje {
      *
      * @param posicion
      * @param tamaño
-     * @param velocidad_max
+     * @param velocidad
      */
-    public Personaje(Vector2 posicion, Vector2 tamaño, float velocidad_max) {
+    public Personaje(Vector2 posicion, Vector2 tamaño, float velocidad) {
         this.posicion = posicion;
         this.tamaño = tamaño;
-        this.velocidad_max = velocidad_max;
+        this.velocidad = velocidad;
 
         rectangulo = new Rectangle(posicion.x, posicion.y, tamaño.x, tamaño.y);
     }
@@ -55,13 +55,9 @@ public abstract class Personaje {
     }
 
     /**
-     * Velocidad que toma cuando se move.
-     */
-    public float velocidad_max;
-    /**
      * Velocidad actual
      */
-    protected float velocidad = 0;
+    protected float velocidad;
     /**
      * Posición
      */
