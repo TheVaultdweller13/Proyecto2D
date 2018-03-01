@@ -55,12 +55,12 @@ public class Mundo {
         niebla.add(new ElementoMovil(new Vector2(TAMAÑO_NIEBLA.x, 0), new Vector2(TAMAÑO_NIEBLA.cpy()), 18, ElementoMovil.TIPOS_ELEMENTOS.ANTI_NIEBLA));
 
         //Carga sombra de mujer
-        sombra.add(new ElementoMovil(new Vector2(40, 400), new Vector2(60, 60), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
-        sombra.add(new ElementoMovil(new Vector2(240, 400), new Vector2(60, 60), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(40, 412), new Vector2(40, 40), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
+        sombra.add(new ElementoMovil(new Vector2(240, 412), new Vector2(40, 40), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_MUJER));
 
         //Carga sombra de hombre
-        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(40, 50), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
-        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(40, 50), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(50, 50), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+        sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(50, 50), MathUtils.random(10, 30)-40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
     }
 
     public Array<ElementoMovil> getSombra() {

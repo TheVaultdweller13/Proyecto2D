@@ -54,14 +54,13 @@ public class RendererJuego implements InputProcessor {
 
         batch.begin();
         dibujarFondo();
-
+        dibujarSombras();
         dibujarMapa();
         dibujarBernard();
         dibujarLeChuck();
         dibujarParedes();
         dibujarPuertas();
         dibujarNieblas();
-        dibujarSombras();
 
         batch.end();
 
