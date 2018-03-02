@@ -65,7 +65,7 @@ public class ControladorJuego {
     }
 
     private void controlarBernard(float delta) {
-        float ox = bernard.getPosicion().x, oy = bernard.getPosicion().y; // posicion original
+        float ox = bernard.getPosicion().x, oy = bernard.getPosicion().y; // posición original
 
         float x = ox, y = oy; // próxima posición, empieza siendo la antigua
         // Actualiza Bernard
@@ -78,7 +78,7 @@ public class ControladorJuego {
                 // su próxima posición es la que consiguió en la update
                 x = bernard.getPosicion().x;
                 y = bernard.getPosicion().y;
-                break; // y sal del bucle
+                break; // y sale del bucle
             }
         }
 

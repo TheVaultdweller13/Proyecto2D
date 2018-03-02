@@ -28,15 +28,15 @@ public class Mundo {
     };
 
     public final static Rectangle SUELOS[] = {
-            new Rectangle(20, 200, 155, 240),   // cocina
-            new Rectangle(200, 260, 289, 180),  // salón derecha
-            new Rectangle(200, 80, 125, 360),   // salón izq.
-            new Rectangle(230, 45, 60, 68),     // recibidor
-            new Rectangle(125, 200, 100, 80),   // union cocina-salón
-            new Rectangle(115, 120, 30, 100),   // pasillo baño
-            new Rectangle(405, 190, 30, 90),    //
-            new Rectangle(375, 75, 100, 165),
-            new Rectangle(35, 15, 140, 135)
+            new Rectangle(20, 200, 155, 240),   // COCINA
+            new Rectangle(200, 260, 289, 180),  // SALÓN DERECHA
+            new Rectangle(200, 80, 125, 360),   // SALÓN IZQUIERDA
+            new Rectangle(230, 45, 60, 68),     // RECIBIDOR
+            new Rectangle(125, 200, 100, 80),   // UNIÓN COCINA-SALÓN
+            new Rectangle(115, 120, 30, 100),   // PASILLO BAÑO
+            new Rectangle(405, 190, 30, 90),    // PASILLO ESTUDIO
+            new Rectangle(375, 75, 100, 165),   // ESTUDIO
+            new Rectangle(35, 15, 140, 135)     // BAÑO
     };
 
     public Mundo() {
