@@ -8,6 +8,8 @@ import com.scaperoom.game.game.Juego;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = 800;
+		config.height = 600;
 		config.title = "La Fuga de Bernard";
 		config.addIcon("icon.bmp", Files.FileType.Internal);
 		new LwjglApplication(new Juego(), config);

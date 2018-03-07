@@ -26,6 +26,7 @@ public class AssetsJuego {
     public static Texture textureSombraMujer;
 
     public static Animation bernardAnimacion;
+    public static Animation lechuckAnimacion;
 
     public static void cargarTexturas() {
 
@@ -49,12 +50,15 @@ public class AssetsJuego {
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
-
         imageFileHandle = Gdx.files.internal("graficos/bernard_character.png");
         animacionBernard(imageFileHandle);
 
         imageFileHandle = Gdx.files.internal("graficos/simple_lechuck_character.png");
         textureCharacterLeChuck = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/lechuck_character.png");
+        animacionLeChuck(imageFileHandle);
+
+
 
         imageFileHandle = Gdx.files.internal("graficos/silueta_mujer.png");
         textureSombraMujer = new Texture(imageFileHandle);
@@ -96,5 +100,21 @@ public class AssetsJuego {
             }
         }
         bernardAnimacion = new Animation(0.15f, framesanimacion);
+    }
+    private static void animacionLeChuck (FileHandle imageFileHandle) {
+        Texture textureAnimBernard = new Texture(imageFileHandle);
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,48,60);
+
+        int num_columnas = tmp[0].length;
+        int num_filas = tmp.length;
+        TextureRegion[] framesanimacion = new TextureRegion[num_columnas*num_filas];
+        int cont=0;
+        for(int fila=0; fila<num_filas;fila++){
+            for(int col=0; col<num_columnas;col++){
+                framesanimacion[cont] = tmp[fila][col];
+                cont++;
+            }
+        }
+        lechuckAnimacion = new Animation(0.35f, framesanimacion);
     }
 }

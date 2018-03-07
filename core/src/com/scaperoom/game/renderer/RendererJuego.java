@@ -146,12 +146,18 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarLeChuck() {
         LeChuck lechuck = miMundo.getLechuck();
+        crono+=Gdx.graphics.getDeltaTime();
+        TextureRegion currentFrame = (TextureRegion) AssetsJuego.lechuckAnimacion.getKeyFrame(crono, true);
+            if (ControladorJuego.controlLeChuck) {
+                batch.draw(currentFrame, lechuck.getPosicion().x,
+                        lechuck.getPosicion().y, lechuck.getTamaño().x,
+                        lechuck.getTamaño().y);
+            } else {
+                batch.draw(currentFrame, (lechuck.getPosicion().x+60),
+                        lechuck.getPosicion().y, -lechuck.getTamaño().x,
+                        lechuck.getTamaño().y);
+            }
 
-        if(ControladorJuego.controlLeChuck)
-            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
-
-        else
-            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x + lechuck.getTamaño().x, lechuck.getPosicion().y, -lechuck.getTamaño().x, lechuck.getTamaño().y);
     }
 
     private void dibujarSombras() {
