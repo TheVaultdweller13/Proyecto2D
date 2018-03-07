@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
@@ -30,6 +31,7 @@ public class RendererJuego implements InputProcessor {
     private Vector3 temporal;
     private ShapeRenderer shaperender;
 
+    private float crono;
 
     private float delta = Gdx.graphics.getDeltaTime();
 
@@ -48,6 +50,7 @@ public class RendererJuego implements InputProcessor {
 
         bernard = miMundo.getBernard();
         lechuck = miMundo.getLechuck();
+        crono = 0;
     }
 
     public void render(float delta) {
@@ -62,10 +65,12 @@ public class RendererJuego implements InputProcessor {
                 dibujarBernard();
                 dibujarLeChuck();
             }
-            else {
+            else{
                 dibujarLeChuck();
                 dibujarBernard();
             }
+
+            dibujarLeChuck();
             dibujarParedes();
             dibujarPuertas();
             dibujarNieblas();
@@ -101,11 +106,24 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarBernard() {
         Bernard bernard = miMundo.getBernard();
-        batch.draw(AssetsJuego.textureCharacterBernard,
-                bernard.getPosicion().x,
-                bernard.getPosicion().y,
-                bernard.getTamaño().x,
-                bernard.getTamaño().y);
+        crono+=Gdx.graphics.getDeltaTime();
+        TextureRegion currentFrame = (TextureRegion) AssetsJuego.bernardAnimacion.getKeyFrame(crono, true);
+        if(!bernard.direccion.isZero()){
+            if(bernard.direccion.x>0){
+                batch
+                        .draw(currentFrame, bernard.getPosicion().x,
+                                bernard.getPosicion().y, bernard.getTamaño().x+20,
+                                bernard.getTamaño().y);
+            }
+            else{
+                batch
+                        .draw(currentFrame, (bernard.getPosicion().x+40),
+                                bernard.getPosicion().y, (-bernard.getTamaño().x-20),
+                                bernard.getTamaño().y);
+            }
+        }
+        else
+            batch.draw(AssetsJuego.textureCharacterBernard, bernard.getPosicion().x, bernard.getPosicion().y, bernard.getTamaño().x, bernard.getTamaño().y);
     }
 
     private void dibujarLeChuck() {

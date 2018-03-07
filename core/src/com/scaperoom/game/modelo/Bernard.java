@@ -29,7 +29,7 @@ public class Bernard extends Personaje {
     @Override
     public void actualizarRectangulo() {
         getRectangulo().x = getPosicion().x + getTamaño().x / 4;
-        getRectangulo().y = getPosicion().y + getTamaño().y / 4;
+        getRectangulo().y = getPosicion().y;
         getRectangulo().getCenter(centro);
     }
 

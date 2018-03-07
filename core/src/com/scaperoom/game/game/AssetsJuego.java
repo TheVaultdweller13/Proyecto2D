@@ -23,10 +23,7 @@ public class AssetsJuego {
     public static Texture textureSombraHombre;
     public static Texture textureSombraMujer;
 
-    public static Animation bernardArriba,
-            bernardAbajo,
-            bernardIzquierda,
-            bernardDerecha;
+    public static Animation bernardAnimacion;
 
     public static void cargarTexturas() {
 
@@ -50,6 +47,10 @@ public class AssetsJuego {
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
+
+        imageFileHandle = Gdx.files.internal("graficos/bernard_character.png");
+        animacionBernard(imageFileHandle);
+
         imageFileHandle = Gdx.files.internal("graficos/simple_lechuck_character.png");
         textureCharacterLeChuck = new Texture(imageFileHandle);
 
@@ -72,24 +73,20 @@ public class AssetsJuego {
         textureSombraHombre.dispose();
     }
 
-    private static void animacionBernard(FileHandle imageFileHandle) {
+    private static void animacionBernard (FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard, 60, 69);
-        int pasos = 0;
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,112,154);
 
-        int num_filas = tmp[0].length;
-        int num_columnas = tmp.length;
-
-        TextureRegion[] txBerArriba = {tmp[3][0], tmp[3][1]};
-        bernardArriba = new Animation(0.15f, txBerArriba);
-
-        TextureRegion[] txBerAbajo = {tmp[0][0], tmp[0][1]};
-        bernardAbajo = new Animation(0.15f, txBerAbajo);
-
-        TextureRegion[] txBerlIzquierda = {tmp[2][0], tmp[2][1]};
-        bernardIzquierda = new Animation(0.15f, txBerlIzquierda);
-
-        TextureRegion[] txBerDerecha = {tmp[1][0], tmp[1][1]};
-        bernardDerecha = new Animation(0.15f, txBerDerecha);
+        int num_columnas = tmp[0].length;
+        int num_filas = tmp.length;
+        TextureRegion[] framesanimacion = new TextureRegion[num_columnas*num_filas];
+        int cont=0;
+        for(int fila=0; fila<num_filas;fila++){
+            for(int col=0; col<num_columnas;col++){
+                framesanimacion[cont] = tmp[fila][col];
+                cont++;
+            }
+        }
+        bernardAnimacion = new Animation(0.15f, framesanimacion);
     }
 }

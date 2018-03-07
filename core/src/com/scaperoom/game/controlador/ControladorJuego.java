@@ -120,7 +120,7 @@ public class ControladorJuego {
                                 controlLeChuck=false;
                     }
                 }
-            }break;
+            } break;
         }
     }
 
