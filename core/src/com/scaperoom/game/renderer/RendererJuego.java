@@ -9,7 +9,6 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
@@ -210,9 +209,9 @@ public class RendererJuego implements InputProcessor {
         shaperender.end();
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
-        for (int i = 0; i < miMundo.SUELOS.length; i++) {
-            Rectangle r = miMundo.SUELOS[i];
-            shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.length, 1, 1));
+        for (int i = 0; i < miMundo.SUELOS.size(); i++) {
+            Rectangle r = miMundo.SUELOS.get(i);
+            shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.size(), 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
         }
         for (int i = 0; i < miMundo.PUNTOS_DESPLAZAMIENTO.length; i++){

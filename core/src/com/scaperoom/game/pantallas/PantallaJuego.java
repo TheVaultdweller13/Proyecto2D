@@ -5,12 +5,10 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.Juego;
-import com.scaperoom.game.modelo.Controles;
 import com.scaperoom.game.modelo.Mundo;
 import com.scaperoom.game.renderer.RendererJuego;
 
@@ -125,16 +123,6 @@ public class PantallaJuego implements Screen, InputProcessor {
         Vector3 temporal = new Vector3(screenX, screenY, 0);
 
         this.r_juego.getCamara2d().unproject(temporal);
-//
-//        if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_IZQUIERDA)) {
-//            c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
-//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_DERECHA)) {
-//            c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
-//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ABAJO)) {
-//            c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
-//        } else if (Intersector.overlaps(new Circle(temporal.x, temporal.y, 2), Controles.FLECHA_ARRIBA)) {
-//            c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
-//        }
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
         Vector2 posicionDedo = new Vector2(dedo.x, dedo.y);

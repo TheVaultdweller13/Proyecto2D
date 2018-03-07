@@ -6,6 +6,10 @@ import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * Created by Héctor Fernández on 27/02/2018.
  */
@@ -17,8 +21,8 @@ public class Mundo {
 
     public final static Vector2 TAMAÑO_NIEBLA = new Vector2(676, 576);
 
-    private Bernard bernard;
-    private LeChuck lechuck;
+    public static Bernard bernard;
+    public static LeChuck lechuck;
 
     private Array<ElementoMovil> niebla;
     private Array<ElementoMovil> sombra;
@@ -28,23 +32,25 @@ public class Mundo {
             new Rectangle(175, 0, 29, TAMAÑO_MUNDO_ALTO)
     };
 
-    public final static Rectangle SUELOS[] = {
+    public final static Rectangle PASILLO_BAÑO = new Rectangle(115, 100, 30, 120);
+    public final static Rectangle PASILLO_ESTUDIO = new Rectangle(405, 160, 30, 120);
+
+    public final static List<Rectangle> SUELOS = new ArrayList<Rectangle>(Arrays.asList(
             new Rectangle(20, 200, 155, 180),   // COCINA
             new Rectangle(200, 260, 289, 120),  // SALÓN DERECHA
             new Rectangle(200, 80, 125, 300),   // SALÓN IZQUIERDA
             new Rectangle(230, 45, 60, 68),     // RECIBIDOR
             new Rectangle(125, 200, 100, 80),   // UNIÓN COCINA-SALÓN
-            new Rectangle(115, 100, 30, 120),   // PASILLO BAÑO
-            new Rectangle(405, 160, 30, 120),   // PASILLO ESTUDIO
             new Rectangle(375, 75, 100, 125),   // ESTUDIO
             new Rectangle(35, 15, 140, 115)     // BAÑO
-    };
+    ));
+
     public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
-            new Circle (60, 230, 10),
-            new Circle (120, 250, 10),
-            new Circle (245, 250, 10),
-            new Circle (275, 313, 10),
-            new Circle (427, 327, 10)
+            new Circle(60, 230, 10),
+            new Circle(120, 250, 10),
+            new Circle(245, 250, 10),
+            new Circle(275, 313, 10),
+            new Circle(427, 327, 10)
     };
 
     public Mundo() {

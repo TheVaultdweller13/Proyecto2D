@@ -1,7 +1,8 @@
 package com.scaperoom.game.modelo;
 
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
+
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 /**
  * Created by Héctor Fernández on 27/02/2018.
@@ -26,6 +27,11 @@ public class LeChuck extends Personaje {
 
         getRectangulo().setSize(tamaño.x / 2);
     }
+
+    public void morir() {
+        throw new NotImplementedException();
+    }
+
     @Override
     public void actualizarRectangulo() {
 

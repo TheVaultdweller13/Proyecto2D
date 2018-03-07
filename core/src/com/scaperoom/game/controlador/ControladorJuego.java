@@ -1,7 +1,6 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -12,6 +11,7 @@ import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by Héctor Fernández on 27/02/2018.
@@ -78,10 +78,10 @@ public class ControladorJuego {
         // Actualiza Bernard
         bernard.update(delta);
 
-        Rectangle[] suelos = miMundo.SUELOS;
-        for (int i = 0; i < suelos.length; i++) {
+        List<Rectangle> suelos = miMundo.SUELOS;
+        for (int i = 0; i < suelos.size(); i++) {
             // si bernard está dentro de algún suelo
-            if (suelos[i].contains(bernard.getRectangulo())) {
+            if (suelos.get(i).contains(bernard.getRectangulo())) {
                 // su próxima posición es la que consiguió en la update
                 x = bernard.getPosicion().x;
                 y = bernard.getPosicion().y;
