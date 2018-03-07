@@ -103,7 +103,7 @@ public class AssetsJuego {
     }
     private static void animacionLeChuck (FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,48,60);
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,47,60);
 
         int num_columnas = tmp[0].length;
         int num_filas = tmp.length;
