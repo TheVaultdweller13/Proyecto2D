@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +15,7 @@ public class Mundo {
     public static final int TAMAÑO_MUNDO_ANCHO = 576;
     public static final int TAMAÑO_MUNDO_ALTO = 490;
 
-    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(576, 576);
+    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(676, 576);
 
     private Bernard bernard;
     private LeChuck lechuck;
@@ -28,20 +29,27 @@ public class Mundo {
     };
 
     public final static Rectangle SUELOS[] = {
-            new Rectangle(20, 200, 155, 240),   // cocina
-            new Rectangle(200, 260, 289, 180),  // salón derecha
-            new Rectangle(200, 80, 125, 360),   // salón izq.
-            new Rectangle(230, 45, 60, 68),     // recibidor
-            new Rectangle(125, 200, 100, 80),   // union cocina-salón
-            new Rectangle(115, 120, 30, 100),   // pasillo baño
-            new Rectangle(405, 190, 30, 90),    //
-            new Rectangle(375, 75, 100, 165),
-            new Rectangle(35, 15, 140, 135)
+            new Rectangle(20, 200, 155, 240),   // COCINA
+            new Rectangle(200, 260, 289, 180),  // SALÓN DERECHA
+            new Rectangle(200, 80, 125, 360),   // SALÓN IZQUIERDA
+            new Rectangle(230, 45, 60, 68),     // RECIBIDOR
+            new Rectangle(125, 200, 100, 80),   // UNIÓN COCINA-SALÓN
+            new Rectangle(115, 120, 30, 100),   // PASILLO BAÑO
+            new Rectangle(405, 190, 30, 90),    // PASILLO ESTUDIO
+            new Rectangle(375, 75, 100, 165),   // ESTUDIO
+            new Rectangle(35, 15, 140, 135)     // BAÑO
+    };
+    public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
+            new Circle (60, 230, 10),
+            new Circle (120, 250, 10),
+            new Circle (245, 250, 10),
+            new Circle (275, 313, 10),
+            new Circle (427, 327, 10)
     };
 
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75), 100);
-        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95), 40);
+        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(70, 105), 30);
 
         niebla = new Array<ElementoMovil>();
         sombra = new Array<ElementoMovil>();

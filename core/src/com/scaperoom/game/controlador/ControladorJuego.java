@@ -1,9 +1,11 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
@@ -12,7 +14,7 @@ import com.scaperoom.game.modelo.Mundo;
 import java.util.HashMap;
 
 /**
- * Created by dam208 on 27/02/2018.
+ * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class ControladorJuego {
@@ -20,6 +22,9 @@ public class ControladorJuego {
     private Mundo miMundo;
     private Bernard bernard;
     private LeChuck lechuck;
+    public static boolean controlLeChuck = true;
+
+    private int avanceLechuck = 0;
 
     public enum Keys {
         IZQUIERDA,
@@ -43,6 +48,8 @@ public class ControladorJuego {
         this.miMundo = miMundo;
         camara2d = new OrthographicCamera();
         bernard = miMundo.getBernard();
+        lechuck = miMundo.getLechuck();
+        avanceLechuck = 0;
 
     }
 
@@ -65,7 +72,7 @@ public class ControladorJuego {
     }
 
     private void controlarBernard(float delta) {
-        float ox = bernard.getPosicion().x, oy = bernard.getPosicion().y; // posicion original
+        float ox = bernard.getPosicion().x, oy = bernard.getPosicion().y; // posición original
 
         float x = ox, y = oy; // próxima posición, empieza siendo la antigua
         // Actualiza Bernard
@@ -78,7 +85,7 @@ public class ControladorJuego {
                 // su próxima posición es la que consiguió en la update
                 x = bernard.getPosicion().x;
                 y = bernard.getPosicion().y;
-                break; // y sal del bucle
+                break; // y sale del bucle
             }
         }
 
@@ -86,7 +93,34 @@ public class ControladorJuego {
         bernard.setPosicion(x, y);
 
         if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
-            bernard.direccion = Vector2.Zero;
+            bernard.direccion = new Vector2(0,0);
+        }
+    }
+
+    private void controlarLeChuck(float delta) {
+        lechuck.update(delta);
+        while(avanceLechuck<Mundo.PUNTOS_DESPLAZAMIENTO.length){
+                Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y,0);
+                lechuck.puntoDestino.set(new Vector2(posicionMapa.x,posicionMapa.y));
+                Vector2 direccion = lechuck.puntoDestino.cpy().sub(lechuck.centro);
+                lechuck.direccion.set(direccion.nor());
+
+                if(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)){
+                    if(avanceLechuck<4){
+                        avanceLechuck++;
+                        controlLeChuck=true;
+                    }
+
+                    if(Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length-1].contains(lechuck.centro)){
+                        direccion = new Vector2(lechuck.direccion.x*-1, lechuck.direccion.y*-1);
+
+                        while (avanceLechuck>0){
+                            lechuck.direccion.set(direccion.nor());
+                                avanceLechuck--;
+                                controlLeChuck=false;
+                    }
+                }
+            }break;
         }
     }
 
@@ -145,5 +179,6 @@ public class ControladorJuego {
         controlarBernard(delta);
         controlarNiebla(delta);
         controlarSombra(delta);
+        controlarLeChuck(delta);
     }
 }

@@ -138,8 +138,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
         Vector2 posicionDedo = new Vector2(dedo.x, dedo.y);
-        miMundo.getBernard().puntoDestino.set(posicionDedo, posicionDedo.y);
-        Vector2 direccion = posicionDedo.sub(miMundo.getBernard().getPosicion());
+        miMundo.getBernard().puntoDestino = dedo;
+        Vector2 direccion = posicionDedo.sub(miMundo.getBernard().centro);
         miMundo.getBernard().direccion.set(direccion.nor());
 
         return false;

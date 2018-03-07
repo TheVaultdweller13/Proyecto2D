@@ -4,13 +4,14 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
 /**
- * Created by dam208 on 27/02/2018.
+ * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class Bernard extends Personaje {
 
     public Vector2
             temporal,
+            centro,
             direccion;
     public Circle  puntoDestino;
 
@@ -18,7 +19,9 @@ public class Bernard extends Personaje {
         super(posicion, tamaño, velocidad);
         temporal = new Vector2();
         direccion = new Vector2(0,0);
+        centro = new Vector2(0, 0);
         puntoDestino = new Circle();
+
 
         getRectangulo().setSize(tamaño.x / 2);
     }
@@ -27,6 +30,7 @@ public class Bernard extends Personaje {
     public void actualizarRectangulo() {
         getRectangulo().x = getPosicion().x + getTamaño().x / 4;
         getRectangulo().y = getPosicion().y + getTamaño().y / 4;
+        getRectangulo().getCenter(centro);
     }
 
     @Override

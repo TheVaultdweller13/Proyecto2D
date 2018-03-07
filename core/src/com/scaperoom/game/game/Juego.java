@@ -4,7 +4,7 @@ import com.badlogic.gdx.Game;
 import com.scaperoom.game.pantallas.PantallaJuego;
 
 /**
- * Created by dam208 on 27/02/2018.
+ * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class Juego extends Game {

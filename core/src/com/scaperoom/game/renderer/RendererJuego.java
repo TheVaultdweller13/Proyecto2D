@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
@@ -17,7 +19,7 @@ import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
 /**
- * Created by dam208 on 27/02/2018.
+ * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class RendererJuego implements InputProcessor {
@@ -53,15 +55,20 @@ public class RendererJuego implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        dibujarFondo();
-        dibujarSombras();
-        dibujarMapa();
-        dibujarBernard();
-        dibujarLeChuck();
-        dibujarParedes();
-        dibujarPuertas();
-        dibujarNieblas();
-
+            dibujarFondo();
+            dibujarSombras();
+            dibujarMapa();
+            if(bernard.getRectangulo().y>lechuck.getRectangulo().y){
+                dibujarBernard();
+                dibujarLeChuck();
+            }
+            else {
+                dibujarLeChuck();
+                dibujarBernard();
+            }
+            dibujarParedes();
+            dibujarPuertas();
+            dibujarNieblas();
         batch.end();
 
         if (debugger) {
@@ -103,11 +110,12 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarLeChuck() {
         LeChuck lechuck = miMundo.getLechuck();
-        batch.draw(AssetsJuego.textureCharacterLeChuck,
-                lechuck.getPosicion().x,
-                lechuck.getPosicion().y,
-                lechuck.getTamaño().x,
-                lechuck.getTamaño().y);
+
+        if(ControladorJuego.controlLeChuck)
+            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
+
+        else
+            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x + lechuck.getTamaño().x, lechuck.getPosicion().y, -lechuck.getTamaño().x, lechuck.getTamaño().y);
     }
 
     private void dibujarSombras() {
@@ -188,6 +196,9 @@ public class RendererJuego implements InputProcessor {
             Rectangle r = miMundo.SUELOS[i];
             shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.length, 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
+        }
+        for (int i = 0; i < miMundo.PUNTOS_DESPLAZAMIENTO.length; i++){
+            shaperender.circle(Mundo.PUNTOS_DESPLAZAMIENTO[i].x, Mundo.PUNTOS_DESPLAZAMIENTO[i].y, Mundo.PUNTOS_DESPLAZAMIENTO[i].radius);
         }
         shaperender.end();
     }
