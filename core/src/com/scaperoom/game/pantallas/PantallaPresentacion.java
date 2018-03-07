@@ -5,7 +5,10 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.game.Juego;
 import com.scaperoom.game.modelo.Mundo;
@@ -92,6 +95,31 @@ public class PantallaPresentacion implements Screen, InputProcessor {
      */
     @Override
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        Vector3 temp = new Vector3(screenX, screenY, 0);
+        camara2d.unproject(temp);
+        Circle dedo = new Circle(temp.x, temp.y, 2);
+
+
+        if (Intersector.overlaps(dedo, botones[0])) {    // Pulsar Juego nuevo
+            dispose();
+            juego.setScreen(new PantallaJuego(juego));
+        }
+
+        if (Intersector.overlaps(dedo, botones[1])) {    // Pulsar Marcadores
+            dispose();
+          //  juego.setScreen(new PantallaMarcadores(juego));
+        }
+        if (Intersector.overlaps(dedo, botones[2])) { //Pulsar salir
+            Gdx.app.exit();
+        }
+//        if (Intersector.overlaps(dedo, Controles.controlMusica)) {
+//            if (Controles.isAudio_activado()) {
+//                Controles.setAudio_activado(false);
+//            } else {
+//                Controles.setAudio_activado(true);
+//            }
+//            prefs.putBoolean("controlmusica", Controles.isAudio_activado());
+//            prefs.flush();
         return false;
     }
 
