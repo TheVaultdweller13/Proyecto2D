@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
@@ -20,6 +21,9 @@ public class Mundo {
     private Bernard bernard;
     private LeChuck lechuck;
 
+    private final static int TIEMPO_INICIAL = 0;
+    private float cronometro;
+
     private Array<ElementoMovil> niebla;
     private Array<ElementoMovil> sombra;
 
@@ -27,6 +31,9 @@ public class Mundo {
             new Rectangle(Mundo.TAMAÑO_MUNDO_ANCHO - 90, 0, 90, Mundo.TAMAÑO_MUNDO_ALTO),
             new Rectangle(175, 0, 29, TAMAÑO_MUNDO_ALTO)
     };
+
+    public static final float PROPORCION_REAL_MUNDO_ANCHO = ((float) Gdx.graphics.getWidth() / Mundo.TAMAÑO_MUNDO_ANCHO);
+    public static final float PROPORCION_REAL_MUNDO_ALTO = ((float) Gdx.graphics.getHeight() / Mundo.TAMAÑO_MUNDO_ALTO);
 
     public final static Rectangle SUELOS[] = {
             new Rectangle(20, 200, 155, 180),   // COCINA
@@ -50,6 +57,8 @@ public class Mundo {
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75), 100);
         lechuck = new LeChuck(new Vector2(25, 310), new Vector2(70, 105), 30);
+
+        cronometro = TIEMPO_INICIAL;
 
         niebla = new Array<ElementoMovil>();
         sombra = new Array<ElementoMovil>();
@@ -108,4 +117,13 @@ public class Mundo {
     public void setLechuck(LeChuck lechuck) {
         this.lechuck = lechuck;
     }
+
+    public int getCronometro() {
+        return (int) cronometro;
+    }
+
+    public void updateCronometro(float delta) {
+        cronometro += delta;
+    }
+
 }

@@ -2,6 +2,7 @@ package com.scaperoom.game.game;
 
 import com.badlogic.gdx.Game;
 import com.scaperoom.game.pantallas.PantallaJuego;
+import com.scaperoom.game.pantallas.PantallaPresentacion;
 
 /**
  * Created by Héctor Fernández on 27/02/2018.
@@ -17,13 +18,13 @@ public class Juego extends Game {
         // TODO Auto-generated method stub
 
         //     opción A
-        AssetsJuego.cargarTexturas();
-        pantallajuego = new PantallaJuego(this);
-        setScreen(pantallajuego);
-
 //        AssetsJuego.cargarTexturas();
-//        Audio.iniciarAudio();
-//        setScreen(new PantallaPresentacion(this));
+//        pantallajuego = new PantallaJuego(this);
+//        setScreen(pantallajuego);
+
+        AssetsJuego.cargarTexturas();
+      //  Audio.iniciarAudio();
+        setScreen(new PantallaPresentacion(this));
     }
 
     @Override

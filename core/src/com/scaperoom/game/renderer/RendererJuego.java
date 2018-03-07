@@ -6,10 +6,13 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
@@ -41,6 +44,9 @@ public class RendererJuego implements InputProcessor {
 
     private OrthographicCamera camara2d;
 
+    private StringBuilder sbuffer;
+    private BitmapFont bitMapFont;
+
 
     public RendererJuego(Mundo miMundo) {
         this.miMundo = miMundo;
@@ -51,6 +57,17 @@ public class RendererJuego implements InputProcessor {
         bernard = miMundo.getBernard();
         lechuck = miMundo.getLechuck();
         crono = 0;
+        Gdx.input.setInputProcessor(this);
+
+        //Libgdx by default, creates a BitmapFont using the default 15pt Arial font included in the libgdx JAR file.
+        //Using FreeTypeFont, it is possible so create fonts with a desired size on the fly.
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/DS-DIGIT.TTF"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = (int) (15 * Mundo.PROPORCION_REAL_MUNDO_ANCHO);
+        this.bitMapFont = generator.generateFont(parameter); // font size in pixels
+        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+        sbuffer = new StringBuilder();
+        this.bitMapFont.setColor(Color.WHITE);
     }
 
     public void render(float delta) {
@@ -74,6 +91,7 @@ public class RendererJuego implements InputProcessor {
             dibujarParedes();
             dibujarPuertas();
             dibujarNieblas();
+            dibujarTiempo();
         batch.end();
 
         if (debugger) {
@@ -175,6 +193,18 @@ public class RendererJuego implements InputProcessor {
             }
         }
     }
+
+    private void dibujarTiempo() {
+        // Borrar texto
+        sbuffer.setLength(0);
+        sbuffer.append(miMundo.getCronometro());
+        // cpy() needed to properly set afterwards because calling set() seems to modify kept matrix, not replaces it
+        Matrix4 originalMatrix = batch.getProjectionMatrix().cpy();
+        batch.setProjectionMatrix(originalMatrix.cpy().scale(1 / Mundo.PROPORCION_REAL_MUNDO_ANCHO, 1 / Mundo.PROPORCION_REAL_MUNDO_ALTO, 1));
+        this.bitMapFont.draw(batch, sbuffer, 0, this.bitMapFont.getXHeight());
+        batch.setProjectionMatrix(originalMatrix); //revert projection
+    }
+
 
     public OrthographicCamera getCamara2d() {
         return this.camara2d;

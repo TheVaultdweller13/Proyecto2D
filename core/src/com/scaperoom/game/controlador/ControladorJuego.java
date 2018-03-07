@@ -175,7 +175,7 @@ public class ControladorJuego {
 //    }
 
     public void update(float delta) {
-//      miMundo.updateCronometro(delta);
+        miMundo.updateCronometro(delta);
         controlarBernard(delta);
         controlarNiebla(delta);
         controlarSombra(delta);

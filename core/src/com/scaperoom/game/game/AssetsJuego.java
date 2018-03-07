@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetsJuego {
 
+    public static Texture texturePresentacion;
+
     public static Texture textureBackground;
     public static Texture textureMap;
     public static Texture textureParedes;
@@ -59,11 +61,16 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/silueta_hombre.png");
         textureSombraHombre = new Texture(imageFileHandle);
 
+        /* Pantallas */
+        imageFileHandle = Gdx.files.internal("graficos/inicio.png");
+        texturePresentacion = new Texture(imageFileHandle);
+
     }
 
     public static void liberarTexturas() {
 
         textureMap.dispose();
+        texturePresentacion.dispose();
         textureCharacterBernard.dispose();
         textureParedes.dispose();
         texturePuertas.dispose();
@@ -71,6 +78,7 @@ public class AssetsJuego {
         textureAntiniebla.dispose();
         textureSombraMujer.dispose();
         textureSombraHombre.dispose();
+        textureCharacterLeChuck.dispose();
     }
 
     private static void animacionBernard (FileHandle imageFileHandle) {
