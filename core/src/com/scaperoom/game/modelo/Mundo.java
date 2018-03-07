@@ -35,8 +35,8 @@ public class Mundo {
             new Rectangle(230, 45, 60, 68),     // RECIBIDOR
             new Rectangle(125, 200, 100, 80),   // UNIÓN COCINA-SALÓN
             new Rectangle(115, 100, 30, 120),   // PASILLO BAÑO
-            new Rectangle(405, 190, 30, 90),    // PASILLO ESTUDIO
-            new Rectangle(375, 75, 100, 165),   // ESTUDIO
+            new Rectangle(405, 160, 30, 120),   // PASILLO ESTUDIO
+            new Rectangle(375, 75, 100, 125),   // ESTUDIO
             new Rectangle(35, 15, 140, 115)     // BAÑO
     };
     public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
