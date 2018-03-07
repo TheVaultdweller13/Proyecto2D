@@ -99,7 +99,7 @@ public class AssetsJuego {
                 cont++;
             }
         }
-        bernardAnimacion = new Animation(0.15f, framesanimacion);
+        bernardAnimacion = new Animation(0.25f, framesanimacion);
     }
     private static void animacionLeChuck (FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);

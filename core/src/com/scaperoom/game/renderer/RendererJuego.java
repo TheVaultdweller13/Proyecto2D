@@ -78,6 +78,7 @@ public class RendererJuego implements InputProcessor {
             dibujarFondo();
             dibujarSombras();
             dibujarMapa();
+
             if(bernard.getRectangulo().y>lechuck.getRectangulo().y){
                 dibujarBernard();
                 dibujarLeChuck();
@@ -86,8 +87,6 @@ public class RendererJuego implements InputProcessor {
                 dibujarLeChuck();
                 dibujarBernard();
             }
-
-            dibujarLeChuck();
             dibujarParedes();
             dibujarPuertas();
             dibujarNieblas();
@@ -242,7 +241,8 @@ public class RendererJuego implements InputProcessor {
         shaperender.setColor(Color.BLACK);
         shaperender.rect(bernard.getRectangulo().x, bernard.getRectangulo().y, bernard.getRectangulo().width, bernard.getRectangulo().height);
         shaperender.rect(bernard.getPosicion().x, bernard.getPosicion().y, bernard.getTamaño().x, bernard.getTamaño().y, Color.RED, Color.RED, Color.RED, Color.RED);
-        shaperender.rect(lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
+        shaperender.rect(lechuck.getRectangulo().x, lechuck.getRectangulo().y, lechuck.getRectangulo().width, lechuck.getRectangulo().height);
+        shaperender.rect(lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y, Color.RED, Color.RED, Color.RED, Color.RED);
         shaperender.end();
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
