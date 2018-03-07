@@ -22,6 +22,7 @@ public class ControladorJuego {
     private Mundo miMundo;
     private Bernard bernard;
     private LeChuck lechuck;
+    public static boolean controlLeChuck = true;
 
     private int avanceLechuck = 0;
 
@@ -98,7 +99,6 @@ public class ControladorJuego {
 
     private void controlarLeChuck(float delta) {
         lechuck.update(delta);
-
         while(avanceLechuck<Mundo.PUNTOS_DESPLAZAMIENTO.length){
                 Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y,0);
                 lechuck.puntoDestino.set(new Vector2(posicionMapa.x,posicionMapa.y));
@@ -106,9 +106,9 @@ public class ControladorJuego {
                 lechuck.direccion.set(direccion.nor());
 
                 if(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)){
-                    System.out.println(avanceLechuck);
                     if(avanceLechuck<4){
                         avanceLechuck++;
+                        controlLeChuck=true;
                     }
 
                     if(Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length-1].contains(lechuck.centro)){
@@ -117,6 +117,7 @@ public class ControladorJuego {
                         while (avanceLechuck>0){
                             lechuck.direccion.set(direccion.nor());
                                 avanceLechuck--;
+                                controlLeChuck=false;
                     }
                 }
             }break;

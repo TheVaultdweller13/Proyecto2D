@@ -40,8 +40,8 @@ public class Mundo {
             new Rectangle(35, 15, 140, 135)     // BAÑO
     };
     public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
-            new Circle (60, 220, 10),
-            new Circle (120, 240, 10),
+            new Circle (60, 230, 10),
+            new Circle (120, 250, 10),
             new Circle (245, 250, 10),
             new Circle (275, 313, 10),
             new Circle (427, 327, 10)
@@ -49,7 +49,7 @@ public class Mundo {
 
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75), 100);
-        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95), 35);
+        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(70, 105), 30);
 
         niebla = new Array<ElementoMovil>();
         sombra = new Array<ElementoMovil>();

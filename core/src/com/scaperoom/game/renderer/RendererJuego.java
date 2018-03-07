@@ -8,8 +8,10 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
@@ -56,8 +58,14 @@ public class RendererJuego implements InputProcessor {
             dibujarFondo();
             dibujarSombras();
             dibujarMapa();
-            dibujarBernard();
-            dibujarLeChuck();
+            if(bernard.getRectangulo().y>lechuck.getRectangulo().y){
+                dibujarBernard();
+                dibujarLeChuck();
+            }
+            else {
+                dibujarLeChuck();
+                dibujarBernard();
+            }
             dibujarParedes();
             dibujarPuertas();
             dibujarNieblas();
@@ -102,11 +110,12 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarLeChuck() {
         LeChuck lechuck = miMundo.getLechuck();
-        batch.draw(AssetsJuego.textureCharacterLeChuck,
-                lechuck.getPosicion().x,
-                lechuck.getPosicion().y,
-                lechuck.getTamaño().x,
-                lechuck.getTamaño().y);
+
+        if(ControladorJuego.controlLeChuck)
+            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
+
+        else
+            batch.draw(AssetsJuego.textureCharacterLeChuck, lechuck.getPosicion().x + lechuck.getTamaño().x, lechuck.getPosicion().y, -lechuck.getTamaño().x, lechuck.getTamaño().y);
     }
 
     private void dibujarSombras() {
