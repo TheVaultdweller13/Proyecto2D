@@ -1,5 +1,6 @@
 package com.scaperoom.game.modelo;
 
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -14,7 +15,7 @@ public class Mundo {
     public static final int TAMAÑO_MUNDO_ANCHO = 576;
     public static final int TAMAÑO_MUNDO_ALTO = 490;
 
-    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(576, 576);
+    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(676, 576);
 
     private Bernard bernard;
     private LeChuck lechuck;
@@ -38,10 +39,17 @@ public class Mundo {
             new Rectangle(375, 75, 100, 165),   // ESTUDIO
             new Rectangle(35, 15, 140, 135)     // BAÑO
     };
+    public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
+            new Circle (60, 220, 10),
+            new Circle (120, 240, 10),
+            new Circle (245, 250, 10),
+            new Circle (275, 313, 10),
+            new Circle (427, 327, 10)
+    };
 
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75), 100);
-        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95), 40);
+        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(60, 95), 35);
 
         niebla = new Array<ElementoMovil>();
         sombra = new Array<ElementoMovil>();

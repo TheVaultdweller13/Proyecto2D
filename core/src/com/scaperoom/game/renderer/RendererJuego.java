@@ -53,15 +53,14 @@ public class RendererJuego implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-        dibujarFondo();
-        dibujarSombras();
-        dibujarMapa();
-        dibujarBernard();
-        dibujarLeChuck();
-        dibujarParedes();
-        dibujarPuertas();
-        dibujarNieblas();
-
+            dibujarFondo();
+            dibujarSombras();
+            dibujarMapa();
+            dibujarBernard();
+            dibujarLeChuck();
+            dibujarParedes();
+            dibujarPuertas();
+            dibujarNieblas();
         batch.end();
 
         if (debugger) {
@@ -188,6 +187,9 @@ public class RendererJuego implements InputProcessor {
             Rectangle r = miMundo.SUELOS[i];
             shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.length, 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
+        }
+        for (int i = 0; i < miMundo.PUNTOS_DESPLAZAMIENTO.length; i++){
+            shaperender.circle(Mundo.PUNTOS_DESPLAZAMIENTO[i].x, Mundo.PUNTOS_DESPLAZAMIENTO[i].y, Mundo.PUNTOS_DESPLAZAMIENTO[i].radius);
         }
         shaperender.end();
     }

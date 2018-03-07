@@ -1,9 +1,11 @@
 package com.scaperoom.game.controlador;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
@@ -20,6 +22,8 @@ public class ControladorJuego {
     private Mundo miMundo;
     private Bernard bernard;
     private LeChuck lechuck;
+
+    private int avanceLechuck = 0;
 
     public enum Keys {
         IZQUIERDA,
@@ -43,6 +47,8 @@ public class ControladorJuego {
         this.miMundo = miMundo;
         camara2d = new OrthographicCamera();
         bernard = miMundo.getBernard();
+        lechuck = miMundo.getLechuck();
+        avanceLechuck = 0;
 
     }
 
@@ -87,6 +93,33 @@ public class ControladorJuego {
 
         if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
             bernard.direccion = new Vector2(0,0);
+        }
+    }
+
+    private void controlarLeChuck(float delta) {
+        lechuck.update(delta);
+
+        while(avanceLechuck<Mundo.PUNTOS_DESPLAZAMIENTO.length){
+                Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y,0);
+                lechuck.puntoDestino.set(new Vector2(posicionMapa.x,posicionMapa.y));
+                Vector2 direccion = lechuck.puntoDestino.cpy().sub(lechuck.centro);
+                lechuck.direccion.set(direccion.nor());
+
+                if(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)){
+                    System.out.println(avanceLechuck);
+                    if(avanceLechuck<4){
+                        avanceLechuck++;
+                    }
+
+                    if(Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length-1].contains(lechuck.centro)){
+                        direccion = new Vector2(lechuck.direccion.x*-1, lechuck.direccion.y*-1);
+
+                        while (avanceLechuck>0){
+                            lechuck.direccion.set(direccion.nor());
+                                avanceLechuck--;
+                    }
+                }
+            }break;
         }
     }
 
@@ -145,5 +178,6 @@ public class ControladorJuego {
         controlarBernard(delta);
         controlarNiebla(delta);
         controlarSombra(delta);
+        controlarLeChuck(delta);
     }
 }
