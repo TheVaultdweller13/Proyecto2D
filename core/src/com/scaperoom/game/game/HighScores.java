@@ -3,58 +3,52 @@ package com.scaperoom.game.game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
 
-import java.util.Arrays;
-
 /**
  * Created by Héctor Fernández on 27/02/2018.
  */
 
 public class HighScores {
 
-    public static String[] highscores = {"0", "0", "0"};
+    public static int[] highscores = {999, 999, 999};
     public static String archivoHighscores = "highscores.dat";
-
+    private static final FileHandle archivo = Gdx.files.external(HighScores.archivoHighscores);
 
     public static void load() {
-        FileHandle archivo = Gdx.files.external(HighScores.archivoHighscores);
 
         if (!archivo.exists())
             HighScores.save();
         else {
-            String texto = archivo.readString();
-            highscores = texto.split(",");
+            String[] texto = archivo.readString().split(",");
+            highscores[0] = Integer.parseInt(texto[0]);
+            highscores[1] = Integer.parseInt(texto[1]);
+            highscores[2] = Integer.parseInt(texto[2]);
         }
-
     }
 
     public static void añadirPuntuacion(int puntuacion) {
-        boolean encontrado = false;
-        int i = 0;
-        String[] aux = (String[]) Arrays.copyOf(highscores, highscores.length);
-
-        while ((i < HighScores.highscores.length) && (!encontrado)) {
-            if (puntuacion > Integer.parseInt(HighScores.highscores[i])) {
-                highscores[i] = String.valueOf(puntuacion);
-                encontrado = true;
-                ++i;
-            } else
-                ++i;
-            if (encontrado) {
-                --i;
-
-                while (i + 1 < highscores.length) {
-                    highscores[i + 1] = aux[i];
-                    ++i;
+        int i = 0, j = 0;
+        // Cargar las puntuaciones actuales
+        load();
+        // Actualizar las puntuaciones
+        while (i < highscores.length) {
+            if (puntuacion < highscores[i]) {
+                j = i; // se empujan las puntuaciones hacia abajo para hacer hueco para la nueva
+                while (j + 1 < highscores.length) {
+                    highscores[j + 1] = highscores[j];
+                    ++j;
                 }
-                save();
+                highscores[i] = puntuacion;
+                break;
             }
+            ++i;
         }
+        // Guardar las puntuaciones actualizadas
+        save();
     }
 
     private static void save() {
-        FileHandle archivo = Gdx.files.external(HighScores.archivoHighscores);
-        archivo.writeString(HighScores.highscores[2] + ",", false);
-        archivo.writeString(HighScores.highscores[1] + ",", true);
-        archivo.writeString(HighScores.highscores[0], true);
+        archivo.writeString(Integer.toString(HighScores.highscores[0]) + ",", false);
+        archivo.writeString(Integer.toString(HighScores.highscores[1]) + ",", true);
+        archivo.writeString(Integer.toString(HighScores.highscores[2]), true);
     }
 }
