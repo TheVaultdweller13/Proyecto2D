@@ -84,7 +84,7 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
             for (int x = 0; x < HighScores.highscores.length; x++) {
                 sbuffer.append("\n\n\n\n" + puesto[x] + " puesto: " + HighScores.highscores[x]);
             }
-            Audio.liberarAudio();
+            Audio.audioPuntuacion.play();
         }
 
         @Override
@@ -122,12 +122,14 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
 
         @Override
         public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-            juego.setScreen(pantallapresentacion);
+
             return false;
         }
 
         @Override
         public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            Audio.liberarAudio();
+            juego.setScreen(pantallapresentacion);
             return false;
         }
 

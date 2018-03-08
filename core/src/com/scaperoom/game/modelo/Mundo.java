@@ -20,7 +20,7 @@ public class Mundo {
     public static final int TAMAÑO_MUNDO_ANCHO = 576;
     public static final int TAMAÑO_MUNDO_ALTO = 490;
 
-    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(576, 576);
+    public final static Vector2 TAMAÑO_NIEBLA = new Vector2(578, 576);
 
     private Bernard bernard;
     private LeChuck lechuck;

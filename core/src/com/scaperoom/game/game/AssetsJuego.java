@@ -46,7 +46,7 @@ public class AssetsJuego {
     public static Texture
             textureMusicOn,
             textureMusicOff;
-
+    public static Texture textureStop;
 
     public static void cargarTexturas() {
 
@@ -130,6 +130,8 @@ public class AssetsJuego {
         textureMusicOn = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/controles/musica_off.png");
         textureMusicOff = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/controles/stop.png");
+        textureStop = new Texture(imageFileHandle);
 
     }
 
@@ -159,6 +161,9 @@ public class AssetsJuego {
         textureLlaveFinal_activo.dispose();
         texturePuntuacionGanar.dispose();
         texturePuntuacionPerder.dispose();
+        textureMusicOn.dispose();
+        textureMusicOff.dispose();
+        textureStop.dispose();
     }
 
     private static void animacionBernard(FileHandle imageFileHandle) {

@@ -12,7 +12,8 @@ public class Audio {
 
     public static Music
             audioJuego,
-            audioPresentacion;
+            audioPresentacion,
+            audioPuntuacion;
 
 
     public static void iniciarAudio() {
@@ -20,25 +21,30 @@ public class Audio {
 
         audioFileHandle = Gdx.files.internal("audio/title.mp3");
         audioPresentacion = Gdx.audio.newMusic(audioFileHandle);
-        // audioPresentacion.setVolume(0.5f);
         audioPresentacion.setLooping(true);
 
         audioFileHandle = Gdx.files.internal("audio/game.mp3");
         audioJuego = Gdx.audio.newMusic(audioFileHandle);
-        // audioPresentacion.setVolume(0.5f);
         audioJuego.setLooping(true);
+
+        audioFileHandle = Gdx.files.internal("audio/puntuacion.mp3");
+        audioPuntuacion = Gdx.audio.newMusic(audioFileHandle);
+        audioPuntuacion.setLooping(true);
     }
 
     public static void liberarAudio(){
         audioJuego.dispose();
         audioPresentacion.dispose();
+        audioPuntuacion.dispose();
     }
     public static void silenciarAudio(){
         audioJuego.setVolume(0f);
         audioPresentacion.setVolume(0f);
+        audioPuntuacion.setVolume(0f);
     }
     public static void activarAudio(){
         audioJuego.setVolume(0.5f);
         audioPresentacion.setVolume(0.5f);
+        audioPuntuacion.setVolume(0.5f);
     }
 }

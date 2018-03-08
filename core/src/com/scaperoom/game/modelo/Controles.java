@@ -8,7 +8,7 @@ import com.badlogic.gdx.math.Rectangle;
 
 public class Controles {
 
-    public final static Rectangle CONTROL_SALIR = new Rectangle(534, 16, 20, 20);
+    public final static Rectangle CONTROL_SALIR = new Rectangle(510, 12, 64, 64);
     public final static Rectangle CONTROL_AUDIO = new Rectangle(10, 10, 50, 50);
 
     /**
