@@ -217,6 +217,9 @@ public class RendererJuego implements InputProcessor {
         else if(miMundo.getInventario().usada_llavebaño){
             batch.draw(AssetsJuego.textureLlaveBaño_inactivo, Mundo.LLAVE_BAÑO_INVENTARIO.x, Mundo.LLAVE_BAÑO_INVENTARIO.y, Mundo.LLAVE_BAÑO_INVENTARIO.width, Mundo.LLAVE_BAÑO_INVENTARIO.height);
         }
+        else if(miMundo.getInventario().use_llavebaño){
+            batch.draw(AssetsJuego.textureLlaveBaño_activo, Mundo.LLAVE_BAÑO_INVENTARIO.x, Mundo.LLAVE_BAÑO_INVENTARIO.y, Mundo.LLAVE_BAÑO_INVENTARIO.width, Mundo.LLAVE_BAÑO_INVENTARIO.height);
+        }
         else
             batch.draw(AssetsJuego.textureLlaveBaño, Mundo.LLAVE_BAÑO_INVENTARIO.x, Mundo.LLAVE_BAÑO_INVENTARIO.y, Mundo.LLAVE_BAÑO_INVENTARIO.width, Mundo.LLAVE_BAÑO_INVENTARIO.height);
     }
@@ -225,6 +228,9 @@ public class RendererJuego implements InputProcessor {
             batch.draw(AssetsJuego.textureLlaveEstudio,Mundo.LLAVE_ESTUDIO_SUELO.x, Mundo.LLAVE_ESTUDIO_SUELO.y, Mundo.LLAVE_ESTUDIO_SUELO.width, Mundo.LLAVE_ESTUDIO_SUELO.height);
         else if(miMundo.getInventario().usada_llaveestudio){
             batch.draw(AssetsJuego.textureLlaveEstudio_inactivo, Mundo.LLAVE_ESTUDIO_INVENTARIO.x, Mundo.LLAVE_ESTUDIO_INVENTARIO.y, Mundo.LLAVE_ESTUDIO_INVENTARIO.width, Mundo.LLAVE_ESTUDIO_INVENTARIO.height);
+        }
+        else if(miMundo.getInventario().use_llaveestudio){
+            batch.draw(AssetsJuego.textureLlaveEstudio_activo, Mundo.LLAVE_ESTUDIO_INVENTARIO.x, Mundo.LLAVE_ESTUDIO_INVENTARIO.y, Mundo.LLAVE_ESTUDIO_INVENTARIO.width, Mundo.LLAVE_ESTUDIO_INVENTARIO.height);
         }
         else
             batch.draw(AssetsJuego.textureLlaveEstudio,Mundo.LLAVE_ESTUDIO_INVENTARIO.x, Mundo.LLAVE_ESTUDIO_INVENTARIO.y, Mundo.LLAVE_ESTUDIO_INVENTARIO.width, Mundo.LLAVE_ESTUDIO_INVENTARIO.height);
@@ -235,6 +241,9 @@ public class RendererJuego implements InputProcessor {
         else if(miMundo.getInventario().usado_muñecovudu){
             batch.draw(AssetsJuego.textureMuñecoVuduInactivo, Mundo.MUÑECO_VUDU_INVENTARIO.x, Mundo.MUÑECO_VUDU_INVENTARIO.y, Mundo.MUÑECO_VUDU_INVENTARIO.width, Mundo.MUÑECO_VUDU_INVENTARIO.height);
         }
+        else if(miMundo.getInventario().use_muñecovudu){
+            batch.draw(AssetsJuego.textureMuñecoVudu_activo, Mundo.MUÑECO_VUDU_INVENTARIO.x, Mundo.MUÑECO_VUDU_INVENTARIO.y, Mundo.MUÑECO_VUDU_INVENTARIO.width, Mundo.MUÑECO_VUDU_INVENTARIO.height);
+        }
         else
             batch.draw(AssetsJuego.textureMuñecoVudu, Mundo.MUÑECO_VUDU_INVENTARIO.x, Mundo.MUÑECO_VUDU_INVENTARIO.y, Mundo.MUÑECO_VUDU_INVENTARIO.width, Mundo.MUÑECO_VUDU_INVENTARIO.height);
     }
@@ -243,6 +252,9 @@ public class RendererJuego implements InputProcessor {
             batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_SUELO.x, Mundo.LLAVE_FINAL_SUELO.y, Mundo.LLAVE_FINAL_SUELO.width, Mundo.LLAVE_FINAL_SUELO.height);
         else if(miMundo.getInventario().usada_llavefinal){
             batch.draw(AssetsJuego.textureLlaveFinalInactivo, Mundo.LLAVE_FINAL_INVENTARIO.x, Mundo.LLAVE_FINAL_INVENTARIO.y, Mundo.LLAVE_FINAL_INVENTARIO.width, Mundo.LLAVE_FINAL_INVENTARIO.height);
+        }
+        else if(miMundo.getInventario().use_llavefinal){
+            batch.draw(AssetsJuego.textureLlaveFinal_activo, Mundo.LLAVE_FINAL_INVENTARIO.x, Mundo.LLAVE_FINAL_INVENTARIO.y, Mundo.LLAVE_FINAL_INVENTARIO.width, Mundo.LLAVE_FINAL_INVENTARIO.height);
         }
         else if (miMundo.getInventario().tengo_llavefinal)
             batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_INVENTARIO.x, Mundo.LLAVE_FINAL_INVENTARIO.y, Mundo.LLAVE_FINAL_INVENTARIO.width, Mundo.LLAVE_FINAL_INVENTARIO.height);
