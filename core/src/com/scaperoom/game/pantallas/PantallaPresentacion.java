@@ -38,6 +38,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
         this.juego = juego;
         batch = new SpriteBatch();
         camara2d = new OrthographicCamera();
+        Controles.setAudio_activado(prefs.getBoolean("controlmusica", true));
     }
 
     /**
