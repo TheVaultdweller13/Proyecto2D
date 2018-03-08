@@ -24,6 +24,7 @@ public class ControladorJuego {
     private Bernard bernard;
     private LeChuck lechuck;
     public static boolean controlLeChuck = true;
+    public static boolean ganar;
 
     private Inventario objetos_puzzles;
 
@@ -225,7 +226,7 @@ public class ControladorJuego {
         //Llave final
         if(miMundo.getInventario().use_llavefinal && Intersector.overlaps(bernard.getRectangulo(), Mundo.SUELOS.get(3))){
             miMundo.getInventario().usarLlaveFinal();
-            System.out.println("HAS GANADO");
+            ganar=true;
         }
     }
 

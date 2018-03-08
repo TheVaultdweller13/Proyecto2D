@@ -13,7 +13,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AssetsJuego {
 
     public static Texture texturePresentacion;
-    public static Texture texturePuntuacion;
+    public static Texture texturePuntuacionGanar;
+    public static Texture texturePuntuacionPerder;
 
     public static Texture textureBackground;
     public static Texture textureMap;
@@ -65,8 +66,10 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/inicio.png");
         texturePresentacion = new Texture(imageFileHandle);
 
-        imageFileHandle = Gdx.files.internal("graficos/pantalla_puntuacion_prueba.jpg");
-        texturePuntuacion = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/marcadores.png");
+        texturePuntuacionGanar = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/game_over.png");
+        texturePuntuacionPerder = new Texture(imageFileHandle);
 
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
@@ -143,6 +146,8 @@ public class AssetsJuego {
         textureLlaveFinal.dispose();
         textureLlaveFinalInactivo.dispose();
         textureLlaveFinal_activo.dispose();
+        texturePuntuacionGanar.dispose();
+        texturePuntuacionPerder.dispose();
     }
 
     private static void animacionBernard(FileHandle imageFileHandle) {

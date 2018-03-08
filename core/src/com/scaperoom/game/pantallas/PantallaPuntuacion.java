@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.game.HighScores;
 import com.scaperoom.game.game.Juego;
@@ -64,16 +65,16 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
 
             batch.begin();
             bitMapFont.setColor(Color.YELLOW);
-            if(miMundo.getInventario().usada_llavefinal){
-                System.out.println(miMundo.getInventario().usada_llavefinal);
-                batch.draw(AssetsJuego.texturePresentacion,0, 0, Mundo.PROPORCION_REAL_MUNDO_ANCHO, Mundo.PROPORCION_REAL_MUNDO_ALTO);
-            }
-            else {
-                batch.draw(AssetsJuego.texturePuntuacion,0, 0, Mundo.PROPORCION_REAL_MUNDO_ANCHO, Mundo.PROPORCION_REAL_MUNDO_ALTO);
-            }
             //bitMapFont.setScale(0.5f, 2);
+            if(!ControladorJuego.ganar){
+                batch.draw(AssetsJuego.texturePuntuacionPerder,0, 0, 800, 600);
+            }
+            else
+                batch.draw(AssetsJuego.texturePuntuacionGanar,0, 0, 800, 600);
             bitMapFont.draw(batch, sbuffer, 30 * Mundo.PROPORCION_REAL_MUNDO_ANCHO, 450 * Mundo.PROPORCION_REAL_MUNDO_ALTO);
             batch.end();
+
+
         }
 
         @Override
@@ -82,7 +83,7 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
             HighScores.load();
             String[] puesto = {"Primer", "Segundo", "Tercer"};
             for (int x = 0; x < HighScores.highscores.length; x++) {
-                sbuffer.append("\n\n\n" + puesto[x] + " puesto: " + HighScores.highscores[x]);
+                sbuffer.append("\n\n\n\n" + puesto[x] + " puesto: " + HighScores.highscores[x]);
             }
         }
 

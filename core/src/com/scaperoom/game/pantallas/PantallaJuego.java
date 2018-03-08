@@ -50,6 +50,7 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public void show() {
+        ControladorJuego.ganar=false;
         Gdx.input.setInputProcessor(this);
     }
 
