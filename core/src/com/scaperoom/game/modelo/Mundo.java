@@ -113,7 +113,7 @@ public class Mundo {
     }
 
     public void setBernard(Bernard bernard) {
-        this.bernard = bernard;
+        Mundo.bernard = bernard;
     }
 
     public LeChuck getLechuck() {
@@ -121,7 +121,7 @@ public class Mundo {
     }
 
     public void setLechuck(LeChuck lechuck) {
-        this.lechuck = lechuck;
+        Mundo.lechuck = lechuck;
     }
 
     public int getCronometro() {

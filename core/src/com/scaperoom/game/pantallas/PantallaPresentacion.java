@@ -107,7 +107,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
 
         if (Intersector.overlaps(dedo, botones[1])) {    // Pulsar Marcadores
             dispose();
-          //  juego.setScreen(new PantallaMarcadores(juego));
+            //  juego.setScreen(new PantallaMarcadores(juego));
         }
         if (Intersector.overlaps(dedo, botones[2])) { //Pulsar salir
             Gdx.app.exit();
@@ -174,7 +174,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
     @Override
     public void render(float delta) {
         batch.begin();
-            batch.draw(AssetsJuego.texturePresentacion, 0, 0, miMundo.TAMAÑO_MUNDO_ANCHO, miMundo.TAMAÑO_MUNDO_ALTO);
+        batch.draw(AssetsJuego.texturePresentacion, 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
         batch.end();
     }
 

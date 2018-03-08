@@ -23,7 +23,7 @@ public class Juego extends Game {
 //        setScreen(pantallajuego);
 
         AssetsJuego.cargarTexturas();
-      //  Audio.iniciarAudio();
+        //  Audio.iniciarAudio();
         setScreen(new PantallaPresentacion(this));
     }
 

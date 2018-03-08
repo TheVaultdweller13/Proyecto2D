@@ -23,7 +23,7 @@ public class LeChuck extends Personaje {
         centro = new Vector2(0, 0);
         direccion = new Vector2(0, 0);
         puntoDestino = new Vector2(0, 0);
-       // puntoDestino = new Circle();
+        // puntoDestino = new Circle();
 
         getRectangulo().setSize(tamaño.x / 2);
     }

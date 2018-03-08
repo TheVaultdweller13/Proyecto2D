@@ -73,7 +73,7 @@ public class ControladorJuego {
 
     private void controlarBernard(float delta) {
         boolean colisionx = true, colisiony = true;
-        List<Rectangle> suelos = miMundo.SUELOS;
+        List<Rectangle> suelos = Mundo.SUELOS;
 
         // Calcula la próxima posición de Bernard tras moverse en horizontal
         Vector2 nuevapos = bernard.siguientePosicion(delta, false, true);
@@ -108,7 +108,7 @@ public class ControladorJuego {
         // ahora se pone la posición correcta, ya sea la original o la nueva
         bernard.update(delta);
 
-        if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
+        if (Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())) {
             bernard.direccion = new Vector2(0f, 0f);
         } else {
             Vector2 destino = new Vector2(bernard.puntoDestino.x, bernard.puntoDestino.y);
@@ -119,28 +119,24 @@ public class ControladorJuego {
 
     private void controlarLeChuck(float delta) {
         lechuck.update(delta);
-        while(avanceLechuck<Mundo.PUNTOS_DESPLAZAMIENTO.length){
-                Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y,0);
-                lechuck.puntoDestino.set(new Vector2(posicionMapa.x,posicionMapa.y));
-                Vector2 direccion = lechuck.puntoDestino.cpy().sub(lechuck.centro);
+        Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y, 0);
+        lechuck.puntoDestino.set(new Vector2(posicionMapa.x, posicionMapa.y));
+        Vector2 direccion = lechuck.puntoDestino.cpy().sub(lechuck.centro);
+        lechuck.direccion.set(direccion.nor());
+
+        if (Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)) {
+            if (avanceLechuck < 4) {
+                avanceLechuck++;
+                controlLeChuck = true;
+            }
+
+            if (Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length - 1].contains(lechuck.centro)) {
+                direccion = new Vector2(lechuck.direccion.x * -1, lechuck.direccion.y * -1);
+
                 lechuck.direccion.set(direccion.nor());
-
-                if(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)){
-                    if(avanceLechuck<4){
-                        avanceLechuck++;
-                        controlLeChuck=true;
-                    }
-
-                    if(Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length-1].contains(lechuck.centro)){
-                        direccion = new Vector2(lechuck.direccion.x*-1, lechuck.direccion.y*-1);
-
-                        while (avanceLechuck>0){
-                            lechuck.direccion.set(direccion.nor());
-                                avanceLechuck--;
-                                controlLeChuck=false;
-                    }
+                avanceLechuck = 0;
+                controlLeChuck = false;
                 }
-            } break;
         }
     }
 

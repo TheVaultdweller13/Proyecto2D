@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
@@ -73,22 +74,21 @@ public class RendererJuego implements InputProcessor {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         batch.begin();
-            dibujarFondo();
-            dibujarSombras();
-            dibujarMapa();
+        dibujarFondo();
+        dibujarSombras();
+        dibujarMapa();
 
-            if(bernard.getRectangulo().y>lechuck.getRectangulo().y){
-                dibujarBernard();
-                dibujarLeChuck();
-            }
-            else{
-                dibujarLeChuck();
-                dibujarBernard();
-            }
-            dibujarParedes();
-            dibujarPuertas();
-            dibujarNieblas();
-            dibujarTiempo();
+        if (bernard.getRectangulo().y > lechuck.getRectangulo().y) {
+            dibujarBernard();
+            dibujarLeChuck();
+        } else {
+            dibujarLeChuck();
+            dibujarBernard();
+        }
+        dibujarParedes();
+        dibujarPuertas();
+        dibujarNieblas();
+        dibujarTiempo();
         batch.end();
 
         if (debugger) {
@@ -121,39 +121,37 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarBernard() {
         Bernard bernard = miMundo.getBernard();
-        crono+=Gdx.graphics.getDeltaTime();
+        crono += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = (TextureRegion) AssetsJuego.bernardAnimacion.getKeyFrame(crono, true);
-        if(!bernard.direccion.isZero()){
-            if(bernard.direccion.x>0){
+        if (!bernard.direccion.isZero()) {
+            if (bernard.direccion.x > 0) {
                 batch
                         .draw(currentFrame, bernard.getPosicion().x,
-                                bernard.getPosicion().y, bernard.getTamaño().x+20,
+                                bernard.getPosicion().y, bernard.getTamaño().x + 20,
                                 bernard.getTamaño().y);
-            }
-            else{
+            } else {
                 batch
-                        .draw(currentFrame, (bernard.getPosicion().x+40),
-                                bernard.getPosicion().y, (-bernard.getTamaño().x-20),
+                        .draw(currentFrame, (bernard.getPosicion().x + 40),
+                                bernard.getPosicion().y, (-bernard.getTamaño().x - 20),
                                 bernard.getTamaño().y);
             }
-        }
-        else
+        } else
             batch.draw(AssetsJuego.textureCharacterBernard, bernard.getPosicion().x, bernard.getPosicion().y, bernard.getTamaño().x, bernard.getTamaño().y);
     }
 
     private void dibujarLeChuck() {
         LeChuck lechuck = miMundo.getLechuck();
-        crono+=Gdx.graphics.getDeltaTime();
+        crono += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = (TextureRegion) AssetsJuego.lechuckAnimacion.getKeyFrame(crono, true);
-            if (ControladorJuego.controlLeChuck) {
-                batch.draw(currentFrame, lechuck.getPosicion().x,
-                        lechuck.getPosicion().y, lechuck.getTamaño().x,
-                        lechuck.getTamaño().y);
-            } else {
-                batch.draw(currentFrame, (lechuck.getPosicion().x+60),
-                        lechuck.getPosicion().y, -lechuck.getTamaño().x,
-                        lechuck.getTamaño().y);
-            }
+        if (ControladorJuego.controlLeChuck) {
+            batch.draw(currentFrame, lechuck.getPosicion().x,
+                    lechuck.getPosicion().y, lechuck.getTamaño().x,
+                    lechuck.getTamaño().y);
+        } else {
+            batch.draw(currentFrame, (lechuck.getPosicion().x + 60),
+                    lechuck.getPosicion().y, -lechuck.getTamaño().x,
+                    lechuck.getTamaño().y);
+        }
 
     }
 
@@ -244,12 +242,12 @@ public class RendererJuego implements InputProcessor {
         shaperender.end();
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
-        for (int i = 0; i < miMundo.SUELOS.size(); i++) {
-            Rectangle r = miMundo.SUELOS.get(i);
-            shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.size(), 1, 1));
+        for (int i = 0; i < Mundo.SUELOS.size(); i++) {
+            Rectangle r = Mundo.SUELOS.get(i);
+            shaperender.setColor(new Color().fromHsv(360 * i / Mundo.SUELOS.size(), 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
         }
-        for (int i = 0; i < miMundo.PUNTOS_DESPLAZAMIENTO.length; i++){
+        for (int i = 0; i < Mundo.PUNTOS_DESPLAZAMIENTO.length; i++) {
             shaperender.circle(Mundo.PUNTOS_DESPLAZAMIENTO[i].x, Mundo.PUNTOS_DESPLAZAMIENTO[i].y, Mundo.PUNTOS_DESPLAZAMIENTO[i].radius);
         }
         shaperender.end();

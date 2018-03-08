@@ -8,9 +8,8 @@ import com.badlogic.gdx.math.Vector2;
 
 public class ElementoMovil extends Personaje {
 
-    public static enum TIPOS_ELEMENTOS {NIEBLA, ANTI_NIEBLA, SILUETA_HOMBRE, SILUETA_MUJER}
+    public enum TIPOS_ELEMENTOS {NIEBLA, ANTI_NIEBLA, SILUETA_HOMBRE, SILUETA_MUJER}
 
-    ;
     private TIPOS_ELEMENTOS tipo;
 
     public ElementoMovil(Vector2 posicion, Vector2 tamano, float velocidad_max, TIPOS_ELEMENTOS tipo) {

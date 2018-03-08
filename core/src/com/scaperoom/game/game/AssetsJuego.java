@@ -59,7 +59,6 @@ public class AssetsJuego {
         animacionLeChuck(imageFileHandle);
 
 
-
         imageFileHandle = Gdx.files.internal("graficos/silueta_mujer.png");
         textureSombraMujer = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/silueta_hombre.png");
@@ -85,32 +84,33 @@ public class AssetsJuego {
         textureCharacterLeChuck.dispose();
     }
 
-    private static void animacionBernard (FileHandle imageFileHandle) {
+    private static void animacionBernard(FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,112,154);
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard, 112, 154);
 
         int num_columnas = tmp[0].length;
         int num_filas = tmp.length;
-        TextureRegion[] framesanimacion = new TextureRegion[num_columnas*num_filas];
-        int cont=0;
-        for(int fila=0; fila<num_filas;fila++){
-            for(int col=0; col<num_columnas;col++){
+        TextureRegion[] framesanimacion = new TextureRegion[num_columnas * num_filas];
+        int cont = 0;
+        for (int fila = 0; fila < num_filas; fila++) {
+            for (int col = 0; col < num_columnas; col++) {
                 framesanimacion[cont] = tmp[fila][col];
                 cont++;
             }
         }
         bernardAnimacion = new Animation(0.25f, framesanimacion);
     }
-    private static void animacionLeChuck (FileHandle imageFileHandle) {
+
+    private static void animacionLeChuck(FileHandle imageFileHandle) {
         Texture textureAnimBernard = new Texture(imageFileHandle);
-        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,47,60);
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard, 47, 60);
 
         int num_columnas = tmp[0].length;
         int num_filas = tmp.length;
-        TextureRegion[] framesanimacion = new TextureRegion[num_columnas*num_filas];
-        int cont=0;
-        for(int fila=0; fila<num_filas;fila++){
-            for(int col=0; col<num_columnas;col++){
+        TextureRegion[] framesanimacion = new TextureRegion[num_columnas * num_filas];
+        int cont = 0;
+        for (int fila = 0; fila < num_filas; fila++) {
+            for (int col = 0; col < num_columnas; col++) {
                 framesanimacion[cont] = tmp[fila][col];
                 cont++;
             }
