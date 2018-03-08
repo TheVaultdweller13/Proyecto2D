@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetsJuego {
 
+    public static Texture texturePresentacion;
+
     public static Texture textureBackground;
     public static Texture textureMap;
     public static Texture textureParedes;
@@ -24,6 +26,7 @@ public class AssetsJuego {
     public static Texture textureSombraMujer;
 
     public static Animation bernardAnimacion;
+    public static Animation lechuckAnimacion;
 
     public static void cargarTexturas() {
 
@@ -47,23 +50,31 @@ public class AssetsJuego {
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
-
         imageFileHandle = Gdx.files.internal("graficos/bernard_character.png");
         animacionBernard(imageFileHandle);
 
         imageFileHandle = Gdx.files.internal("graficos/simple_lechuck_character.png");
         textureCharacterLeChuck = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/lechuck_character.png");
+        animacionLeChuck(imageFileHandle);
+
+
 
         imageFileHandle = Gdx.files.internal("graficos/silueta_mujer.png");
         textureSombraMujer = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/silueta_hombre.png");
         textureSombraHombre = new Texture(imageFileHandle);
 
+        /* Pantallas */
+        imageFileHandle = Gdx.files.internal("graficos/inicio.png");
+        texturePresentacion = new Texture(imageFileHandle);
+
     }
 
     public static void liberarTexturas() {
 
         textureMap.dispose();
+        texturePresentacion.dispose();
         textureCharacterBernard.dispose();
         textureParedes.dispose();
         texturePuertas.dispose();
@@ -71,6 +82,7 @@ public class AssetsJuego {
         textureAntiniebla.dispose();
         textureSombraMujer.dispose();
         textureSombraHombre.dispose();
+        textureCharacterLeChuck.dispose();
     }
 
     private static void animacionBernard (FileHandle imageFileHandle) {
@@ -87,6 +99,22 @@ public class AssetsJuego {
                 cont++;
             }
         }
-        bernardAnimacion = new Animation(0.15f, framesanimacion);
+        bernardAnimacion = new Animation(0.25f, framesanimacion);
+    }
+    private static void animacionLeChuck (FileHandle imageFileHandle) {
+        Texture textureAnimBernard = new Texture(imageFileHandle);
+        TextureRegion[][] tmp = TextureRegion.split(textureAnimBernard,47,60);
+
+        int num_columnas = tmp[0].length;
+        int num_filas = tmp.length;
+        TextureRegion[] framesanimacion = new TextureRegion[num_columnas*num_filas];
+        int cont=0;
+        for(int fila=0; fila<num_filas;fila++){
+            for(int col=0; col<num_columnas;col++){
+                framesanimacion[cont] = tmp[fila][col];
+                cont++;
+            }
+        }
+        lechuckAnimacion = new Animation(0.35f, framesanimacion);
     }
 }
