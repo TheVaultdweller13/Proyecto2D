@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class AssetsJuego {
 
     public static Texture texturePresentacion;
+    public static Texture texturePuntuacion;
 
     public static Texture textureBackground;
     public static Texture textureMap;
@@ -63,6 +64,9 @@ public class AssetsJuego {
         /* Pantallas */
         imageFileHandle = Gdx.files.internal("graficos/inicio.png");
         texturePresentacion = new Texture(imageFileHandle);
+
+        imageFileHandle = Gdx.files.internal("graficos/pantalla_puntuacion_prueba.jpg");
+        texturePuntuacion = new Texture(imageFileHandle);
 
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");

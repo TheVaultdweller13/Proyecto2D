@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.game.HighScores;
 import com.scaperoom.game.game.Juego;
 import com.scaperoom.game.modelo.Mundo;
@@ -18,6 +20,7 @@ import com.scaperoom.game.modelo.Mundo;
 public class PantallaPuntuacion implements Screen, InputProcessor {
 
     private Juego juego;
+    private Mundo miMundo;
     private StringBuilder sbuffer;
     private BitmapFont bitMapFont;
     private SpriteBatch batch;
@@ -26,8 +29,22 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
     public PantallaPuntuacion(Juego juego) {
         this.juego = juego;
         batch = new SpriteBatch();
-      //  Audio.liberarAudio();
+       // Audio.liberarAudio();
         pantallapresentacion = new PantallaPresentacion(juego);
+        miMundo = new Mundo();
+//        Audio.musicPresentación.stop();
+
+
+        //Libgdx by default, creates a BitmapFont using the default 15pt Arial font included in the libgdx JAR file.
+        //Using FreeTypeFont, it is possible so create fonts with a desired size on the fly.
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/One Size Reverse.TTF"));
+        FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size = (int) (25 * Mundo.PROPORCION_REAL_MUNDO_ANCHO);
+        this.bitMapFont = generator.generateFont(parameter); // font size in pixels
+        generator.dispose(); // don't forget to dispose to avoid memory leaks!
+        //bitMapFont = new BitmapFont();
+        sbuffer = new StringBuilder();
+        sbuffer.append("      L A    F U G A    D E    B E R N A R D\n\n--------- Mejores tiempos ---------");
     }
         @Override
         public void resize(int width, int height) {
@@ -47,6 +64,13 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
 
             batch.begin();
             bitMapFont.setColor(Color.YELLOW);
+            if(miMundo.getInventario().usada_llavefinal){
+                System.out.println(miMundo.getInventario().usada_llavefinal);
+                batch.draw(AssetsJuego.texturePresentacion,0, 0, Mundo.PROPORCION_REAL_MUNDO_ANCHO, Mundo.PROPORCION_REAL_MUNDO_ALTO);
+            }
+            else {
+                batch.draw(AssetsJuego.texturePuntuacion,0, 0, Mundo.PROPORCION_REAL_MUNDO_ANCHO, Mundo.PROPORCION_REAL_MUNDO_ALTO);
+            }
             //bitMapFont.setScale(0.5f, 2);
             bitMapFont.draw(batch, sbuffer, 30 * Mundo.PROPORCION_REAL_MUNDO_ANCHO, 450 * Mundo.PROPORCION_REAL_MUNDO_ALTO);
             batch.end();

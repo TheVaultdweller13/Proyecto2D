@@ -52,9 +52,9 @@ public class HighScores {
     }
 
     private static void save() {
-        FileHandle arquivo = Gdx.files.external(HighScores.archivoHighscores);
-        arquivo.writeString(HighScores.highscores[0] + ",", false);
-        arquivo.writeString(HighScores.highscores[1] + ",", true);
-        arquivo.writeString(HighScores.highscores[2], true);
+        FileHandle archivo = Gdx.files.external(HighScores.archivoHighscores);
+        archivo.writeString(HighScores.highscores[2] + ",", false);
+        archivo.writeString(HighScores.highscores[1] + ",", true);
+        archivo.writeString(HighScores.highscores[0], true);
     }
 }

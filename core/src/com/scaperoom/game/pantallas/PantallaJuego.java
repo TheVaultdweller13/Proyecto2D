@@ -37,11 +37,13 @@ public class PantallaJuego implements Screen, InputProcessor {
         r_juego.render(delta);
         c_juego.update(delta);
 
-        if(miMundo.getInventario().usada_llavefinal ||miMundo.getCronometro()==120){
+        if(miMundo.getInventario().usada_llavefinal || miMundo.getCronometro()==120){
             finjuego = true;
         }
         if(finjuego){
-            HighScores.añadirPuntuacion(this.miMundo.getCronometro());
+            if(miMundo.getInventario().usada_llavefinal){
+                HighScores.añadirPuntuacion(this.miMundo.getCronometro());
+            }
             juego.setScreen(new PantallaPuntuacion(juego));
         }
     }
