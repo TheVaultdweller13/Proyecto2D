@@ -152,11 +152,11 @@ public class ControladorJuego {
             niebla.update(delta);
             if (niebla.getVelocidad() > 0) {   // Izquierda a derecha
                 if (niebla.getPosicion().x >= Mundo.TAMAÑO_NIEBLA.x) {
-                    niebla.setPosicion(-Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
+                    niebla.setPosicion(niebla.getPosicion().x - 2 * Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
                 }
             } else {   // Derecha a izquierda
                 if (niebla.getPosicion().x <= -Mundo.TAMAÑO_NIEBLA.x) {
-                    niebla.setPosicion(Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
+                    niebla.setPosicion(niebla.getPosicion().x + 2 * Mundo.TAMAÑO_NIEBLA.x, niebla.getPosicion().y);
                 }
             }
         }

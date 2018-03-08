@@ -25,6 +25,5 @@ public class ElementoMovil extends Personaje {
     @Override
     public void update(float delta) {
         setPosicion((getPosicion().x + velocidad * delta), getPosicion().y);
-
     }
 }

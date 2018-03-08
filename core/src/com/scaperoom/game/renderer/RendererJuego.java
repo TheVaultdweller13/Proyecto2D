@@ -204,11 +204,13 @@ public class RendererJuego implements InputProcessor {
                     textura = AssetsJuego.textureAntiniebla;
                     break;
             }
-            if (niebla.getVelocidad() < 0) {
-                batch.draw(textura, niebla.getPosicion().x + niebla.getTamaño().x, niebla.getPosicion().y, -niebla.getTamaño().x, niebla.getTamaño().y);
-            } else {
-                batch.draw(textura, niebla.getPosicion().x, niebla.getPosicion().y, niebla.getTamaño().x, niebla.getTamaño().y);
-            }
+            batch.draw(
+                    textura,
+                    niebla.getPosicion().x,
+                    niebla.getPosicion().y,
+                    niebla.getTamaño().x,
+                    niebla.getTamaño().y
+            );
         }
     }
 
