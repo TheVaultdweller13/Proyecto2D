@@ -43,6 +43,11 @@ public class AssetsJuego {
     public static Animation bernardAnimacion;
     public static Animation lechuckAnimacion;
 
+    public static Texture
+            textureMusicOn,
+            textureMusicOff;
+
+
     public static void cargarTexturas() {
 
         FileHandle imageFileHandle;
@@ -119,6 +124,12 @@ public class AssetsJuego {
         textureLlaveFinalInactivo = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/llave_final_activo.png");
         textureLlaveFinal_activo = new Texture(imageFileHandle);
+
+        /* Controles */
+        imageFileHandle = Gdx.files.internal("graficos/controles/musica_on.png");
+        textureMusicOn = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/controles/musica_off.png");
+        textureMusicOff = new Texture(imageFileHandle);
 
     }
 

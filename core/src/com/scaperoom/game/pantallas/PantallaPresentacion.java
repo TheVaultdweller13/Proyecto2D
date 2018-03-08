@@ -2,6 +2,7 @@ package com.scaperoom.game.pantallas;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,7 +11,9 @@ import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.game.AssetsJuego;
+import com.scaperoom.game.game.Audio;
 import com.scaperoom.game.game.Juego;
+import com.scaperoom.game.modelo.Controles;
 import com.scaperoom.game.modelo.Mundo;
 
 /**
@@ -30,6 +33,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
             new Rectangle(200, 150, 170, 70),
             new Rectangle(200, 75, 170, 70)
     };
+    Preferences prefs = Gdx.app.getPreferences("controlmusica");
 
     public PantallaPresentacion(Juego juego) {
         this.juego = juego;
@@ -112,14 +116,15 @@ public class PantallaPresentacion implements Screen, InputProcessor {
         if (Intersector.overlaps(dedo, botones[2])) { //Pulsar salir
             Gdx.app.exit();
         }
-//        if (Intersector.overlaps(dedo, Controles.controlMusica)) {
-//            if (Controles.isAudio_activado()) {
-//                Controles.setAudio_activado(false);
-//            } else {
-//                Controles.setAudio_activado(true);
-//            }
-//            prefs.putBoolean("controlmusica", Controles.isAudio_activado());
-//            prefs.flush();
+        if (Intersector.overlaps(dedo, Controles.CONTROL_AUDIO)) {
+            if (Controles.isAudio_activado()) {
+                Controles.setAudio_activado(false);
+            } else {
+                Controles.setAudio_activado(true);
+            }
+            prefs.putBoolean("controlmusica", Controles.isAudio_activado());
+            prefs.flush();
+        }
         return false;
     }
 
@@ -163,6 +168,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
      */
     @Override
     public void show() {
+        Audio.audioPresentacion.play();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -175,6 +181,21 @@ public class PantallaPresentacion implements Screen, InputProcessor {
     public void render(float delta) {
         batch.begin();
         batch.draw(AssetsJuego.texturePresentacion, 0, 0, Mundo.TAMAÑO_MUNDO_ANCHO, Mundo.TAMAÑO_MUNDO_ALTO);
+        if (Controles.isAudio_activado()) {
+            batch.draw(AssetsJuego.textureMusicOn,
+                    Controles.CONTROL_AUDIO.x,
+                    Controles.CONTROL_AUDIO.y,
+                    Controles.CONTROL_AUDIO.width,
+                    Controles.CONTROL_AUDIO.height);
+            Audio.activarAudio();
+        } else {
+            batch.draw(AssetsJuego.textureMusicOff,
+                    Controles.CONTROL_AUDIO.x,
+                    Controles.CONTROL_AUDIO.y,
+                    Controles.CONTROL_AUDIO.width,
+                    Controles.CONTROL_AUDIO.height);
+            Audio.silenciarAudio();
+        }
         batch.end();
     }
 

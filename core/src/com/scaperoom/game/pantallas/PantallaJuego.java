@@ -5,10 +5,13 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
+import com.scaperoom.game.game.Audio;
 import com.scaperoom.game.game.HighScores;
 import com.scaperoom.game.game.Juego;
+import com.scaperoom.game.modelo.Controles;
 import com.scaperoom.game.modelo.Mundo;
 import com.scaperoom.game.renderer.RendererJuego;
 
@@ -24,12 +27,14 @@ public class PantallaJuego implements Screen, InputProcessor {
     private RendererJuego r_juego;
 
     private boolean finjuego;
+    private boolean salir;
 
     public PantallaJuego(Juego juego) {
         this.juego = juego;
         miMundo = new Mundo();
         r_juego = new RendererJuego(miMundo);
         c_juego = new ControladorJuego(miMundo);
+
     }
 
     @Override
@@ -51,6 +56,9 @@ public class PantallaJuego implements Screen, InputProcessor {
     @Override
     public void show() {
         ControladorJuego.ganar=false;
+        Audio.audioPresentacion.dispose();
+        Audio.audioJuego.play();
+
         Gdx.input.setInputProcessor(this);
     }
 
@@ -77,6 +85,7 @@ public class PantallaJuego implements Screen, InputProcessor {
     @Override
     public void dispose() {
         Gdx.input.setInputProcessor(this);
+        Audio.liberarAudio();
         r_juego.dispose();
     }
 
@@ -153,6 +162,17 @@ public class PantallaJuego implements Screen, InputProcessor {
         }
         else
             miMundo.getBernard().puntoDestino = dedo;
+
+        Rectangle recTemporal = new Rectangle();
+
+        recTemporal.set(Controles.CONTROL_SALIR.x, Controles.CONTROL_SALIR.y, Controles.CONTROL_SALIR.width, Controles.CONTROL_SALIR.height);
+        if (Intersector.overlaps(dedo, recTemporal)) {
+            //  dispose();
+            salir = true;
+            Audio.liberarAudio();
+            juego.setScreen(new PantallaPresentacion(juego));
+        }
+
 
 
 
