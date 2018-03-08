@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.Juego;
@@ -69,46 +70,46 @@ public class PantallaJuego implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-// Liberamos las teclas para que se arrastramos o dedo a outro control sen soltar o anterior non xunte o efecto
-        c_juego.liberarTecla(ControladorJuego.Keys.ABAJO);
-        c_juego.liberarTecla(ControladorJuego.Keys.ARRIBA);
-        c_juego.liberarTecla(ControladorJuego.Keys.IZQUIERDA);
-        c_juego.liberarTecla(ControladorJuego.Keys.DERECHA);
-
-        switch (keycode) {
-            case Input.Keys.UP:
-                c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
-                break;
-            case Input.Keys.DOWN:
-                c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
-                break;
-            case Input.Keys.LEFT:
-                c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
-                break;
-            case Input.Keys.RIGHT:
-                c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
-                break;
-        }
+//// Liberamos las teclas para que se arrastramos o dedo a outro control sen soltar o anterior non xunte o efecto
+//        c_juego.liberarTecla(ControladorJuego.Keys.ABAJO);
+//        c_juego.liberarTecla(ControladorJuego.Keys.ARRIBA);
+//        c_juego.liberarTecla(ControladorJuego.Keys.IZQUIERDA);
+//        c_juego.liberarTecla(ControladorJuego.Keys.DERECHA);
+//
+//        switch (keycode) {
+//            case Input.Keys.UP:
+//                c_juego.pulsarTecla(ControladorJuego.Keys.ARRIBA);
+//                break;
+//            case Input.Keys.DOWN:
+//                c_juego.pulsarTecla(ControladorJuego.Keys.ABAJO);
+//                break;
+//            case Input.Keys.LEFT:
+//                c_juego.pulsarTecla(ControladorJuego.Keys.IZQUIERDA);
+//                break;
+//            case Input.Keys.RIGHT:
+//                c_juego.pulsarTecla(ControladorJuego.Keys.DERECHA);
+//                break;
+//        }
 
         return false;
     }
 
     @Override
     public boolean keyUp(int keycode) {
-        switch (keycode) {
-            case Input.Keys.UP:
-                c_juego.liberarTecla(ControladorJuego.Keys.ARRIBA);
-                break;
-            case Input.Keys.DOWN:
-                c_juego.liberarTecla(ControladorJuego.Keys.ABAJO);
-                break;
-            case Input.Keys.LEFT:
-                c_juego.liberarTecla(ControladorJuego.Keys.IZQUIERDA);
-                break;
-            case Input.Keys.RIGHT:
-                c_juego.liberarTecla(ControladorJuego.Keys.DERECHA);
-                break;
-        }
+//        switch (keycode) {
+//            case Input.Keys.UP:
+//                c_juego.liberarTecla(ControladorJuego.Keys.ARRIBA);
+//                break;
+//            case Input.Keys.DOWN:
+//                c_juego.liberarTecla(ControladorJuego.Keys.ABAJO);
+//                break;
+//            case Input.Keys.LEFT:
+//                c_juego.liberarTecla(ControladorJuego.Keys.IZQUIERDA);
+//                break;
+//            case Input.Keys.RIGHT:
+//                c_juego.liberarTecla(ControladorJuego.Keys.DERECHA);
+//                break;
+//        }
         return false;
     }
 
@@ -125,6 +126,8 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
         miMundo.getBernard().puntoDestino = dedo;
+
+
 
         return false;
     }

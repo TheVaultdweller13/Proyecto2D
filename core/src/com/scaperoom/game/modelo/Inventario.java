@@ -2,7 +2,8 @@ package com.scaperoom.game.modelo;
 
 public class Inventario {
 
-    private final Mundo mundo;
+
+    //private Mundo mundo;
 
     public boolean tengo_llavebaño = false,
             tengo_llaveestudio = false,
@@ -14,9 +15,11 @@ public class Inventario {
             use_muñecovudu = false,
             use_llavefinal = false;
 
-    public Inventario(Mundo mundo) {
-        this.mundo = mundo;
-    }
+//    public Inventario(Mundo mundo) {
+//        this.mundo = mundo;
+//   }
+
+    public Inventario() {}
 
     public void cogerLlaveBaño() {
         tengo_llavebaño = true;

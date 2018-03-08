@@ -15,8 +15,9 @@ public class LeChuck extends Personaje {
             centro,
             direccion,
             puntoDestino;
+    private boolean muerto = false;
 
-    public LeChuck(Vector2 posicion, Vector2 tamaño, float velocidad) {
+    public LeChuck(Vector2 posicion, Vector2 tamaño, float velocidad, boolean muerto) {
         super(posicion, tamaño, velocidad);
 
         temporal = new Vector2();
@@ -24,12 +25,21 @@ public class LeChuck extends Personaje {
         direccion = new Vector2(0, 0);
         puntoDestino = new Vector2(0, 0);
         // puntoDestino = new Circle();
+        this.muerto = muerto;
 
         getRectangulo().setSize(tamaño.x / 2);
     }
 
     public void morir() {
         throw new NotImplementedException();
+    }
+
+    public boolean isMuerto() {
+        return muerto;
+    }
+
+    public void setMuerto(boolean muerto) {
+        this.muerto = muerto;
     }
 
     @Override

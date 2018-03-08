@@ -25,6 +25,8 @@ public class Mundo {
     public static Bernard bernard;
     public static LeChuck lechuck;
 
+    public static Inventario inventario;
+
     private final static int TIEMPO_INICIAL = 0;
     private float cronometro;
 
@@ -60,9 +62,32 @@ public class Mundo {
             new Circle(427, 327, 10)
     };
 
+    public static Rectangle LLAVE_BAÑO_INACTIVO; //= new Rectangle(210, 328, 12, 12);
+    public static Rectangle LLAVE_ESTUDIO_INACTIVO; //= new Rectangle(154, 90, 12, 12);
+    public static Rectangle MUÑECO_VUDU_INACTIVO; //= new Rectangle(430, 142, 12, 12);
+    public static Rectangle LLAVE_FINAL_INACTIVO; // = new Rectangle(lechuck.getRectangulo().x, lechuck.getRectangulo().y, 16, 16);
+
+    public static Rectangle LLAVE_BAÑO_ACTIVO;
+    public static Rectangle LLAVE_ESTUDIO_ACTIVO;
+    public static Rectangle MUÑECO_VUDU_ACTIVO;
+    public static Rectangle LLAVE_FINAL_ACTIVO;
+
+
     public Mundo() {
         bernard = new Bernard(new Vector2(360, 320), new Vector2(40, 75), 100);
-        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(70, 105), 30);
+        lechuck = new LeChuck(new Vector2(25, 310), new Vector2(70, 105), 30, false);
+
+        inventario = new Inventario();
+
+        LLAVE_BAÑO_INACTIVO = new Rectangle(210, 328, 12, 12);
+        LLAVE_ESTUDIO_INACTIVO = new Rectangle(154, 90, 12, 12);
+        MUÑECO_VUDU_INACTIVO = new Rectangle(430, 142, 12, 12);
+     // LLAVE_FINAL_INACTIVO = new Rectangle(lechuck.getRectangulo().getCenter(lechuck.centro).x, lechuck.getRectangulo().getCenter(lechuck.centro).y, 16, 16);
+
+        LLAVE_BAÑO_ACTIVO = new Rectangle(510, 400, 40, 40);
+        LLAVE_ESTUDIO_ACTIVO = new Rectangle(510, 350, 40, 40);
+        MUÑECO_VUDU_ACTIVO = new Rectangle(510, 300, 40, 40);
+        LLAVE_FINAL_ACTIVO = new Rectangle(510, 250, 40, 40);
 
         cronometro = TIEMPO_INICIAL;
 
@@ -122,6 +147,10 @@ public class Mundo {
 
     public void setLechuck(LeChuck lechuck) {
         Mundo.lechuck = lechuck;
+    }
+
+    public Inventario getInventario() {
+        return inventario;
     }
 
     public int getCronometro() {

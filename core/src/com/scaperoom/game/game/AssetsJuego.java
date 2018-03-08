@@ -25,6 +25,15 @@ public class AssetsJuego {
     public static Texture textureSombraHombre;
     public static Texture textureSombraMujer;
 
+    public static Texture textureLlaveBaño;
+    public static Texture textureLlaveBaño_inactivo;
+    public static Texture textureLlaveEstudio;
+    public static Texture textureLlaveEstudio_inactivo;
+    public static Texture textureMuñecoVudu;
+    public static Texture textureMuñecoVuduInactivo;
+    public static Texture textureLlaveFinal;
+    public static Texture textureLlaveFinalInactivo;
+
     public static Animation bernardAnimacion;
     public static Animation lechuckAnimacion;
 
@@ -47,6 +56,10 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/antiniebla.png");
         textureAntiniebla = new Texture(imageFileHandle);
 
+        /* Pantallas */
+        imageFileHandle = Gdx.files.internal("graficos/inicio.png");
+        texturePresentacion = new Texture(imageFileHandle);
+
         /* Personajes */
         imageFileHandle = Gdx.files.internal("graficos/simple_bernard_character.png");
         textureCharacterBernard = new Texture(imageFileHandle);
@@ -64,24 +77,48 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/silueta_hombre.png");
         textureSombraHombre = new Texture(imageFileHandle);
 
-        /* Pantallas */
-        imageFileHandle = Gdx.files.internal("graficos/inicio.png");
-        texturePresentacion = new Texture(imageFileHandle);
+        /* Inventario */
+
+        imageFileHandle = Gdx.files.internal("graficos/llave_baño.png");
+        textureLlaveBaño = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/llave_baño_inactivo.png");
+        textureLlaveBaño_inactivo = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/llave_estudio.png");
+        textureLlaveEstudio = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/llave_estudio_inactivo.png");
+        textureLlaveEstudio_inactivo = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/muñeco_vudu.png");
+        textureMuñecoVudu = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/muñeco_vudu_inactivo.png");
+        textureMuñecoVuduInactivo = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/llave_final.png");
+        textureLlaveFinal = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/llave_final_inactivo.png");
+        textureLlaveFinalInactivo = new Texture(imageFileHandle);
 
     }
 
     public static void liberarTexturas() {
 
-        textureMap.dispose();
         texturePresentacion.dispose();
-        textureCharacterBernard.dispose();
+        textureBackground.dispose();
+        textureMap.dispose();
         textureParedes.dispose();
         texturePuertas.dispose();
+        textureCharacterBernard.dispose();
+        textureCharacterLeChuck.dispose();
         textureNiebla.dispose();
         textureAntiniebla.dispose();
-        textureSombraMujer.dispose();
         textureSombraHombre.dispose();
-        textureCharacterLeChuck.dispose();
+        textureSombraMujer.dispose();
+        textureLlaveBaño.dispose();
+        textureLlaveBaño_inactivo.dispose();
+        textureLlaveEstudio.dispose();
+        textureLlaveEstudio_inactivo.dispose();
+        textureMuñecoVudu.dispose();
+        textureMuñecoVuduInactivo.dispose();
+        textureLlaveFinal.dispose();
+        textureLlaveFinalInactivo.dispose();
     }
 
     private static void animacionBernard(FileHandle imageFileHandle) {

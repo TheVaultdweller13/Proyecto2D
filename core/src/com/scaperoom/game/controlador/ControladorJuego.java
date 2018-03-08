@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
+import com.scaperoom.game.modelo.Inventario;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
 
@@ -23,6 +24,11 @@ public class ControladorJuego {
     private Bernard bernard;
     private LeChuck lechuck;
     public static boolean controlLeChuck = true;
+
+    private Inventario llave_baño;
+    private Inventario llave_estudio;
+    private Inventario muñeco_vudu;
+    private Inventario llave_final;
 
     private int avanceLechuck = 0;
 
@@ -51,6 +57,11 @@ public class ControladorJuego {
         lechuck = miMundo.getLechuck();
         avanceLechuck = 0;
 
+        llave_baño = miMundo.getInventario();
+        llave_estudio = miMundo.getInventario();
+        muñeco_vudu = miMundo.getInventario();
+        llave_final = miMundo.getInventario();
+
     }
 
     /**
@@ -72,6 +83,7 @@ public class ControladorJuego {
     }
 
     private void controlarBernard(float delta) {
+
         boolean colisionx = true, colisiony = true;
         List<Rectangle> suelos = Mundo.SUELOS;
 
@@ -173,6 +185,37 @@ public class ControladorJuego {
         }
     }
 
+    /**
+     * Controla la recogida de objetos por el mapa
+     * @param delta
+     */
+    private void controlarRecogerObjetos(float delta){
+        // Llave baño
+        if(Intersector.overlaps(Mundo.LLAVE_BAÑO_INACTIVO, bernard.getRectangulo())){
+            llave_baño.cogerLlaveBaño();
+        }
+        // Llave estudio
+        if(Intersector.overlaps(Mundo.LLAVE_ESTUDIO_INACTIVO, bernard.getRectangulo())){
+            llave_baño.cogerLlaveEstudio();
+        }
+        // Muñeco vudú
+        if(Intersector.overlaps(Mundo.MUÑECO_VUDU_INACTIVO, bernard.getRectangulo())){
+            llave_baño.cogerMuñecoVudu();
+        }
+        // Llave final
+        if(miMundo.getLechuck().isMuerto()){
+            if(Intersector.overlaps(Mundo.LLAVE_FINAL_INACTIVO, bernard.getRectangulo())){
+                llave_baño.cogerLlaveFinal();
+            }
+        }
+    }
+
+    private void controlarUsarObjetos(float delta){
+        // Llave baño
+
+
+    }
+
 //    private void procesarEntradas() {
 //
 //        if (keys.get(Keys.DERECHA))
@@ -196,5 +239,6 @@ public class ControladorJuego {
         controlarNiebla(delta);
         controlarSombra(delta);
         controlarLeChuck(delta);
+        controlarRecogerObjetos(delta);
     }
 }
