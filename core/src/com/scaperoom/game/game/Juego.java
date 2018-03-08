@@ -10,20 +10,10 @@ import com.scaperoom.game.pantallas.PantallaPresentacion;
 
 public class Juego extends Game {
 
-    //opción A
-    private PantallaJuego pantallajuego;
-
     @Override
     public void create() {
-        // TODO Auto-generated method stub
-
-        //     opción A
-//        AssetsJuego.cargarTexturas();
-//        pantallajuego = new PantallaJuego(this);
-//        setScreen(pantallajuego);
-
         AssetsJuego.cargarTexturas();
-        //  Audio.iniciarAudio();
+        Audio.iniciarAudio();
         setScreen(new PantallaPresentacion(this));
     }
 
@@ -31,9 +21,7 @@ public class Juego extends Game {
     public void dispose() {
         super.dispose();
 
-//        AssetsJuego.liberarTexturas();
-//        Audio.liberarAudio();
-        //opción A
         AssetsJuego.liberarTexturas();
+        Audio.liberarAudio();
     }
 }

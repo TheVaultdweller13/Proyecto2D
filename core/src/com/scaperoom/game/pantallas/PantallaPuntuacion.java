@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
+import com.scaperoom.game.game.Audio;
 import com.scaperoom.game.game.HighScores;
 import com.scaperoom.game.game.Juego;
 import com.scaperoom.game.modelo.Mundo;
@@ -85,6 +86,7 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
             for (int x = 0; x < HighScores.highscores.length; x++) {
                 sbuffer.append("\n\n\n\n" + puesto[x] + " puesto: " + HighScores.highscores[x]);
             }
+            Audio.liberarAudio();
         }
 
         @Override

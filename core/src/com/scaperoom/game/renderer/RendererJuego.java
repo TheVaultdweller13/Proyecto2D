@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.StringBuilder;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
+import com.scaperoom.game.modelo.Controles;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
@@ -277,6 +278,16 @@ public class RendererJuego implements InputProcessor {
         this.bitMapFont.draw(batch, sbuffer, 0, this.bitMapFont.getXHeight());
         batch.setProjectionMatrix(originalMatrix); //revert projection
     }
+//    private void dibujarControles(){
+//        batch.begin();
+//        batch.draw(
+//                AssetsJuego.textureStop,
+//                Controles.CONTROL_SALIR.x,
+//                Controles.CONTROL_SALIR.y,
+//                Controles.CONTROL_SALIR.width,
+//                Controles.CONTROL_SALIR.height;
+//        batch.end();
+//    }
 
     private void dibujarDialogos(){
         textosLeChuck.setLength(0);
