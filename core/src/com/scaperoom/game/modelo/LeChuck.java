@@ -1,6 +1,7 @@
 package com.scaperoom.game.modelo;
 
 import com.badlogic.gdx.math.Vector2;
+import com.scaperoom.game.game.AssetsJuego;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
@@ -31,15 +32,12 @@ public class LeChuck extends Personaje {
     }
 
     public void morir() {
-        throw new NotImplementedException();
+        muerto = true;
+        velocidad = 0;
     }
 
     public boolean isMuerto() {
         return muerto;
-    }
-
-    public void setMuerto(boolean muerto) {
-        this.muerto = muerto;
     }
 
     @Override

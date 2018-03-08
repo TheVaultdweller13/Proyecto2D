@@ -125,7 +125,21 @@ public class PantallaJuego implements Screen, InputProcessor {
         this.r_juego.getCamara2d().unproject(temporal);
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
-        miMundo.getBernard().puntoDestino = dedo;
+
+        if(miMundo.getInventario().tengo_llavebaño && Intersector.overlaps(dedo, Mundo.LLAVE_BAÑO_ACTIVO)){
+            miMundo.getInventario().use_llavebaño = true;
+        }
+        else if(miMundo.getInventario().tengo_llaveestudio && Intersector.overlaps(dedo, Mundo.LLAVE_ESTUDIO_ACTIVO)){
+            miMundo.getInventario().use_llaveestudio = true;
+        }
+        else if (miMundo.getInventario().tengo_muñecovudu && Intersector.overlaps(dedo, Mundo.MUÑECO_VUDU_ACTIVO)){
+            miMundo.getInventario().use_muñecovudu = true;
+        }
+        else if (miMundo.getInventario().tengo_llavefinal && Intersector.overlaps(dedo, Mundo.LLAVE_FINAL_ACTIVO)){
+            miMundo.getInventario().use_llavefinal = true;
+        }
+        else
+            miMundo.getBernard().puntoDestino = dedo;
 
 
 

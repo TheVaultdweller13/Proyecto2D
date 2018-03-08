@@ -121,10 +121,17 @@ public class RendererJuego implements InputProcessor {
     }
 
     private void dibujarPuertas() {
-        batch.draw(AssetsJuego.texturePuertas,
-                115, 144, 29, 48);
-        batch.draw(AssetsJuego.texturePuertas,
-                405, 202, 29, 48);
+        if(!miMundo.getInventario().usada_llavebaño){
+            batch.draw(AssetsJuego.texturePuertas,
+                    115, 144, 29, 48);
+        }
+        else{
+            //Mensaje de "Hace falta una llave"
+        }
+        if(!miMundo.getInventario().usada_llaveestudio){
+            batch.draw(AssetsJuego.texturePuertas,
+                    405, 202, 29, 48);
+        }
     }
 
     private void dibujarBernard() {
@@ -151,15 +158,19 @@ public class RendererJuego implements InputProcessor {
         LeChuck lechuck = miMundo.getLechuck();
         crono += Gdx.graphics.getDeltaTime();
         TextureRegion currentFrame = (TextureRegion) AssetsJuego.lechuckAnimacion.getKeyFrame(crono, true);
-        if (ControladorJuego.controlLeChuck) {
-            batch.draw(currentFrame, lechuck.getPosicion().x,
-                    lechuck.getPosicion().y, lechuck.getTamaño().x,
-                    lechuck.getTamaño().y);
-        } else {
-            batch.draw(currentFrame, (lechuck.getPosicion().x + 60),
-                    lechuck.getPosicion().y, -lechuck.getTamaño().x,
-                    lechuck.getTamaño().y);
+        if(!lechuck.isMuerto()){
+            if (ControladorJuego.controlLeChuck) {
+                batch.draw(currentFrame, lechuck.getPosicion().x,
+                        lechuck.getPosicion().y, lechuck.getTamaño().x,
+                        lechuck.getTamaño().y);
+            } else {
+                batch.draw(currentFrame, (lechuck.getPosicion().x + 60),
+                        lechuck.getPosicion().y, -lechuck.getTamaño().x,
+                        lechuck.getTamaño().y);
+            }
         }
+        else
+            batch.draw(AssetsJuego.textureLeChuckMuerto, lechuck.getPosicion().x, lechuck.getPosicion().y, lechuck.getTamaño().x, lechuck.getTamaño().y);
 
     }
 
@@ -222,10 +233,11 @@ public class RendererJuego implements InputProcessor {
             batch.draw(AssetsJuego.textureMuñecoVudu, Mundo.MUÑECO_VUDU_ACTIVO.x, Mundo.MUÑECO_VUDU_ACTIVO.y, Mundo.MUÑECO_VUDU_ACTIVO.width, Mundo.MUÑECO_VUDU_ACTIVO.height);
     }
     private void dibujarLlaveFinal(){
-        if(!miMundo.getInventario().tengo_llavefinal)
-            batch.draw(AssetsJuego.textureLlaveFinalInactivo, lechuck.getRectangulo().getCenter(lechuck.centro).x, Mundo.lechuck.getRectangulo().getCenter(lechuck.centro).y, 16, 16);
-        else
-        batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_ACTIVO.x, Mundo.LLAVE_FINAL_ACTIVO.y, Mundo.LLAVE_FINAL_ACTIVO.width, Mundo.LLAVE_FINAL_ACTIVO.height);
+        if(!miMundo.getInventario().tengo_llavefinal && lechuck.isMuerto())
+            //batch.draw(AssetsJuego.textureLlaveFinalInactivo, lechuck.getRectangulo().x+50, Mundo.lechuck.getRectangulo().y, 18, 18);
+            batch.draw(AssetsJuego.textureLlaveFinalInactivo, Mundo.LLAVE_FINAL_INACTIVO.x, Mundo.LLAVE_FINAL_INACTIVO.y, Mundo.LLAVE_FINAL_INACTIVO.width, Mundo.LLAVE_FINAL_INACTIVO.height);
+        else if (miMundo.getInventario().tengo_llavefinal)
+            batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_ACTIVO.x, Mundo.LLAVE_FINAL_ACTIVO.y, Mundo.LLAVE_FINAL_ACTIVO.width, Mundo.LLAVE_FINAL_ACTIVO.height);
     }
 
     private void dibujarTiempo() {

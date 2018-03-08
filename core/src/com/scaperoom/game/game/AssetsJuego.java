@@ -19,11 +19,11 @@ public class AssetsJuego {
     public static Texture textureParedes;
     public static Texture texturePuertas;
     public static Texture textureCharacterBernard;
-    public static Texture textureCharacterLeChuck;
     public static Texture textureNiebla;
     public static Texture textureAntiniebla;
     public static Texture textureSombraHombre;
     public static Texture textureSombraMujer;
+    public static Texture textureLeChuckMuerto;
 
     public static Texture textureLlaveBaño;
     public static Texture textureLlaveBaño_inactivo;
@@ -66,10 +66,11 @@ public class AssetsJuego {
         imageFileHandle = Gdx.files.internal("graficos/bernard_character.png");
         animacionBernard(imageFileHandle);
 
-        imageFileHandle = Gdx.files.internal("graficos/simple_lechuck_character.png");
-        textureCharacterLeChuck = new Texture(imageFileHandle);
+        imageFileHandle = Gdx.files.internal("graficos/lechuck_muerto.png");
+        textureLeChuckMuerto = new Texture(imageFileHandle);
         imageFileHandle = Gdx.files.internal("graficos/lechuck_character.png");
         animacionLeChuck(imageFileHandle);
+
 
 
         imageFileHandle = Gdx.files.internal("graficos/silueta_mujer.png");
@@ -106,7 +107,6 @@ public class AssetsJuego {
         textureParedes.dispose();
         texturePuertas.dispose();
         textureCharacterBernard.dispose();
-        textureCharacterLeChuck.dispose();
         textureNiebla.dispose();
         textureAntiniebla.dispose();
         textureSombraHombre.dispose();

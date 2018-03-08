@@ -204,16 +204,35 @@ public class ControladorJuego {
         }
         // Llave final
         if(miMundo.getLechuck().isMuerto()){
-            if(Intersector.overlaps(Mundo.LLAVE_FINAL_INACTIVO, bernard.getRectangulo())){
+            miMundo.inicializarLlaveFinal();
+            if(Intersector.overlaps(miMundo.LLAVE_FINAL_INACTIVO, bernard.getRectangulo())){
                 llave_baño.cogerLlaveFinal();
             }
         }
     }
 
+    /**
+     * Controla que Bernard pueda usar los objetos que ha recogido
+     * @param delta
+     */
     private void controlarUsarObjetos(float delta){
         // Llave baño
-
-
+        if(miMundo.getInventario().use_llavebaño && Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO)){
+            miMundo.getInventario().usarLlaveBaño();
+        }
+        // Llave estudio
+        if(miMundo.getInventario().use_llaveestudio && Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO)){
+            miMundo.getInventario().usarLlaveEstudio();
+        }
+        // Muñeco vudu
+        if(miMundo.getInventario().use_muñecovudu && Intersector.overlaps(bernard.getRectangulo(), lechuck.getRectangulo())){
+            miMundo.getInventario().usarMuñecoVudu();
+        }
+        //Llave final
+        if(miMundo.getInventario().use_llavefinal && Intersector.overlaps(bernard.getRectangulo(), Mundo.SUELOS.get(3))){
+            miMundo.getInventario().usarLlaveFinal();
+            System.out.println("HAS GANADO");
+        }
     }
 
 //    private void procesarEntradas() {
@@ -240,5 +259,6 @@ public class ControladorJuego {
         controlarSombra(delta);
         controlarLeChuck(delta);
         controlarRecogerObjetos(delta);
+        controlarUsarObjetos(delta);
     }
 }

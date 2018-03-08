@@ -62,10 +62,10 @@ public class Mundo {
             new Circle(427, 327, 10)
     };
 
-    public static Rectangle LLAVE_BAÑO_INACTIVO; //= new Rectangle(210, 328, 12, 12);
-    public static Rectangle LLAVE_ESTUDIO_INACTIVO; //= new Rectangle(154, 90, 12, 12);
-    public static Rectangle MUÑECO_VUDU_INACTIVO; //= new Rectangle(430, 142, 12, 12);
-    public static Rectangle LLAVE_FINAL_INACTIVO; // = new Rectangle(lechuck.getRectangulo().x, lechuck.getRectangulo().y, 16, 16);
+    public static Rectangle LLAVE_BAÑO_INACTIVO;
+    public static Rectangle LLAVE_ESTUDIO_INACTIVO;
+    public static Rectangle MUÑECO_VUDU_INACTIVO;
+    public static Rectangle LLAVE_FINAL_INACTIVO;
 
     public static Rectangle LLAVE_BAÑO_ACTIVO;
     public static Rectangle LLAVE_ESTUDIO_ACTIVO;
@@ -81,8 +81,8 @@ public class Mundo {
 
         LLAVE_BAÑO_INACTIVO = new Rectangle(210, 328, 12, 12);
         LLAVE_ESTUDIO_INACTIVO = new Rectangle(154, 90, 12, 12);
-        MUÑECO_VUDU_INACTIVO = new Rectangle(430, 142, 12, 12);
-     // LLAVE_FINAL_INACTIVO = new Rectangle(lechuck.getRectangulo().getCenter(lechuck.centro).x, lechuck.getRectangulo().getCenter(lechuck.centro).y, 16, 16);
+        MUÑECO_VUDU_INACTIVO = new Rectangle(430, 132, 12, 12);
+        LLAVE_FINAL_INACTIVO = inicializarLlaveFinal();
 
         LLAVE_BAÑO_ACTIVO = new Rectangle(510, 400, 40, 40);
         LLAVE_ESTUDIO_ACTIVO = new Rectangle(510, 350, 40, 40);
@@ -123,6 +123,12 @@ public class Mundo {
         //Carga sombra de hombre
         sombra.add(new ElementoMovil(new Vector2(120, 400), new Vector2(50, 50), MathUtils.random(10, 30), ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
         sombra.add(new ElementoMovil(new Vector2(380, 400), new Vector2(50, 50), MathUtils.random(10, 30) - 40, ElementoMovil.TIPOS_ELEMENTOS.SILUETA_HOMBRE));
+    }
+
+    public Rectangle inicializarLlaveFinal(){
+        LLAVE_FINAL_INACTIVO = new Rectangle(lechuck.getRectangulo().x, lechuck.getRectangulo().y, 18, 18);
+
+        return LLAVE_FINAL_INACTIVO;
     }
 
     public Array<ElementoMovil> getSombra() {
