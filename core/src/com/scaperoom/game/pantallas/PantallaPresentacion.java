@@ -107,8 +107,7 @@ public class PantallaPresentacion implements Screen, InputProcessor {
 
         if (Intersector.overlaps(dedo, botones[1])) {    // Pulsar Marcadores
             dispose();
-            System.out.println("PRUEBA MARCADORES");
-            //  juego.setScreen(new PantallaMarcadores(juego));
+            juego.setScreen(new PantallaPuntuacion(juego));
         }
         if (Intersector.overlaps(dedo, botones[2])) { //Pulsar salir
             Gdx.app.exit();

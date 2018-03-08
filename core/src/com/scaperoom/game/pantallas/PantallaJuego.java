@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
+import com.scaperoom.game.game.HighScores;
 import com.scaperoom.game.game.Juego;
 import com.scaperoom.game.modelo.Mundo;
 import com.scaperoom.game.renderer.RendererJuego;
@@ -22,6 +23,8 @@ public class PantallaJuego implements Screen, InputProcessor {
     private ControladorJuego c_juego;
     private RendererJuego r_juego;
 
+    private boolean finjuego;
+
     public PantallaJuego(Juego juego) {
         this.juego = juego;
         miMundo = new Mundo();
@@ -33,6 +36,14 @@ public class PantallaJuego implements Screen, InputProcessor {
     public void render(float delta) {
         r_juego.render(delta);
         c_juego.update(delta);
+
+        if(miMundo.getInventario().usada_llavefinal ||miMundo.getCronometro()==120){
+            finjuego = true;
+        }
+        if(finjuego){
+            HighScores.añadirPuntuacion(this.miMundo.getCronometro());
+            juego.setScreen(new PantallaPuntuacion(juego));
+        }
     }
 
     @Override
