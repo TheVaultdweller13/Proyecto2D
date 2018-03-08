@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.math.Vector3;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.Juego;
@@ -125,10 +124,7 @@ public class PantallaJuego implements Screen, InputProcessor {
         this.r_juego.getCamara2d().unproject(temporal);
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
-        Vector2 posicionDedo = new Vector2(dedo.x, dedo.y);
         miMundo.getBernard().puntoDestino = dedo;
-        Vector2 direccion = posicionDedo.sub(miMundo.getBernard().centro);
-        miMundo.getBernard().direccion.set(direccion.nor());
 
         return false;
     }

@@ -72,28 +72,48 @@ public class ControladorJuego {
     }
 
     private void controlarBernard(float delta) {
-        float ox = bernard.getPosicion().x, oy = bernard.getPosicion().y; // posición original
-
-        float x = ox, y = oy; // próxima posición, empieza siendo la antigua
-        // Actualiza Bernard
-        bernard.update(delta);
-
+        boolean colisionx = true, colisiony = true;
         List<Rectangle> suelos = miMundo.SUELOS;
+
+        // Calcula la próxima posición de Bernard tras moverse en horizontal
+        Vector2 nuevapos = bernard.siguientePosicion(delta, false, true);
+
+        // buscamos colisiones moviéndonos en x
         for (int i = 0; i < suelos.size(); i++) {
+            Rectangle r = suelos.get(i);
             // si bernard está dentro de algún suelo
-            if (suelos.get(i).contains(bernard.getRectangulo())) {
-                // su próxima posición es la que consiguió en la update
-                x = bernard.getPosicion().x;
-                y = bernard.getPosicion().y;
+            if (r.contains(bernard.calcularRectangulo(nuevapos))) {
+                colisionx = false; // no hay colision
                 break; // y sale del bucle
             }
         }
 
+        // posición de Bernard ahora teniendo en cuenta el movimiento vertical
+        nuevapos = bernard.siguientePosicion(delta, colisionx, false);
+
+        // buscamos colisiones moviéndonos en y
+        for (int i = 0; i < suelos.size(); i++) {
+            Rectangle r = suelos.get(i);
+            // si bernard está dentro de algún suelo
+            if (r.contains(bernard.calcularRectangulo(nuevapos))) {
+                colisiony = false; // no hay colision
+                break; // y sale del bucle
+            }
+        }
+
+        // indicamos a bernard las colisiones que hayamos detectado
+        bernard.colisionx = colisionx;
+        bernard.colisiony = colisiony;
+
         // ahora se pone la posición correcta, ya sea la original o la nueva
-        bernard.setPosicion(x, y);
+        bernard.update(delta);
 
         if(Intersector.overlaps(bernard.puntoDestino, bernard.getRectangulo())){
-            bernard.direccion = new Vector2(0,0);
+            bernard.direccion = new Vector2(0f, 0f);
+        } else {
+            Vector2 destino = new Vector2(bernard.puntoDestino.x, bernard.puntoDestino.y);
+            destino.sub(bernard.getCentro());
+            bernard.direccion.set(destino.nor());
         }
     }
 

@@ -87,7 +87,7 @@ public abstract class Personaje {
     }
 
     /**
-     * Modifica ´la posición
+     * Modifica la posición
      *
      * @param x: nueva posición x
      * @param y: nueva posición y
