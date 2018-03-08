@@ -22,7 +22,6 @@ import com.scaperoom.game.modelo.Mundo;
 public class PantallaPuntuacion implements Screen, InputProcessor {
 
     private Juego juego;
-    private Mundo miMundo;
     private StringBuilder sbuffer;
     private BitmapFont bitMapFont;
     private SpriteBatch batch;
@@ -33,7 +32,6 @@ public class PantallaPuntuacion implements Screen, InputProcessor {
         batch = new SpriteBatch();
        // Audio.liberarAudio();
         pantallapresentacion = new PantallaPresentacion(juego);
-        miMundo = new Mundo();
 //        Audio.musicPresentación.stop();
 
 

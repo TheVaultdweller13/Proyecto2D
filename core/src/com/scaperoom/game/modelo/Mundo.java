@@ -22,10 +22,10 @@ public class Mundo {
 
     public final static Vector2 TAMAÑO_NIEBLA = new Vector2(576, 576);
 
-    public Bernard bernard;
-    public LeChuck lechuck;
+    private Bernard bernard;
+    private LeChuck lechuck;
 
-    public static Inventario inventario;
+    private static Inventario inventario;
 
     private final static int TIEMPO_INICIAL = 0;
     private float cronometro;
@@ -143,16 +143,8 @@ public class Mundo {
         return bernard;
     }
 
-    public void setBernard(Bernard bernard) {
-        bernard = bernard;
-    }
-
     public LeChuck getLechuck() {
         return lechuck;
-    }
-
-    public void setLechuck(LeChuck lechuck) {
-        lechuck = lechuck;
     }
 
     public Inventario getInventario() {
@@ -167,4 +159,28 @@ public class Mundo {
         cronometro += delta;
     }
 
+    public void usarLlaveBaño() {
+        //  use_llavebaño = true;
+        inventario.usada_llavebaño = true;
+        SUELOS.add(PASILLO_BAÑO);
+    }
+
+    public void usarLlaveEstudio() {
+        //   use_llaveestudio = true;
+        inventario.usada_llaveestudio = true;
+        SUELOS.add(PASILLO_ESTUDIO);
+    }
+
+    public void usarMuñecoVudu() {
+        //   use_muñecovudu = true;
+        inventario.usado_muñecovudu = true;
+        lechuck.morir();
+    }
+
+
+    public void usarLlaveFinal() {
+        inventario.use_llavefinal = true;
+        inventario.usada_llavefinal = true;
+        // WIN
+    }
 }

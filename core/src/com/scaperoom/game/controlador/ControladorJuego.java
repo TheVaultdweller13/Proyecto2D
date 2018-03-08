@@ -37,7 +37,7 @@ public class ControladorJuego {
         ABAJO
     }
 
-    HashMap<Keys, Boolean> keys = new HashMap<ControladorJuego.Keys, Boolean>();
+    private HashMap<Keys, Boolean> keys = new HashMap<ControladorJuego.Keys, Boolean>();
 
     {
         keys.put(Keys.IZQUIERDA, false);
@@ -46,9 +46,8 @@ public class ControladorJuego {
         keys.put(Keys.ABAJO, false);
     }
 
-    private OrthographicCamera camara2d;
-
     public ControladorJuego(Mundo miMundo) {
+        OrthographicCamera camara2d;
         this.miMundo = miMundo;
         camara2d = new OrthographicCamera();
         bernard = miMundo.getBernard();
@@ -80,7 +79,7 @@ public class ControladorJuego {
     private void controlarBernard(float delta) {
 
         boolean colisionx = true, colisiony = true;
-        List<Rectangle> suelos = Mundo.SUELOS;
+        List<Rectangle> suelos = miMundo.SUELOS;
 
         // Calcula la próxima posición de Bernard tras moverse en horizontal
         Vector2 nuevapos = bernard.siguientePosicion(delta, false, true);
@@ -126,18 +125,18 @@ public class ControladorJuego {
 
     private void controlarLeChuck(float delta) {
         lechuck.update(delta);
-        Vector3 posicionMapa = new Vector3(Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y, 0);
+        Vector3 posicionMapa = new Vector3(miMundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].x, miMundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].y, 0);
         lechuck.puntoDestino.set(new Vector2(posicionMapa.x, posicionMapa.y));
         Vector2 direccion = lechuck.puntoDestino.cpy().sub(lechuck.centro);
         lechuck.direccion.set(direccion.nor());
 
-        if (Mundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)) {
+        if (miMundo.PUNTOS_DESPLAZAMIENTO[avanceLechuck].contains(lechuck.centro)) {
             if (avanceLechuck < 4) {
                 avanceLechuck++;
                 controlLeChuck = true;
             }
 
-            if (Mundo.PUNTOS_DESPLAZAMIENTO[Mundo.PUNTOS_DESPLAZAMIENTO.length - 1].contains(lechuck.centro)) {
+            if (miMundo.PUNTOS_DESPLAZAMIENTO[miMundo.PUNTOS_DESPLAZAMIENTO.length - 1].contains(lechuck.centro)) {
                 direccion = new Vector2(lechuck.direccion.x * -1, lechuck.direccion.y * -1);
 
                 lechuck.direccion.set(direccion.nor());
@@ -182,7 +181,7 @@ public class ControladorJuego {
 
     /**
      * Controla la recogida de objetos por el mapa
-     * @param delta
+     * @param delta delta
      */
     private void controlarRecogerObjetos(float delta){
         // Llave baño
@@ -200,7 +199,7 @@ public class ControladorJuego {
         // Llave final
         if(miMundo.getLechuck().isMuerto()){
             miMundo.inicializarLlaveFinal();
-            if(Intersector.overlaps(miMundo.LLAVE_FINAL_SUELO, bernard.getRectangulo())){
+            if (Intersector.overlaps(Mundo.LLAVE_FINAL_SUELO, bernard.getRectangulo())) {
                 objetos_puzzles.cogerLlaveFinal();
             }
         }
@@ -208,24 +207,24 @@ public class ControladorJuego {
 
     /**
      * Controla que Bernard pueda usar los objetos que ha recogido
-     * @param delta
+     * @param delta delta
      */
     private void controlarUsarObjetos(float delta){
         // Llave baño
-        if(miMundo.getInventario().use_llavebaño && Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO)){
-            miMundo.getInventario().usarLlaveBaño();
+        if (miMundo.getInventario().use_llavebaño && Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_BAÑO)) {
+            miMundo.usarLlaveBaño();
         }
         // Llave estudio
-        if(miMundo.getInventario().use_llaveestudio && Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO)){
-            miMundo.getInventario().usarLlaveEstudio();
+        if (miMundo.getInventario().use_llaveestudio && Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_ESTUDIO)) {
+            miMundo.usarLlaveEstudio();
         }
         // Muñeco vudu
         if(miMundo.getInventario().use_muñecovudu && Intersector.overlaps(bernard.getRectangulo(), lechuck.getRectangulo())){
-            miMundo.getInventario().usarMuñecoVudu();
+            miMundo.usarMuñecoVudu();
         }
         //Llave final
-        if(miMundo.getInventario().use_llavefinal && Intersector.overlaps(bernard.getRectangulo(), Mundo.SUELOS.get(3))){
-            miMundo.getInventario().usarLlaveFinal();
+        if (miMundo.getInventario().use_llavefinal && Intersector.overlaps(bernard.getRectangulo(), miMundo.SUELOS.get(3))) {
+            miMundo.usarLlaveFinal();
             ganar=true;
         }
     }
