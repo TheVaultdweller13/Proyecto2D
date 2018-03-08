@@ -18,11 +18,8 @@ import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
 import com.scaperoom.game.modelo.ElementoMovil;
-import com.scaperoom.game.modelo.Inventario;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
-
-import javax.naming.ldap.Control;
 
 /**
  * Created by Héctor Fernández on 27/02/2018.
@@ -40,7 +37,7 @@ public class RendererJuego implements InputProcessor {
 
     private float delta = Gdx.graphics.getDeltaTime();
 
-    private boolean debugger = true;
+    private boolean debugger = false;
     private Bernard bernard;
     private LeChuck lechuck;
 
@@ -216,28 +213,39 @@ public class RendererJuego implements InputProcessor {
 
     private void dibujarLlaveBaño(){
         if(!miMundo.getInventario().tengo_llavebaño)
-            batch.draw(AssetsJuego.textureLlaveBaño_inactivo, Mundo.LLAVE_BAÑO_INACTIVO.x, Mundo.LLAVE_BAÑO_INACTIVO.y, Mundo.LLAVE_BAÑO_INACTIVO.width, Mundo.LLAVE_BAÑO_INACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveBaño, Mundo.LLAVE_BAÑO_SUELO.x, Mundo.LLAVE_BAÑO_SUELO.y, Mundo.LLAVE_BAÑO_SUELO.width, Mundo.LLAVE_BAÑO_SUELO.height);
+        else if(miMundo.getInventario().usada_llavebaño){
+            batch.draw(AssetsJuego.textureLlaveBaño_inactivo, Mundo.LLAVE_BAÑO_INVENTARIO.x, Mundo.LLAVE_BAÑO_INVENTARIO.y, Mundo.LLAVE_BAÑO_INVENTARIO.width, Mundo.LLAVE_BAÑO_INVENTARIO.height);
+        }
         else
-            batch.draw(AssetsJuego.textureLlaveBaño, Mundo.LLAVE_BAÑO_ACTIVO.x, Mundo.LLAVE_BAÑO_ACTIVO.y, Mundo.LLAVE_BAÑO_ACTIVO.width, Mundo.LLAVE_BAÑO_ACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveBaño, Mundo.LLAVE_BAÑO_INVENTARIO.x, Mundo.LLAVE_BAÑO_INVENTARIO.y, Mundo.LLAVE_BAÑO_INVENTARIO.width, Mundo.LLAVE_BAÑO_INVENTARIO.height);
     }
     private void dibujarLlaveEstudio(){
         if(!miMundo.getInventario().tengo_llaveestudio)
-            batch.draw(AssetsJuego.textureLlaveEstudio_inactivo,Mundo.LLAVE_ESTUDIO_INACTIVO.x, Mundo.LLAVE_ESTUDIO_INACTIVO.y, Mundo.LLAVE_ESTUDIO_INACTIVO.width, Mundo.LLAVE_ESTUDIO_INACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveEstudio,Mundo.LLAVE_ESTUDIO_SUELO.x, Mundo.LLAVE_ESTUDIO_SUELO.y, Mundo.LLAVE_ESTUDIO_SUELO.width, Mundo.LLAVE_ESTUDIO_SUELO.height);
+        else if(miMundo.getInventario().usada_llaveestudio){
+            batch.draw(AssetsJuego.textureLlaveEstudio_inactivo, Mundo.LLAVE_ESTUDIO_INVENTARIO.x, Mundo.LLAVE_ESTUDIO_INVENTARIO.y, Mundo.LLAVE_ESTUDIO_INVENTARIO.width, Mundo.LLAVE_ESTUDIO_INVENTARIO.height);
+        }
         else
-            batch.draw(AssetsJuego.textureLlaveEstudio,Mundo.LLAVE_ESTUDIO_ACTIVO.x, Mundo.LLAVE_ESTUDIO_ACTIVO.y, Mundo.LLAVE_ESTUDIO_ACTIVO.width, Mundo.LLAVE_ESTUDIO_ACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveEstudio,Mundo.LLAVE_ESTUDIO_INVENTARIO.x, Mundo.LLAVE_ESTUDIO_INVENTARIO.y, Mundo.LLAVE_ESTUDIO_INVENTARIO.width, Mundo.LLAVE_ESTUDIO_INVENTARIO.height);
     }
     private void dibujarMuñecoVudu(){
         if(!miMundo.getInventario().tengo_muñecovudu)
-            batch.draw(AssetsJuego.textureMuñecoVuduInactivo, Mundo.MUÑECO_VUDU_INACTIVO.x, Mundo.MUÑECO_VUDU_INACTIVO.y, Mundo.MUÑECO_VUDU_INACTIVO.width, Mundo.MUÑECO_VUDU_INACTIVO.height);
+            batch.draw(AssetsJuego.textureMuñecoVudu, Mundo.MUÑECO_VUDU_SUELO.x, Mundo.MUÑECO_VUDU_SUELO.y, Mundo.MUÑECO_VUDU_SUELO.width, Mundo.MUÑECO_VUDU_SUELO.height);
+        else if(miMundo.getInventario().usado_muñecovudu){
+            batch.draw(AssetsJuego.textureMuñecoVuduInactivo, Mundo.MUÑECO_VUDU_INVENTARIO.x, Mundo.MUÑECO_VUDU_INVENTARIO.y, Mundo.MUÑECO_VUDU_INVENTARIO.width, Mundo.MUÑECO_VUDU_INVENTARIO.height);
+        }
         else
-            batch.draw(AssetsJuego.textureMuñecoVudu, Mundo.MUÑECO_VUDU_ACTIVO.x, Mundo.MUÑECO_VUDU_ACTIVO.y, Mundo.MUÑECO_VUDU_ACTIVO.width, Mundo.MUÑECO_VUDU_ACTIVO.height);
+            batch.draw(AssetsJuego.textureMuñecoVudu, Mundo.MUÑECO_VUDU_INVENTARIO.x, Mundo.MUÑECO_VUDU_INVENTARIO.y, Mundo.MUÑECO_VUDU_INVENTARIO.width, Mundo.MUÑECO_VUDU_INVENTARIO.height);
     }
     private void dibujarLlaveFinal(){
         if(!miMundo.getInventario().tengo_llavefinal && lechuck.isMuerto())
-            //batch.draw(AssetsJuego.textureLlaveFinalInactivo, lechuck.getRectangulo().x+50, Mundo.lechuck.getRectangulo().y, 18, 18);
-            batch.draw(AssetsJuego.textureLlaveFinalInactivo, Mundo.LLAVE_FINAL_INACTIVO.x, Mundo.LLAVE_FINAL_INACTIVO.y, Mundo.LLAVE_FINAL_INACTIVO.width, Mundo.LLAVE_FINAL_INACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_SUELO.x, Mundo.LLAVE_FINAL_SUELO.y, Mundo.LLAVE_FINAL_SUELO.width, Mundo.LLAVE_FINAL_SUELO.height);
+        else if(miMundo.getInventario().usada_llavefinal){
+            batch.draw(AssetsJuego.textureLlaveFinalInactivo, Mundo.LLAVE_FINAL_INVENTARIO.x, Mundo.LLAVE_FINAL_INVENTARIO.y, Mundo.LLAVE_FINAL_INVENTARIO.width, Mundo.LLAVE_FINAL_INVENTARIO.height);
+        }
         else if (miMundo.getInventario().tengo_llavefinal)
-            batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_ACTIVO.x, Mundo.LLAVE_FINAL_ACTIVO.y, Mundo.LLAVE_FINAL_ACTIVO.width, Mundo.LLAVE_FINAL_ACTIVO.height);
+            batch.draw(AssetsJuego.textureLlaveFinal, Mundo.LLAVE_FINAL_INVENTARIO.x, Mundo.LLAVE_FINAL_INVENTARIO.y, Mundo.LLAVE_FINAL_INVENTARIO.width, Mundo.LLAVE_FINAL_INVENTARIO.height);
     }
 
     private void dibujarTiempo() {

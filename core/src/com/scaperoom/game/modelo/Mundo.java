@@ -62,15 +62,15 @@ public class Mundo {
             new Circle(427, 327, 10)
     };
 
-    public static Rectangle LLAVE_BAÑO_INACTIVO;
-    public static Rectangle LLAVE_ESTUDIO_INACTIVO;
-    public static Rectangle MUÑECO_VUDU_INACTIVO;
-    public static Rectangle LLAVE_FINAL_INACTIVO;
+    public static Rectangle LLAVE_BAÑO_SUELO;
+    public static Rectangle LLAVE_ESTUDIO_SUELO;
+    public static Rectangle MUÑECO_VUDU_SUELO;
+    public static Rectangle LLAVE_FINAL_SUELO;
 
-    public static Rectangle LLAVE_BAÑO_ACTIVO;
-    public static Rectangle LLAVE_ESTUDIO_ACTIVO;
-    public static Rectangle MUÑECO_VUDU_ACTIVO;
-    public static Rectangle LLAVE_FINAL_ACTIVO;
+    public static Rectangle LLAVE_BAÑO_INVENTARIO;
+    public static Rectangle LLAVE_ESTUDIO_INVENTARIO;
+    public static Rectangle MUÑECO_VUDU_INVENTARIO;
+    public static Rectangle LLAVE_FINAL_INVENTARIO;
 
 
     public Mundo() {
@@ -79,15 +79,15 @@ public class Mundo {
 
         inventario = new Inventario();
 
-        LLAVE_BAÑO_INACTIVO = new Rectangle(210, 328, 12, 12);
-        LLAVE_ESTUDIO_INACTIVO = new Rectangle(154, 90, 12, 12);
-        MUÑECO_VUDU_INACTIVO = new Rectangle(430, 132, 12, 12);
-        LLAVE_FINAL_INACTIVO = inicializarLlaveFinal();
+        LLAVE_BAÑO_SUELO = new Rectangle(210, 328, 12, 12);
+        LLAVE_ESTUDIO_SUELO = new Rectangle(154, 90, 12, 12);
+        MUÑECO_VUDU_SUELO = new Rectangle(430, 132, 12, 12);
+        LLAVE_FINAL_SUELO = inicializarLlaveFinal();
 
-        LLAVE_BAÑO_ACTIVO = new Rectangle(510, 400, 40, 40);
-        LLAVE_ESTUDIO_ACTIVO = new Rectangle(510, 350, 40, 40);
-        MUÑECO_VUDU_ACTIVO = new Rectangle(510, 300, 40, 40);
-        LLAVE_FINAL_ACTIVO = new Rectangle(510, 250, 40, 40);
+        LLAVE_BAÑO_INVENTARIO = new Rectangle(510, 400, 40, 40);
+        LLAVE_ESTUDIO_INVENTARIO = new Rectangle(510, 350, 40, 40);
+        MUÑECO_VUDU_INVENTARIO = new Rectangle(510, 300, 40, 40);
+        LLAVE_FINAL_INVENTARIO = new Rectangle(510, 250, 40, 40);
 
         cronometro = TIEMPO_INICIAL;
 
@@ -126,9 +126,9 @@ public class Mundo {
     }
 
     public Rectangle inicializarLlaveFinal(){
-        LLAVE_FINAL_INACTIVO = new Rectangle(lechuck.getRectangulo().x, lechuck.getRectangulo().y, 18, 18);
+        LLAVE_FINAL_SUELO = new Rectangle(lechuck.getRectangulo().x, lechuck.getRectangulo().y, 18, 18);
 
-        return LLAVE_FINAL_INACTIVO;
+        return LLAVE_FINAL_SUELO;
     }
 
     public Array<ElementoMovil> getSombra() {

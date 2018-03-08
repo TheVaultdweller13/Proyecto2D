@@ -25,10 +25,7 @@ public class ControladorJuego {
     private LeChuck lechuck;
     public static boolean controlLeChuck = true;
 
-    private Inventario llave_baño;
-    private Inventario llave_estudio;
-    private Inventario muñeco_vudu;
-    private Inventario llave_final;
+    private Inventario objetos_puzzles;
 
     private int avanceLechuck = 0;
 
@@ -57,10 +54,7 @@ public class ControladorJuego {
         lechuck = miMundo.getLechuck();
         avanceLechuck = 0;
 
-        llave_baño = miMundo.getInventario();
-        llave_estudio = miMundo.getInventario();
-        muñeco_vudu = miMundo.getInventario();
-        llave_final = miMundo.getInventario();
+        objetos_puzzles = miMundo.getInventario();
 
     }
 
@@ -191,22 +185,22 @@ public class ControladorJuego {
      */
     private void controlarRecogerObjetos(float delta){
         // Llave baño
-        if(Intersector.overlaps(Mundo.LLAVE_BAÑO_INACTIVO, bernard.getRectangulo())){
-            llave_baño.cogerLlaveBaño();
+        if(Intersector.overlaps(Mundo.LLAVE_BAÑO_SUELO, bernard.getRectangulo())){
+            objetos_puzzles.cogerLlaveBaño();
         }
         // Llave estudio
-        if(Intersector.overlaps(Mundo.LLAVE_ESTUDIO_INACTIVO, bernard.getRectangulo())){
-            llave_baño.cogerLlaveEstudio();
+        if(Intersector.overlaps(Mundo.LLAVE_ESTUDIO_SUELO, bernard.getRectangulo())){
+            objetos_puzzles.cogerLlaveEstudio();
         }
         // Muñeco vudú
-        if(Intersector.overlaps(Mundo.MUÑECO_VUDU_INACTIVO, bernard.getRectangulo())){
-            llave_baño.cogerMuñecoVudu();
+        if(Intersector.overlaps(Mundo.MUÑECO_VUDU_SUELO, bernard.getRectangulo())){
+            objetos_puzzles.cogerMuñecoVudu();
         }
         // Llave final
         if(miMundo.getLechuck().isMuerto()){
             miMundo.inicializarLlaveFinal();
-            if(Intersector.overlaps(miMundo.LLAVE_FINAL_INACTIVO, bernard.getRectangulo())){
-                llave_baño.cogerLlaveFinal();
+            if(Intersector.overlaps(miMundo.LLAVE_FINAL_SUELO, bernard.getRectangulo())){
+                objetos_puzzles.cogerLlaveFinal();
             }
         }
     }

@@ -1,7 +1,6 @@
 package com.scaperoom.game.pantallas;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.math.Circle;
@@ -126,16 +125,16 @@ public class PantallaJuego implements Screen, InputProcessor {
 
         Circle dedo = new Circle(temporal.x, temporal.y, 2);
 
-        if(miMundo.getInventario().tengo_llavebaño && Intersector.overlaps(dedo, Mundo.LLAVE_BAÑO_ACTIVO)){
+        if(miMundo.getInventario().tengo_llavebaño && Intersector.overlaps(dedo, Mundo.LLAVE_BAÑO_INVENTARIO)){
             miMundo.getInventario().use_llavebaño = true;
         }
-        else if(miMundo.getInventario().tengo_llaveestudio && Intersector.overlaps(dedo, Mundo.LLAVE_ESTUDIO_ACTIVO)){
+        else if(miMundo.getInventario().tengo_llaveestudio && Intersector.overlaps(dedo, Mundo.LLAVE_ESTUDIO_INVENTARIO)){
             miMundo.getInventario().use_llaveestudio = true;
         }
-        else if (miMundo.getInventario().tengo_muñecovudu && Intersector.overlaps(dedo, Mundo.MUÑECO_VUDU_ACTIVO)){
+        else if (miMundo.getInventario().tengo_muñecovudu && Intersector.overlaps(dedo, Mundo.MUÑECO_VUDU_INVENTARIO)){
             miMundo.getInventario().use_muñecovudu = true;
         }
-        else if (miMundo.getInventario().tengo_llavefinal && Intersector.overlaps(dedo, Mundo.LLAVE_FINAL_ACTIVO)){
+        else if (miMundo.getInventario().tengo_llavefinal && Intersector.overlaps(dedo, Mundo.LLAVE_FINAL_INVENTARIO)){
             miMundo.getInventario().use_llavefinal = true;
         }
         else
