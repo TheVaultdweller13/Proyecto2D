@@ -26,7 +26,6 @@ public class PantallaPresentacion implements Screen, InputProcessor {
     private Juego juego;
     private SpriteBatch batch;
     private OrthographicCamera camara2d;
-    private Mundo miMundo;
 
     private Rectangle botones[] = {
             new Rectangle(200, 230, 170, 60),
@@ -39,7 +38,6 @@ public class PantallaPresentacion implements Screen, InputProcessor {
         this.juego = juego;
         batch = new SpriteBatch();
         camara2d = new OrthographicCamera();
-        miMundo = new Mundo();
     }
 
     /**

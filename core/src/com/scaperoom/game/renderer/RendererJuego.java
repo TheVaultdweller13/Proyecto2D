@@ -19,7 +19,6 @@ import com.badlogic.gdx.utils.StringBuilder;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
-import com.scaperoom.game.modelo.Controles;
 import com.scaperoom.game.modelo.ElementoMovil;
 import com.scaperoom.game.modelo.LeChuck;
 import com.scaperoom.game.modelo.Mundo;
@@ -33,14 +32,11 @@ public class RendererJuego implements InputProcessor {
     private Mundo miMundo;
 
     private SpriteBatch batch;
-    private Vector3 temporal;
     private ShapeRenderer shaperender;
 
     private float crono;
 
-    private float delta = Gdx.graphics.getDeltaTime();
-
-    private boolean debugger = false;
+    private final boolean DEBUGGER = false;
     private Bernard bernard;
     private LeChuck lechuck;
 
@@ -104,7 +100,7 @@ public class RendererJuego implements InputProcessor {
 
         batch.end();
 
-        if (debugger) {
+        if (DEBUGGER) {
             debugger();
         }
 
@@ -129,9 +125,6 @@ public class RendererJuego implements InputProcessor {
         if(!miMundo.getInventario().usada_llavebaño){
             batch.draw(AssetsJuego.texturePuertas,
                     115, 144, 29, 48);
-        }
-        else{
-            //Mensaje de "Hace falta una llave"
         }
         if(!miMundo.getInventario().usada_llaveestudio){
             batch.draw(AssetsJuego.texturePuertas,
@@ -271,7 +264,8 @@ public class RendererJuego implements InputProcessor {
     private void dibujarTiempo() {
         // Borrar texto
         sbuffer.setLength(0);
-        sbuffer.append("Tiempo: "+miMundo.getCronometro());
+        sbuffer.append("Tiempo: ");
+        sbuffer.append(miMundo.getCronometro());
         // cpy() needed to properly set afterwards because calling set() seems to modify kept matrix, not replaces it
         Matrix4 originalMatrix = batch.getProjectionMatrix().cpy();
         batch.setProjectionMatrix(originalMatrix.cpy().translate(20, 20, 0).scale(1, 1 , 1));
@@ -303,11 +297,11 @@ public class RendererJuego implements InputProcessor {
         else if(miMundo.getCronometro() > 65 && miMundo.getCronometro() < 70){
             textosLeChuck.append("LECHUCK: AQUI LLEGAN LOS DEMAS");
         }
-        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio){
+        if (Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio) {
             textosLeChuck.setLength(0);
             textosLeChuck.append("LECHUCK: EH, PARA QUIETO");
         }
-        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño){
+        if (Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño) {
             textosLeChuck.setLength(0);
             textosLeChuck.append("LECHUCK: DEJA DE HACER EL TONTO");
         }
@@ -316,26 +310,26 @@ public class RendererJuego implements InputProcessor {
             textosLeChuck.append("LECHUCK: AAAAAHHGGGGG!!!");
         }
 
-       controlDialogos(batch, textosLeChuck, 120, 40, 0);
+        controlDialogos(batch, textosLeChuck, 120, 40);
 
 
         textosBernard.setLength(0);
-        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio){
+        if (Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio) {
             textosBernard.append("NECESITO LA LLAVE DEL\n ESTUDIO");
         }
-        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño){
+        if (Intersector.overlaps(bernard.getRectangulo(), miMundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño) {
             textosBernard.append("NECESITO LA LLAVE DEL\n SERVICIO");
         }
 
 
         controlDialogos(batch, textosBernard,miMundo.getBernard().getPosicion().x-miMundo.getBernard().getTamaño().x*2,
-                miMundo.getBernard().getPosicion().y+miMundo.getBernard().getTamaño().y, 0);
+                miMundo.getBernard().getPosicion().y + miMundo.getBernard().getTamaño().y);
     }
 
-    public void controlDialogos(SpriteBatch batch, StringBuilder builder, float x, float y, float z){
+    private void controlDialogos(SpriteBatch batch, StringBuilder builder, float x, float y) {
 
         Matrix4 originalMatrix = batch.getProjectionMatrix().cpy();
-        batch.setProjectionMatrix(originalMatrix.cpy().translate(x, y, z).scale(1, 1 , 1));
+        batch.setProjectionMatrix(originalMatrix.cpy().translate(x, y, 0).scale(1, 1, 1));
         this.bitMapFont.draw(batch, builder, 0, this.bitMapFont.getXHeight());
         batch.setProjectionMatrix(originalMatrix); //revert projection
     }
@@ -376,13 +370,13 @@ public class RendererJuego implements InputProcessor {
         shaperender.end();
 
         shaperender.begin(ShapeRenderer.ShapeType.Line);
-        for (int i = 0; i < Mundo.SUELOS.size(); i++) {
-            Rectangle r = Mundo.SUELOS.get(i);
-            shaperender.setColor(new Color().fromHsv(360 * i / Mundo.SUELOS.size(), 1, 1));
+        for (int i = 0; i < miMundo.SUELOS.size(); i++) {
+            Rectangle r = miMundo.SUELOS.get(i);
+            shaperender.setColor(new Color().fromHsv(360 * i / miMundo.SUELOS.size(), 1, 1));
             shaperender.rect(r.x, r.y, r.width, r.height);
         }
-        for (int i = 0; i < Mundo.PUNTOS_DESPLAZAMIENTO.length; i++) {
-            shaperender.circle(Mundo.PUNTOS_DESPLAZAMIENTO[i].x, Mundo.PUNTOS_DESPLAZAMIENTO[i].y, Mundo.PUNTOS_DESPLAZAMIENTO[i].radius);
+        for (int i = 0; i < miMundo.PUNTOS_DESPLAZAMIENTO.length; i++) {
+            shaperender.circle(miMundo.PUNTOS_DESPLAZAMIENTO[i].x, miMundo.PUNTOS_DESPLAZAMIENTO[i].y, miMundo.PUNTOS_DESPLAZAMIENTO[i].radius);
         }
         shaperender.end();
     }
@@ -405,7 +399,8 @@ public class RendererJuego implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        temporal.set(screenX, screenY, 0);
+        Vector3 temporal = new Vector3();
+        temporal.set(screenX, screenY, 0f);
         camara2d.unproject(temporal);
         return false;
     }

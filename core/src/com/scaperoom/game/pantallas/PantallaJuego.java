@@ -27,7 +27,6 @@ public class PantallaJuego implements Screen, InputProcessor {
     private RendererJuego r_juego;
 
     private boolean finjuego;
-    private boolean salir;
 
     public PantallaJuego(Juego juego) {
         this.juego = juego;
@@ -168,13 +167,9 @@ public class PantallaJuego implements Screen, InputProcessor {
         recTemporal.set(Controles.CONTROL_SALIR.x, Controles.CONTROL_SALIR.y, Controles.CONTROL_SALIR.width, Controles.CONTROL_SALIR.height);
         if (Intersector.overlaps(dedo, recTemporal)) {
             //  dispose();
-            salir = true;
             Audio.liberarAudio();
             juego.setScreen(new PantallaPresentacion(juego));
         }
-
-
-
 
         return false;
     }

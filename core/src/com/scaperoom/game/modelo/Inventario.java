@@ -1,8 +1,5 @@
 package com.scaperoom.game.modelo;
 
-import com.badlogic.gdx.math.Intersector;
-import com.scaperoom.game.game.AssetsJuego;
-
 public class Inventario {
 
 
@@ -27,7 +24,8 @@ public class Inventario {
 //        this.mundo = mundo;
 //   }
 
-    public Inventario() {}
+    Inventario() {
+    }
 
     public void cogerLlaveBaño() {
         tengo_llavebaño = true;
@@ -43,29 +41,5 @@ public class Inventario {
 
     public void cogerLlaveFinal() {
         tengo_llavefinal = true;
-    }
-
-    public void usarLlaveBaño() {
-      //  use_llavebaño = true;
-        usada_llavebaño = true;
-        Mundo.SUELOS.add(Mundo.PASILLO_BAÑO);
-    }
-
-    public void usarLlaveEstudio() {
-     //   use_llaveestudio = true;
-        usada_llaveestudio = true;
-        Mundo.SUELOS.add(Mundo.PASILLO_ESTUDIO);
-    }
-
-    public void usarMuñecoVudu() {
-     //   use_muñecovudu = true;
-        usado_muñecovudu = true;
-        Mundo.lechuck.morir();
-    }
-
-    public void usarLlaveFinal() {
-        use_llavefinal = true;
-        usada_llavefinal = true;
-        // WIN
     }
 }

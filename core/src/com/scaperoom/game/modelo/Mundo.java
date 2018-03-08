@@ -22,10 +22,10 @@ public class Mundo {
 
     public final static Vector2 TAMAÑO_NIEBLA = new Vector2(576, 576);
 
-    public static Bernard bernard;
-    public static LeChuck lechuck;
+    private Bernard bernard;
+    private LeChuck lechuck;
 
-    public static Inventario inventario;
+    private static Inventario inventario;
 
     private final static int TIEMPO_INICIAL = 0;
     private float cronometro;
@@ -41,10 +41,10 @@ public class Mundo {
     public static final float PROPORCION_REAL_MUNDO_ANCHO = ((float) Gdx.graphics.getWidth() / Mundo.TAMAÑO_MUNDO_ANCHO);
     public static final float PROPORCION_REAL_MUNDO_ALTO = ((float) Gdx.graphics.getHeight() / Mundo.TAMAÑO_MUNDO_ALTO);
 
-    public final static Rectangle PASILLO_BAÑO = new Rectangle(115, 100, 30, 120);
-    public final static Rectangle PASILLO_ESTUDIO = new Rectangle(405, 160, 30, 120);
+    public final Rectangle PASILLO_BAÑO = new Rectangle(115, 100, 30, 120);
+    public final Rectangle PASILLO_ESTUDIO = new Rectangle(405, 160, 30, 120);
 
-    public final static List<Rectangle> SUELOS = new ArrayList<Rectangle>(Arrays.asList(
+    public final List<Rectangle> SUELOS = new ArrayList<Rectangle>(Arrays.asList(
             new Rectangle(20, 200, 155, 180),   // COCINA
             new Rectangle(200, 260, 289, 120),  // SALÓN DERECHA
             new Rectangle(200, 80, 125, 300),   // SALÓN IZQUIERDA
@@ -54,7 +54,7 @@ public class Mundo {
             new Rectangle(35, 15, 140, 115)     // BAÑO
     ));
 
-    public final static Circle PUNTOS_DESPLAZAMIENTO[] = {
+    public final Circle PUNTOS_DESPLAZAMIENTO[] = {
             new Circle(60, 230, 10),
             new Circle(120, 250, 10),
             new Circle(245, 250, 10),
@@ -143,16 +143,8 @@ public class Mundo {
         return bernard;
     }
 
-    public void setBernard(Bernard bernard) {
-        Mundo.bernard = bernard;
-    }
-
     public LeChuck getLechuck() {
         return lechuck;
-    }
-
-    public void setLechuck(LeChuck lechuck) {
-        Mundo.lechuck = lechuck;
     }
 
     public Inventario getInventario() {
@@ -167,4 +159,28 @@ public class Mundo {
         cronometro += delta;
     }
 
+    public void usarLlaveBaño() {
+        //  use_llavebaño = true;
+        inventario.usada_llavebaño = true;
+        SUELOS.add(PASILLO_BAÑO);
+    }
+
+    public void usarLlaveEstudio() {
+        //   use_llaveestudio = true;
+        inventario.usada_llaveestudio = true;
+        SUELOS.add(PASILLO_ESTUDIO);
+    }
+
+    public void usarMuñecoVudu() {
+        //   use_muñecovudu = true;
+        inventario.usado_muñecovudu = true;
+        lechuck.morir();
+    }
+
+
+    public void usarLlaveFinal() {
+        inventario.use_llavefinal = true;
+        inventario.usada_llavefinal = true;
+        // WIN
+    }
 }
