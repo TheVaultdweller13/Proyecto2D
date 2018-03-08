@@ -11,9 +11,11 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.StringBuilder;
 import com.scaperoom.game.controlador.ControladorJuego;
 import com.scaperoom.game.game.AssetsJuego;
 import com.scaperoom.game.modelo.Bernard;
@@ -44,6 +46,8 @@ public class RendererJuego implements InputProcessor {
     private OrthographicCamera camara2d;
 
     private StringBuilder sbuffer;
+    private StringBuilder textosLeChuck;
+    private StringBuilder textosBernard;
     private BitmapFont bitMapFont;
 
 
@@ -60,13 +64,15 @@ public class RendererJuego implements InputProcessor {
 
         //Libgdx by default, creates a BitmapFont using the default 15pt Arial font included in the libgdx JAR file.
         //Using FreeTypeFont, it is possible so create fonts with a desired size on the fly.
-        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/DS-DIGIT.TTF"));
+        FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("fonts/One Size.TTF"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = (int) (15 * Mundo.PROPORCION_REAL_MUNDO_ANCHO);
+        parameter.size = (int) (12 * Mundo.PROPORCION_REAL_MUNDO_ANCHO);
         this.bitMapFont = generator.generateFont(parameter); // font size in pixels
         generator.dispose(); // don't forget to dispose to avoid memory leaks!
         sbuffer = new StringBuilder();
-        this.bitMapFont.setColor(Color.WHITE);
+        textosLeChuck = new StringBuilder();
+        textosBernard = new StringBuilder();
+        this.bitMapFont.setColor(Color.GOLDENROD);
     }
 
     public void render(float delta) {
@@ -93,6 +99,7 @@ public class RendererJuego implements InputProcessor {
         dibujarMuñecoVudu();
         dibujarLlaveFinal();
         dibujarTiempo();
+        dibujarDialogos();
 
         batch.end();
 
@@ -263,11 +270,62 @@ public class RendererJuego implements InputProcessor {
     private void dibujarTiempo() {
         // Borrar texto
         sbuffer.setLength(0);
-        sbuffer.append(miMundo.getCronometro());
+        sbuffer.append("Tiempo: "+miMundo.getCronometro());
         // cpy() needed to properly set afterwards because calling set() seems to modify kept matrix, not replaces it
         Matrix4 originalMatrix = batch.getProjectionMatrix().cpy();
-        batch.setProjectionMatrix(originalMatrix.cpy().scale(1 / Mundo.PROPORCION_REAL_MUNDO_ANCHO, 1 / Mundo.PROPORCION_REAL_MUNDO_ALTO, 1));
+        batch.setProjectionMatrix(originalMatrix.cpy().translate(20, 20, 0).scale(1, 1 , 1));
         this.bitMapFont.draw(batch, sbuffer, 0, this.bitMapFont.getXHeight());
+        batch.setProjectionMatrix(originalMatrix); //revert projection
+    }
+
+    private void dibujarDialogos(){
+        textosLeChuck.setLength(0);
+        if(miMundo.getCronometro() > 5 && miMundo.getCronometro() < 15){
+            textosLeChuck.append("LECHUCK: TRANQUILO, LOS INVITADOS LLEGARAN\nPRONTO");
+        }
+        else if(miMundo.getCronometro() > 25 && miMundo.getCronometro() < 30){
+            textosLeChuck.append("LECHUCK: ME ESTAS PONIENDO NERVIOSO");
+        }
+        else if(miMundo.getCronometro() > 45 && miMundo.getCronometro() < 55){
+            textosLeChuck.append("LECHUCK: NUNCA SALDRAS DE AQUI.\n AL MENOS HASTA QUE TERMINE MI FIESTA");
+        }
+        else if(miMundo.getCronometro() > 65 && miMundo.getCronometro() < 70){
+            textosLeChuck.append("LECHUCK: AQUI LLEGAN LOS DEMAS");
+        }
+        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio){
+            textosLeChuck.setLength(0);
+            textosLeChuck.append("LECHUCK: EH, PARA QUIETO");
+        }
+        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño){
+            textosLeChuck.setLength(0);
+            textosLeChuck.append("LECHUCK: DEJA DE HACER EL TONTO");
+        }
+        if(miMundo.getLechuck().isMuerto()){
+            textosLeChuck.setLength(0);
+            textosLeChuck.append("LECHUCK: AAAAAHHGGGGG!!!");
+        }
+
+       controlDialogos(batch, textosLeChuck, 120, 40, 0);
+
+
+        textosBernard.setLength(0);
+        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_ESTUDIO) && !miMundo.getInventario().tengo_llaveestudio){
+            textosBernard.append("NECESITO LA LLAVE DEL\n ESTUDIO");
+        }
+        if(Intersector.overlaps(bernard.getRectangulo(), Mundo.PASILLO_BAÑO) && !miMundo.getInventario().tengo_llavebaño){
+            textosBernard.append("NECESITO LA LLAVE DEL\n SERVICIO");
+        }
+
+
+        controlDialogos(batch, textosBernard,miMundo.getBernard().getPosicion().x-miMundo.getBernard().getTamaño().x*2,
+                miMundo.getBernard().getPosicion().y+miMundo.getBernard().getTamaño().y, 0);
+    }
+
+    public void controlDialogos(SpriteBatch batch, StringBuilder builder, float x, float y, float z){
+
+        Matrix4 originalMatrix = batch.getProjectionMatrix().cpy();
+        batch.setProjectionMatrix(originalMatrix.cpy().translate(x, y, z).scale(1, 1 , 1));
+        this.bitMapFont.draw(batch, builder, 0, this.bitMapFont.getXHeight());
         batch.setProjectionMatrix(originalMatrix); //revert projection
     }
 
