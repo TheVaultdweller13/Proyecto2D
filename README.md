@@ -21,10 +21,10 @@ El pirata zombie LeChuck ha cerrado a cal y canto las puertas de su mansión y B
 
 <b>Imágenes:</b>
 Pantalla de presentación:
-https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_presentacion.png
+<img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_presentacion.png">
 
 Pantalla de juego:
-https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_juego.png
+<img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_juego.png">
 
 Pantalla de puntuaciones:
-https://github.com/TheVaultdweller13/Proyecto2D/blob/master/puntuaciones.png?raw=true
+<img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/puntuaciones.png?raw=true">
