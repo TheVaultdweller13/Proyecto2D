@@ -27,4 +27,4 @@ Pantalla de juego:
 <img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_juego.png">
 
 Pantalla de puntuaciones:
-<img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_puntuacion.png>
+<img src="https://github.com/TheVaultdweller13/Proyecto2D/blob/master/pantalla_puntuacion.png">
