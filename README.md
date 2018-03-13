@@ -2,6 +2,8 @@
 
 Aventura gráfica programada en LibGDX como proyecto de programación de videojuegos en el ciclo de Desarrollo de aplicaciones multiplataforma.
 
+Archivo .jar del juego: https://mega.nz/#!DV8GRaiT!OoWRslOnLO8HpFvYXT8WoVxdjKdWskN32avXXPLzR3o
+
 <b>Nombre del juego:</b>
 La Fuga de Bernard
 
